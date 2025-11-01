@@ -1,0 +1,216 @@
+{
+  "extracted_data": {
+    "exercises": [
+      {
+        "name": "Pec Stretch (Neck, Right Shoulder)",
+        "instructions": "Stand in a doorway with your arm at a 90-degree angle. Gently lean forward until you feel a stretch in your chest. Hold the stretch without causing shoulder pain.",
+        "frequency": {
+          "sets": 3,
+          "duration_seconds": 30,
+          "schedule": "daily"
+        },
+        "importance": "Helps relieve tension in the pectoral muscles and improve posture.",
+        "type": "exercise",
+        "raw_text": "Pec Stretch (Neck, Right Shoulder)\nFrequency: 3 sets x 30 seconds daily\nInstructions: Stand in a doorway with your arm at a 90-degree angle.\nGently lean forward until you feel a stretch in your chest.\nImportance: Helps relieve tension in the pectoral muscles and improve posture."
+      },
+      {
+        "name": "Neck Retractions (Neck)",
+        "instructions": "Sit or stand with your back straight. Gently pull your head back, keeping your chin tucked. Hold for a moment, then release.",
+        "frequency": {
+          "sets": 3,
+          "reps": 10,
+          "schedule": "daily"
+        },
+        "importance": "Improves neck posture and reduces strain on the cervical spine.",
+        "type": "exercise",
+        "raw_text": "Neck Retractions (Neck)\nFrequency: 3 sets x 10 reps daily\nInstructions: Sit or stand with your back straight.\nImportance: Improves neck posture and reduces strain on the cervical spine."
+      },
+      {
+        "name": "Scapular Retractions (Right Shoulder)",
+        "instructions": "Stand or sit with your arms at your sides. Squeeze your shoulder blades together, hold, and release.",
+        "frequency": {
+          "sets": 3,
+          "reps": 10,
+          "schedule": "daily"
+        },
+        "importance": "Strengthens the muscles around the shoulder blades to improve posture.",
+        "type": "exercise",
+        "raw_text": "Scapular Retractions (Right Shoulder)\nFrequency: 3 sets x 10 reps daily\nInstructions: Stand or sit with your arms at your sides.\nImportance: Strengthens the muscles around the shoulder blades to improve posture."
+      }
+    ],
+    "goals": [
+      {
+        "type": "current",
+        "description": "Current Result: 70% right rotation",
+        "time_reference": null,
+        "raw_text": "Current Result: 70% right rotation"
+      },
+      {
+        "type": "milestone",
+        "description": "Next Milestone: 80% right rotation in two weeks",
+        "time_reference": {
+          "value": 2,
+          "max_value": 2,
+          "unit": "weeks",
+          "text": "in two weeks"
+        },
+        "raw_text": "Next Milestone: 80% right rotation in two weeks"
+      },
+      {
+        "type": "end",
+        "description": "End Goal: Equal neck rotation both ways",
+        "time_reference": null,
+        "raw_text": "End Goal: Equal neck rotation both ways"
+      },
+      {
+        "type": "milestone",
+        "description": "Next Milestone: Lift 5 kg overhead pain-free in two weeks",
+        "time_reference": {
+          "value": 2,
+          "max_value": 2,
+          "unit": "weeks",
+          "text": "in two weeks"
+        },
+        "raw_text": "Next Milestone: Lift 5 kg overhead pain-free in two weeks"
+      },
+      {
+        "type": "end",
+        "description": "End Goal: Lift 20 kg overhead pain-free",
+        "time_reference": null,
+        "raw_text": "End Goal: Lift 20 kg overhead pain-free"
+      }
+    ],
+    "dos_and_donts": {
+      "dos": [
+        "Use a sit-to-stand desk to vary posture throughout the day",
+        "Apply ice to the shoulder if sore after exercises",
+        "Perform prescribed exercises daily to aid recovery"
+      ],
+      "donts": [
+        "Avoid sleeping on the affected side to reduce symptoms",
+        "Do not perform overhead lifting until cleared by physiotherapist",
+        "Avoid activities that exacerbate neck and shoulder pain"
+      ]
+    },
+    "appointments": [
+      {
+        "type": "Physiotherapy sessions",
+        "frequency_per_period": 2,
+        "period": "week",
+        "timeframe_duration": 3,
+        "timeframe_unit": "weeks",
+        "raw_text": "Physiotherapy sessions 2x per week for first 3 weeks"
+      },
+      {
+        "type": "Physiotherapy sessions",
+        "frequency_per_period": 1,
+        "period": "week",
+        "timeframe_duration": 3,
+        "timeframe_unit": "weeks",
+        "raw_text": "Physiotherapy sessions 1x per week for second 3 weeks"
+      }
+    ],
+    "conditions": [
+      {
+        "diagnosis": "Moderate foraminal stenosis at C6/7 and C5/6",
+        "body_part": "neck",
+        "raw_text": "Moderate foraminal stenosis at C6/7 and C5/6"
+      },
+      {
+        "diagnosis": "Right supraspinatus tear, tendinosis, bursitis, impingement",
+        "body_part": "shoulder",
+        "raw_text": "Right supraspinatus tear, tendinosis, bursitis, impingement"
+      }
+    ],
+    "extraction_metadata": {
+      "timestamp": "2024-11-01T10:00:00",
+      "text_length": 2500,
+      "confidence": 0.85
+    }
+  },
+  "missions": [
+    {
+      "title": "Pec Stretch (Neck, Right Shoulder)",
+      "description": "Stand in a doorway with your arm at a 90-degree angle. Gently lean forward until you feel a stretch in your chest. Hold the stretch without causing shoulder pain.",
+      "mission_type": "exercise",
+      "scheduled_date": "2024-11-01",
+      "scheduled_time": "07:00:00",
+      "due_datetime": "2024-11-01T09:00:00",
+      "duration_minutes": 0,
+      "points": 50,
+      "status": "pending",
+      "treatment_plan_id": "plan-123",
+      "patient_id": "patient-456",
+      "recurrence_pattern": {
+        "frequency": "daily",
+        "end_date": "2024-12-27"
+      }
+    },
+    {
+      "title": "Neck Retractions (Neck)",
+      "description": "Sit or stand with your back straight. Gently pull your head back, keeping your chin tucked. Hold for a moment, then release.",
+      "mission_type": "exercise",
+      "scheduled_date": "2024-11-01",
+      "scheduled_time": "07:00:00",
+      "due_datetime": "2024-11-01T09:00:00",
+      "duration_minutes": null,
+      "points": 50,
+      "status": "pending",
+      "treatment_plan_id": "plan-123",
+      "patient_id": "patient-456",
+      "recurrence_pattern": {
+        "frequency": "daily",
+        "end_date": "2024-12-27"
+      }
+    },
+    {
+      "title": "Check: Use a sit-to-stand desk to vary posture",
+      "description": "Use a sit-to-stand desk to vary posture throughout the day",
+      "mission_type": "check",
+      "scheduled_date": "2024-11-01",
+      "scheduled_time": "09:00:00",
+      "due_datetime": "2024-11-01T23:59:00",
+      "points": 25,
+      "status": "pending",
+      "treatment_plan_id": "plan-123",
+      "patient_id": "patient-456"
+    },
+    {
+      "title": "Physiotherapy sessions",
+      "description": "Physiotherapy session 1",
+      "mission_type": "therapy",
+      "scheduled_date": "2024-11-01",
+      "scheduled_time": "14:00:00",
+      "due_datetime": "2024-11-01T16:00:00",
+      "duration_minutes": 60,
+      "points": 100,
+      "status": "pending",
+      "treatment_plan_id": "plan-123",
+      "patient_id": "patient-456"
+    }
+  ],
+  "calendar_events": [
+    {
+      "title": "Physiotherapy sessions",
+      "description": "Physiotherapy session 1",
+      "event_type": "therapy",
+      "start_datetime": "2024-11-01T14:00:00",
+      "end_datetime": "2024-11-01T15:00:00",
+      "mission_id": null,
+      "patient_id": "patient-456",
+      "is_all_day": false,
+      "reminder_minutes": [1440, 60]
+    }
+  ],
+  "metadata": {
+    "pdf_path": "example_treatment_plan.pdf",
+    "total_pages": 3,
+    "extraction_method": "pdfplumber",
+    "text_length": 2500,
+    "missions_generated": 56,
+    "calendar_events_generated": 9,
+    "extraction_timestamp": "2024-11-01",
+    "confidence": 0.90
+  }
+}
+
