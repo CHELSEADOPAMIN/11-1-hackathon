@@ -10,7 +10,8 @@ import {
   MessageSquare,
   Settings,
   User,
-  Users
+  Users,
+  Video
 } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -19,6 +20,7 @@ const iconMap = {
   Home,
   Users,
   MessageSquare,
+  Video,
   BookOpen,
   Calendar
 }
