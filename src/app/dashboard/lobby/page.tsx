@@ -17,9 +17,9 @@ export default function LobbyPage() {
       id: Date.now().toString(),
       author: {
         id: '1',
-        name: '小明',
+        name: 'Alex Chen',
         avatar: '/api/placeholder/40/40',
-        injuryType: '膝关节康复',
+        injuryType: 'Knee Rehabilitation',
         joinDate: '2024-09-15',
         isOnline: true
       },
