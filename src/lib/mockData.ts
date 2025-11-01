@@ -81,6 +81,19 @@ export interface Chat {
   lastMessage?: ChatMessage
 }
 
+export interface GroupExercise {
+  id: string
+  title: string
+  exerciseType: string
+  category: string // Injury category like 'Knee', 'Shoulder', etc.
+  participantCount: number
+  maxParticipants: number
+  startTime: string
+  duration: number // in minutes
+  host: User
+  isPinned?: boolean // Pinned if matches user's training plan
+}
+
 // Current user with interests
 export const currentUser: User = {
   id: '1',
@@ -546,6 +559,89 @@ export const globalPublicChat: PublicChatMessage[] = [
   }
 ]
 
+// User's training plan - 3 knee-related rehabilitation exercises
+export const userTrainingPlan: string[] = [
+  'Knee Extension Strengthening',
+  'Quadriceps Strengthening',
+  'Hamstring Flexibility'
+]
+
+// Group exercises available
+export const groupExercises: GroupExercise[] = [
+  {
+    id: '1',
+    title: 'Knee Extension Strengthening',
+    exerciseType: 'Strength Training',
+    category: 'Knee',
+    participantCount: 3,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 10 * 60000).toISOString(), // 10 minutes from now
+    duration: 30,
+    host: friends[0],
+    isPinned: true // Matches user's training plan
+  },
+  {
+    id: '2',
+    title: 'Quadriceps Strengthening',
+    exerciseType: 'Strength Training',
+    category: 'Knee',
+    participantCount: 2,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 20 * 60000).toISOString(), // 20 minutes from now
+    duration: 30,
+    host: friends[1],
+    isPinned: true // Matches user's training plan
+  },
+  {
+    id: '3',
+    title: 'Hamstring Flexibility',
+    exerciseType: 'Strength Training',
+    category: 'Knee',
+    participantCount: 4,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 30 * 60000).toISOString(), // 30 minutes from now
+    duration: 30,
+    host: friends[2],
+    isPinned: true // Matches user's training plan
+  },
+  {
+    id: '4',
+    title: 'Shoulder Range of Motion',
+    exerciseType: 'Strength Training',
+    category: 'Shoulder',
+    participantCount: 2,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 15 * 60000).toISOString(),
+    duration: 30,
+    host: friends[3],
+    isPinned: false
+  },
+  {
+    id: '5',
+    title: 'Core Stability Training',
+    exerciseType: 'Strength Training',
+    category: 'Spine',
+    participantCount: 1,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 25 * 60000).toISOString(),
+    duration: 30,
+    host: friends[4],
+    isPinned: false
+  },
+  {
+    id: '6',
+    title: 'Ankle Mobility Exercises',
+    exerciseType: 'Strength Training',
+    category: 'Ankle',
+    participantCount: 3,
+    maxParticipants: 4,
+    startTime: new Date(Date.now() + 35 * 60000).toISOString(),
+    duration: 30,
+    host: friends[0],
+    isPinned: false
+  }
+]
+
 // Navigation menu items
 export interface NavigationItem {
   name: string
@@ -582,7 +678,7 @@ export const navigationItems: NavigationItem[] = [
     ]
   },
   {
-    name: 'Group Session',
+    name: 'Group Exercise',
     href: '/dashboard/session',
     icon: 'Video'
   },

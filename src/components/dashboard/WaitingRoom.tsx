@@ -15,7 +15,7 @@ interface WaitingRoomProps {
 export default function WaitingRoom({ 
   onJoinSession, 
   onLeave,
-  sessionTitle = 'Group Support Session',
+  sessionTitle = 'Group Exercise',
   startTime
 }: WaitingRoomProps) {
   const [micEnabled, setMicEnabled] = useState(false)
