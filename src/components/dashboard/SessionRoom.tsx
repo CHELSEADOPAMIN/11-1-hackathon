@@ -30,7 +30,7 @@ interface Message {
   timestamp: Date
 }
 
-// Pixelated cartoon avatar component with floating animation - aivilization.ai style
+// Pixelated cartoon avatar component with floating animation using GIF files
 function PixelatedAvatar({ 
   isCurrentUser, 
   color, 
@@ -42,9 +42,15 @@ function PixelatedAvatar({
   delay: number
   avatarIndex: number
 }) {
-  // Different hair/hat styles for variety
-  const hairStyles = ['none', 'spike', 'cap', 'long']
-  const hairStyle = hairStyles[avatarIndex % hairStyles.length]
+  // Map avatar index to GIF files
+  const avatarGifs = [
+    '/blue_run.gif',
+    '/pink_run.gif',
+    '/pink_punch.gif',
+    '/white_run.gif'
+  ]
+  
+  const gifSrc = avatarGifs[avatarIndex % avatarGifs.length]
   
   return (
     <>
@@ -55,21 +61,10 @@ function PixelatedAvatar({
           50% { transform: translateY(-5px) rotate(0deg); }
           75% { transform: translateY(-8px) rotate(-2deg); }
         }
-        @keyframes pixelBounce {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-        @keyframes blink {
-          0%, 90%, 100% { transform: scaleY(1); }
-          95% { transform: scaleY(0.1); }
-        }
         .pixel-float {
           animation: float 3s ease-in-out infinite;
         }
-        .pixel-bounce {
-          animation: pixelBounce 2s ease-in-out infinite;
-        }
-        .pixel-avatar {
+        .pixel-avatar-gif {
           image-rendering: pixelated;
           image-rendering: -moz-crisp-edges;
           image-rendering: crisp-edges;
@@ -81,141 +76,28 @@ function PixelatedAvatar({
           animationDelay: `${delay}s`
         }}
       >
-        {/* Pixelated avatar container - 32x32 pixel grid */}
+        {/* GIF Avatar */}
         <div 
-          className="relative pixel-avatar pixel-bounce"
+          className="relative pixel-avatar-gif"
           style={{
             width: '96px',
             height: '96px',
-            animationDelay: `${delay}s`,
-            transform: 'scale(1)',
-            imageRendering: 'pixelated'
+            animationDelay: `${delay}s`
           }}
         >
-          {/* Face base - square pixel art style */}
-          <div 
-            className="absolute"
+          <img
+            src={gifSrc}
+            alt="Pixelated avatar"
+            className="w-full h-full object-contain"
             style={{
-              left: '20px',
-              top: '28px',
-              width: '56px',
-              height: '56px',
-              backgroundColor: color,
-              border: '2px solid #000',
-              boxShadow: 'inset -2px -2px 0 rgba(0,0,0,0.3), inset 2px 2px 0 rgba(255,255,255,0.4)'
-            }}
-          />
-          
-          {/* Hair/Hat */}
-          {hairStyle === 'spike' && (
-            <>
-              <div className="absolute" style={{ left: '16px', top: '24px', width: '8px', height: '12px', backgroundColor: '#8B4513', border: '2px solid #000' }} />
-              <div className="absolute" style={{ left: '24px', top: '20px', width: '8px', height: '16px', backgroundColor: '#8B4513', border: '2px solid #000' }} />
-              <div className="absolute" style={{ left: '32px', top: '18px', width: '8px', height: '18px', backgroundColor: '#8B4513', border: '2px solid #000' }} />
-              <div className="absolute" style={{ left: '40px', top: '20px', width: '8px', height: '16px', backgroundColor: '#8B4513', border: '2px solid #000' }} />
-              <div className="absolute" style={{ left: '48px', top: '24px', width: '8px', height: '12px', backgroundColor: '#8B4513', border: '2px solid #000' }} />
-            </>
-          )}
-          {hairStyle === 'cap' && (
-            <div 
-              className="absolute"
-              style={{
-                left: '18px',
-                top: '20px',
-                width: '60px',
-                height: '20px',
-                backgroundColor: '#654321',
-                border: '2px solid #000',
-                borderRadius: '2px',
-                boxShadow: 'inset -2px -2px 0 rgba(0,0,0,0.3)'
-              }}
-            />
-          )}
-          {hairStyle === 'long' && (
-            <>
-              <div className="absolute" style={{ left: '18px', top: '20px', width: '56px', height: '20px', backgroundColor: '#654321', border: '2px solid #000', borderBottom: 'none' }} />
-              <div className="absolute" style={{ left: '20px', top: '24px', width: '12px', height: '32px', backgroundColor: '#654321', border: '2px solid #000', borderLeft: 'none' }} />
-              <div className="absolute" style={{ right: '20px', top: '24px', width: '12px', height: '32px', backgroundColor: '#654321', border: '2px solid #000', borderRight: 'none' }} />
-            </>
-          )}
-          
-          {/* Eyes - pixelated squares with blink */}
-          <div 
-            className="absolute"
-            style={{
-              left: '32px',
-              top: '40px',
-              width: '6px',
-              height: '6px',
-              backgroundColor: '#000',
-              border: '1px solid #000',
-              animation: `blink 3s infinite`,
-              animationDelay: `${delay + 1}s`
-            }}
-          />
-          <div 
-            className="absolute"
-            style={{
-              right: '32px',
-              top: '40px',
-              width: '6px',
-              height: '6px',
-              backgroundColor: '#000',
-              border: '1px solid #000',
-              animation: `blink 3s infinite`,
-              animationDelay: `${delay + 1}s`
-            }}
-          />
-          
-          {/* Eye shine */}
-          <div className="absolute" style={{ left: '33px', top: '41px', width: '2px', height: '2px', backgroundColor: '#FFF' }} />
-          <div className="absolute" style={{ right: '33px', top: '41px', width: '2px', height: '2px', backgroundColor: '#FFF' }} />
-          
-          {/* Mouth - pixel smile */}
-          <div 
-            className="absolute"
-            style={{
-              left: '36px',
-              top: '58px',
-              width: '24px',
-              height: '8px',
-              border: '2px solid #000',
-              borderTop: 'none',
-              borderRadius: '0 0 12px 12px',
-              backgroundColor: '#FFB6C1'
-            }}
-          />
-          
-          {/* Body */}
-          <div 
-            className="absolute"
-            style={{
-              left: '28px',
-              top: '84px',
-              width: '40px',
-              height: '48px',
-              backgroundColor: color,
-              border: '2px solid #000',
-              boxShadow: 'inset -2px -2px 0 rgba(0,0,0,0.3)'
-            }}
-          />
-          
-          {/* Pixel border grid effect */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: `
-                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px),
-                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px)
-              `,
-              opacity: 0.3
+              imageRendering: 'pixelated'
             }}
           />
         </div>
         
         {/* User indicator */}
         {isCurrentUser && (
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-gray-900 flex items-center justify-center shadow-lg">
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-gray-900 flex items-center justify-center shadow-lg z-10">
             <div className="w-2 h-2 bg-white rounded-full" />
           </div>
         )}
