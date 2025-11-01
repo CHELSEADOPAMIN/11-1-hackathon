@@ -10,21 +10,27 @@ interface WaitingRoomProps {
   onLeave?: () => void
   sessionTitle?: string
   startTime?: string
+  participantCount?: number // Number of actual participants in the room
 }
 
 export default function WaitingRoom({ 
   onJoinSession, 
   onLeave,
   sessionTitle = 'Group Exercise',
-  startTime
+  startTime,
+  participantCount = 6 // Default to 6, but can be overridden
 }: WaitingRoomProps) {
   const [micEnabled, setMicEnabled] = useState(false)
   const [videoEnabled, setVideoEnabled] = useState(false)
   
-  // Mock waiting participants - mix of friends
+  // Participants based on actual participant count in the room
+  // Always includes currentUser, plus up to (participantCount - 1) other participants
+  const actualParticipantCount = Math.min(Math.max(participantCount, 1), 6) // Clamp between 1 and 6
+  const otherParticipantCount = Math.max(actualParticipantCount - 1, 0) // Exclude current user
+  
   const participants = [
     currentUser,
-    ...friends.slice(0, 5)
+    ...friends.slice(0, otherParticipantCount)
   ]
 
   const handleJoinSession = () => {

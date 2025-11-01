@@ -21,6 +21,7 @@ interface SessionRoomProps {
   sessionTitle?: string
   onLeave?: () => void
   isHost?: boolean
+  participantCount?: number // Number of actual participants in the room
 }
 
 interface Message {
@@ -47,7 +48,9 @@ function PixelatedAvatar({
     '/blue_run.gif',
     '/pink_run.gif',
     '/pink_punch.gif',
-    '/white_run.gif'
+    '/white_run.gif',
+    '/blue_dance.gif',
+    '/white_jump.gif'
   ]
   
   const gifSrc = avatarGifs[avatarIndex % avatarGifs.length]
@@ -109,7 +112,8 @@ function PixelatedAvatar({
 export default function SessionRoom({ 
   sessionTitle = 'Group Exercise',
   onLeave,
-  isHost = false
+  isHost = false,
+  participantCount = 6 // Default to 6, but can be overridden
 }: SessionRoomProps) {
   const [micEnabled, setMicEnabled] = useState(false)
   const [videoEnabled, setVideoEnabled] = useState(false)
@@ -124,17 +128,23 @@ export default function SessionRoom({
     }
   ])
   
-  // Limit to 4 participants max
+  // Participants based on actual participant count in the room
+  // Always includes currentUser, plus up to (participantCount - 1) other participants
+  const actualParticipantCount = Math.min(Math.max(participantCount, 1), 6) // Clamp between 1 and 6
+  const otherParticipantCount = Math.max(actualParticipantCount - 1, 0) // Exclude current user
+  
   const participants = [
     currentUser,
-    ...friends.slice(0, 3)
+    ...friends.slice(0, otherParticipantCount)
   ]
   
   const avatarColors = [
     '#3B82F6', // blue
     '#10B981', // green
     '#F59E0B', // orange
-    '#EF4444'  // red
+    '#EF4444', // red
+    '#8B5CF6', // purple
+    '#EC4899'  // pink
   ]
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -214,12 +224,27 @@ export default function SessionRoom({
           <div className="absolute inset-0 pointer-events-none">
             {participants.map((participant, index) => {
               const isCurrent = participant.id === currentUser.id
-              const position = [
-                { top: '10%', left: '10%' },  // Top-left
-                { top: '10%', right: '10%' }, // Top-right
-                { bottom: '10%', left: '10%' }, // Bottom-left
-                { bottom: '10%', right: '10%' } // Bottom-right
-              ][index] || { top: '50%', left: '50%' }
+              
+              // Current user always at bottom-left, others fill remaining positions
+              let position
+              if (isCurrent) {
+                position = { bottom: '10%', left: '2%' } // Bottom-left
+              } else {
+                // Find the index excluding current user
+                const otherParticipants = participants.filter(p => p.id !== currentUser.id)
+                const otherIndex = otherParticipants.findIndex(p => p.id === participant.id)
+                
+                // Positions: top-left, mid-left, top-right, mid-right, bottom-right
+                // (bottom-left is reserved for current user)
+                const positions = [
+                  { top: '10%', left: '2%' },        // Top-left
+                  { top: '50%', left: '2%', transform: 'translateY(-50%)' },  // Mid-left
+                  { top: '10%', right: '2%' },       // Top-right
+                  { top: '50%', right: '2%', transform: 'translateY(-50%)' }, // Mid-right
+                  { bottom: '10%', right: '2%' }     // Bottom-right
+                ]
+                position = positions[otherIndex] || { top: '50%', left: '50%' }
+              }
               
               return (
                 <div

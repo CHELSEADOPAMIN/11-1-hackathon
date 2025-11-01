@@ -57,6 +57,7 @@ export default function SessionPage() {
       <SessionRoom
         sessionTitle={groupData?.title || "Group Exercise"}
         onLeave={handleLeave}
+        participantCount={groupData?.participantCount || 6}
       />
     )
   }
@@ -71,6 +72,7 @@ export default function SessionPage() {
           startTime={formatStartTime(groupData?.startTime || new Date().toISOString())}
           onJoinSession={handleJoinSession}
           onLeave={handleLeave}
+          participantCount={groupData?.participantCount || 6}
         />
       </div>
     )
