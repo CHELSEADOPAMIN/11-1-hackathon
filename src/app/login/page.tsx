@@ -1,5 +1,6 @@
 'use client'
 
+import { authenticateUser, LoginCredentials } from '@/lib/mockData'
 import { cn } from '@/lib/utils'
 import { Chrome, Eye, EyeOff, Lock, Mail } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -58,9 +59,25 @@ export default function LoginPage() {
 
     // Simulate API call
     setTimeout(() => {
+      const credentials: LoginCredentials = {
+        email: formData.email,
+        password: formData.password
+      }
+      
+      const result = authenticateUser(credentials)
+      
       setIsLoading(false)
-      // For demo purposes, accept any valid email/password
-      router.push('/dashboard')
+      
+      if (result.success && result.redirectTo) {
+        // 根据用户角色跳转到不同页面
+        router.push(result.redirectTo)
+      } else {
+        // 显示错误信息
+        setErrors({ 
+          email: result.error || 'Login failed',
+          password: ' ' // 避免重复显示错误
+        })
+      }
     }, 1500)
   }
 
@@ -251,14 +268,31 @@ export default function LoginPage() {
         </div>
 
         {/* Demo Credentials */}
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h3>
-          <p className="text-xs text-blue-700">
-            Use any valid email format and password (6+ characters) to sign in
-          </p>
-          <p className="text-xs text-blue-600 mt-1">
-            Example: demo@example.com / password123
-          </p>
+        <div className="mt-6 space-y-3">
+          {/* Admin Account */}
+          <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+            <h3 className="text-sm font-medium text-purple-900 mb-2">🔧 Admin Account</h3>
+            <p className="text-xs text-purple-700 mb-1">
+              <strong>Email:</strong> admin@healing-together.com
+            </p>
+            <p className="text-xs text-purple-700">
+              <strong>Password:</strong> admin123
+            </p>
+            <p className="text-xs text-purple-600 mt-1 italic">
+              → Redirects to AI Patient Analysis Dashboard
+            </p>
+          </div>
+          
+          {/* Regular User */}
+          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 className="text-sm font-medium text-blue-900 mb-2">👤 Patient Account</h3>
+            <p className="text-xs text-blue-700">
+              Use any valid email format and password (6+ characters)
+            </p>
+            <p className="text-xs text-blue-600 mt-1">
+              Example: demo@example.com / password123 → Dashboard
+            </p>
+          </div>
         </div>
       </div>
     </div>

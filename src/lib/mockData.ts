@@ -9,6 +9,7 @@ export interface User {
   isOnline: boolean
   lastCheckIn?: string
   email?: string
+  role?: 'patient' | 'admin' // 添加角色字段
 }
 
 export interface PatientRiskData {
@@ -130,7 +131,63 @@ export const currentUser: User = {
   joinDate: '2024-09-15',
   isOnline: true,
   lastCheckIn: '2024-11-01T08:30:00Z',
-  email: 'alex.chen@example.com'
+  email: 'alex.chen@example.com',
+  role: 'patient'
+}
+
+// 管理员账号
+export const adminUser: User = {
+  id: 'admin-1',
+  name: 'Dr. Sarah Wilson',
+  avatar: '/api/placeholder/40/40',
+  injuryType: 'AI Care Specialist',
+  joinDate: '2024-01-01',
+  isOnline: true,
+  lastCheckIn: new Date().toISOString(),
+  email: 'admin@healing-together.com',
+  role: 'admin'
+}
+
+// 登录验证接口
+export interface LoginCredentials {
+  email: string
+  password: string
+}
+
+export interface LoginResult {
+  success: boolean
+  user?: User
+  redirectTo?: string
+  error?: string
+}
+
+// 模拟登录验证
+export function authenticateUser(credentials: LoginCredentials): LoginResult {
+  const { email, password } = credentials
+  
+  // 管理员账号验证
+  if (email === 'admin@healing-together.com' && password === 'admin123') {
+    return {
+      success: true,
+      user: adminUser,
+      redirectTo: '/admin/patient-care'
+    }
+  }
+  
+  // 普通用户账号验证（任何有效邮箱格式 + 6位以上密码）
+  const emailRegex = /\S+@\S+\.\S+/
+  if (emailRegex.test(email) && password.length >= 6) {
+    return {
+      success: true,
+      user: currentUser,
+      redirectTo: '/dashboard'
+    }
+  }
+  
+  return {
+    success: false,
+    error: 'Invalid email or password'
+  }
 }
 
 // User's interest categories (for party filtering)
