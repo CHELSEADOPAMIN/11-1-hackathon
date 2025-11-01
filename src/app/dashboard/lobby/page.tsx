@@ -1,11 +1,14 @@
 'use client'
 
 import { lobbyPosts } from '@/lib/mockData'
+import { useParty } from '@/lib/PartyContext'
 import { cn } from '@/lib/utils'
-import { Heart, Image, MessageCircle, Send, Smile, User } from 'lucide-react'
+import { Heart, Image, MessageCircle, Send, Smile, User, Users, Calendar, ArrowRight, LogOut } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function LobbyPage() {
+  const { joinedParty, setJoinedParty } = useParty()
   const [newPost, setNewPost] = useState('')
   const [posts, setPosts] = useState(lobbyPosts)
 
@@ -56,12 +59,78 @@ export default function LobbyPage() {
     ))
   }
 
+  if (!joinedParty) {
+    return (
+      <div className="flex items-center justify-center h-[calc(100vh-8rem)]">
+        <div className="text-center max-w-md">
+          <Users className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">No Active Party</h1>
+          <p className="text-gray-600 mb-6">
+            You haven't joined any party yet. Discover and join a party that matches your interests to start participating in the community.
+          </p>
+          <Link
+            href="/dashboard/discover"
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            Discover Parties
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  const handleLeaveParty = () => {
+    if (confirm('Are you sure you want to leave this party?')) {
+      setJoinedParty(null)
+    }
+  }
+
   return (
     <div className="space-y-6">
-      {/* 页面标题 */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Community Hub</h1>
-        <p className="text-gray-600">Share experiences with recovery companions, encourage and support each other</p>
+      {/* Party Header */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <div className="flex items-center space-x-3 mb-2">
+              <h1 className="text-3xl font-bold text-gray-900">{joinedParty.name}</h1>
+              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                {joinedParty.category}
+              </span>
+            </div>
+            <p className="text-gray-600 mb-4">{joinedParty.description}</p>
+            <div className="flex items-center space-x-6 text-sm text-gray-500">
+              <div className="flex items-center">
+                <Users className="w-4 h-4 mr-2" />
+                {joinedParty.memberCount}
+                {joinedParty.maxMembers && ` / ${joinedParty.maxMembers} members`}
+              </div>
+              <div className="flex items-center">
+                <Calendar className="w-4 h-4 mr-2" />
+                Created {formatDate(joinedParty.createdAt)}
+              </div>
+              <div className="flex items-center">
+                <User className="w-4 h-4 mr-2" />
+                Organized by {joinedParty.organizer.name}
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={handleLeaveParty}
+            className="flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors ml-4"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Leave Party
+          </button>
+        </div>
       </div>
 
       {/* 发布新动态 */}
