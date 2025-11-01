@@ -1,3 +1,5 @@
+'use client'
+
 import FriendListPreview from '@/components/dashboard/FriendListPreview'
 import Greeting from '@/components/dashboard/Greeting'
 import LobbyPreview from '@/components/dashboard/LobbyPreview'
