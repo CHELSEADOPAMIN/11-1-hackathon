@@ -63,17 +63,17 @@ export default function LoginPage() {
         email: formData.email,
         password: formData.password
       }
-      
+
       const result = authenticateUser(credentials)
-      
+
       setIsLoading(false)
-      
+
       if (result.success && result.redirectTo) {
         // 根据用户角色跳转到不同页面
         router.push(result.redirectTo)
       } else {
         // 显示错误信息
-        setErrors({ 
+        setErrors({
           email: result.error || 'Login failed',
           password: ' ' // 避免重复显示错误
         })
@@ -282,7 +282,7 @@ export default function LoginPage() {
               → Redirects to AI Patient Analysis Dashboard
             </p>
           </div>
-          
+
           {/* Regular User */}
           <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
             <h3 className="text-sm font-medium text-blue-900 mb-2">👤 Patient Account</h3>

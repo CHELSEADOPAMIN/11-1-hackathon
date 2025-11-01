@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.0",
+    "@google/generative-ai": "^0.24.1",
     "ai": "^4.0.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
