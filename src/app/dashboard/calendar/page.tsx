@@ -81,6 +81,8 @@ const eventTypeColors = {
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(new Date())
+
+  // Original events to state
   const [calendarEvents, setCalendarEvents] = useState(initialcalendarEvents)
   const [treatmentPlan] = useState<TreatmentPlan>(currentTreatmentPlan)
   const [milestones, setMilestones] = useState<AgendaMilestone[]>(agendaMilestones)
@@ -237,7 +239,7 @@ export default function CalendarPage() {
   // 从 localStorage 加载数据
   useEffect(() => {
     const savedEvents = localStorage.getItem('calendarEvents')
-    
+
     if (savedEvents) {
       try {
         const parsedEvents = JSON.parse(savedEvents)
@@ -316,7 +318,7 @@ export default function CalendarPage() {
 
   const handleSubmitBooking = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const newEvent = {
       id: `evt-${Date.now()}`,
       title: 'Physical Therapy',
@@ -326,7 +328,7 @@ export default function CalendarPage() {
       location: formData.location,
       therapist: formData.therapist
     }
-    
+
     setCalendarEvents(prev => [...prev, newEvent])
     setShowModal(false)
     alert('Successfully booked')
@@ -702,7 +704,7 @@ export default function CalendarPage() {
 
             <div className="space-y-2">
               <button
-                onClick={handleBookPhysicalTherapy} 
+                onClick={handleBookPhysicalTherapy}
                 className="w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
                 Book Physical Therapy
               </button>
@@ -721,11 +723,11 @@ export default function CalendarPage() {
 
       {/* 预约表单 */}
       {showModal && (
-        <div 
+        <div
           className="fixed inset-0 bg-white bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setShowModal(false)}  
+          onClick={() => setShowModal(false)}
         >
-          <div 
+          <div
             className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md relative"
             onClick={(e) => e.stopPropagation()}
           >
@@ -741,7 +743,7 @@ export default function CalendarPage() {
             </button>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Book Physical Therapy</h3>
-            
+
             <form onSubmit={handleSubmitBooking} className="space-y-4">
               {/* 日期 */}
               <div>
