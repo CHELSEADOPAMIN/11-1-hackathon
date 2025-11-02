@@ -1,14 +1,23 @@
 'use client'
 
-import { Activity, ArrowRight, BookOpen, Brain, Calendar, Heart, Mail, MessageCircle, Shield, Sparkles, Target, TrendingUp, UserCheck, Users, Zap } from 'lucide-react'
+import { Activity, ArrowRight, BookOpen, Brain, Calendar, Heart, Mail, MessageCircle, Shield, Sparkles, Target, TrendingUp, UserCheck, Users, X, Zap } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function LandingPage() {
+  const [showVideoModal, setShowVideoModal] = useState(false)
+
   // Update page title
   useEffect(() => {
     document.title = 'Recovery Companion - AI-Powered Rehabilitation Platform'
   }, [])
+
+  // YouTube 视频 ID
+  // 视频链接: https://youtu.be/bVH0yUiHFCM
+  const youtubeVideoId = 'bVH0yUiHFCM'
+
+  // 或者使用直接视频链接（如果不上传到 YouTube）
+  const directVideoUrl = '' // 例如: 'https://example.com/video.mp4'
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#EAE6F5] via-white to-orange-50">
       {/* Header */}
@@ -48,7 +57,10 @@ export default function LandingPage() {
               Start Your Recovery
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <button className="inline-flex items-center px-8 py-4 border-2 border-[#8573bd] text-[#8573bd] rounded-xl hover:bg-[#8573bd] hover:text-white transition-colors font-semibold text-lg">
+            <button
+              onClick={() => setShowVideoModal(true)}
+              className="inline-flex items-center px-8 py-4 border-2 border-[#8573bd] text-[#8573bd] rounded-xl hover:bg-[#8573bd] hover:text-white transition-colors font-semibold text-lg"
+            >
               Watch Demo
             </button>
           </div>
@@ -536,7 +548,16 @@ export default function LandingPage() {
                   >
                     Gege Ardiyansyah
                   </a>
-                  , Hang Li, Jane Kittiyanpanya,{' '}
+                  ,{' '}
+                  <a
+                    href="https://github.com/HanRU01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                  >
+                    Hang Li
+                  </a>
+                  , Jane Kittiyanpanya,{' '}
                   <a
                     href="https://www.linkedin.com/in/ravicha-suksawasdi-na-ayuthaya"
                     target="_blank"
@@ -560,6 +581,72 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowVideoModal(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowVideoModal(false)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            {/* Video Container */}
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              {/* YouTube Embed */}
+              {youtubeVideoId ? (
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-t-2xl"
+                  src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`}
+                  title="Recovery Companion Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : directVideoUrl ? (
+                <video
+                  className="absolute top-0 left-0 w-full h-full rounded-t-2xl"
+                  controls
+                  autoPlay
+                  src={directVideoUrl}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="absolute top-0 left-0 w-full h-full rounded-t-2xl bg-gray-100 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <p className="text-lg text-gray-600 mb-4">
+                      Video coming soon!
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      To add your demo video:
+                    </p>
+                    <ol className="text-sm text-gray-500 text-left mt-2 space-y-1 max-w-md mx-auto">
+                      <li>1. Upload to YouTube</li>
+                      <li>2. Copy the video ID from the URL</li>
+                      <li>3. Replace <code className="bg-gray-200 px-1 rounded">youtubeVideoId</code> in the code</li>
+                    </ol>
+                    <button
+                      onClick={() => setShowVideoModal(false)}
+                      className="mt-6 px-6 py-2 bg-[#8573bd] text-white rounded-lg hover:bg-[#E8B98A] transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

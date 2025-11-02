@@ -43,7 +43,16 @@ export default function DashboardLayout({
                     >
                       Gege Ardiyansyah
                     </a>
-                    , Hang Li, Jane Kittiyanpanya,{' '}
+                    ,{' '}
+                    <a
+                      href="https://github.com/HanRU01"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                    >
+                      Hang Li
+                    </a>
+                    , Jane Kittiyanpanya,{' '}
                     <a
                       href="https://www.linkedin.com/in/ravicha-suksawasdi-na-ayuthaya"
                       target="_blank"
