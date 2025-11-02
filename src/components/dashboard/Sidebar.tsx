@@ -167,15 +167,18 @@ export default function Sidebar() {
     <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col">
       {/* User Info Area */}
       <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-[#8573bd] rounded-full flex items-center justify-center">
+        <Link
+          href="/dashboard/profile"
+          className="flex items-center space-x-3 hover:bg-gray-50 rounded-lg p-2 -m-2 transition-colors group"
+        >
+          <div className="w-10 h-10 bg-[#8573bd] rounded-full flex items-center justify-center group-hover:bg-[#E8B98A] transition-colors">
             <User className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900">{currentUser.name}</h3>
+            <h3 className="font-semibold text-gray-900 group-hover:text-[#8573bd]">{currentUser.name}</h3>
             <p className="text-sm text-gray-500">{currentUser.injuryType}</p>
           </div>
-        </div>
+        </Link>
         <div className="mt-3 flex items-center">
           <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
           <span className="text-sm text-gray-500">Online</span>
