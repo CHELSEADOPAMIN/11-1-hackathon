@@ -545,7 +545,15 @@ export default function LandingPage() {
                   >
                     Ravicha Suksawasdi Na Ayuthaya
                   </a>
-                  , Vedro Suwandi
+                  ,{' '}
+                  <a
+                    href="https://github.com/zechromes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                  >
+                    Vedro Suwandi
+                  </a>
                 </span>
               </p>
             </div>
