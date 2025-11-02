@@ -1,12 +1,12 @@
 'use client'
 
+import SessionRoom from '@/components/dashboard/SessionRoom'
 import WaitingRoom from '@/components/dashboard/WaitingRoom'
+import { groupExercises } from '@/lib/mockData'
+import { formatDistanceToNow } from 'date-fns'
+import { Clock, Pin, Users } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import SessionRoom from '@/components/dashboard/SessionRoom'
-import { groupExercises, userTrainingPlan, currentUser } from '@/lib/mockData'
-import { Clock, Users, Pin } from 'lucide-react'
-import { formatDistanceToNow } from 'date-fns'
 
 export default function SessionPage() {
   const router = useRouter()
@@ -44,7 +44,7 @@ export default function SessionPage() {
     const date = new Date(startTime)
     const now = new Date()
     const diffInMinutes = Math.floor((date.getTime() - now.getTime()) / (1000 * 60))
-    
+
     if (diffInMinutes < 1) return 'Starting now'
     if (diffInMinutes < 60) return `Starting in ${diffInMinutes} minutes`
     return `Starting ${formatDistanceToNow(date, { addSuffix: true })}`
@@ -139,8 +139,8 @@ export default function SessionPage() {
           {sortedGroups.map((group) => (
             <div
               key={group.id}
-              className={group.isPinned 
-                ? "hidden" 
+              className={group.isPinned
+                ? "hidden"
                 : "bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow cursor-pointer"
               }
               onClick={() => handleJoinGroup(group.id)}
@@ -162,8 +162,8 @@ export default function SessionPage() {
                 </div>
               </div>
               <button className="w-full mt-3 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm">
-                    Join Exercise
-                  </button>
+                Join Exercise
+              </button>
             </div>
           ))}
         </div>

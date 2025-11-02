@@ -38,6 +38,60 @@ export interface RiskAnalysisResult {
   recommendations: string[]
 }
 
+// 患者康复画像数据
+export interface PatientProfile {
+  userId: string
+  injuryType: string
+
+  // 康复阶段数据
+  injuryDate: string  // 受伤日期
+  surgeryDate?: string  // 手术日期
+  currentPhase: 'early' | 'mid' | 'late' | 'maintenance'  // 康复阶段
+  recoveryProgress: number  // 0-100%
+
+  // 训练数据
+  weeklyTrainingDays: number  // 每周训练天数
+  dailyTrainingMinutes: number  // 每日训练分钟数
+  complianceRate: number  // 依从性 0-100%
+  currentDifficulty: 'beginner' | 'intermediate' | 'advanced'
+
+  // 目标数据
+  recoveryGoal: 'work' | 'sport' | 'daily_life' | 'professional_athlete'
+  targetSport?: string  // 目标运动
+  targetTimeline: number  // 目标时间（月）
+
+  // 情感数据
+  averageSentimentScore: number  // -1 到 1
+  activityLevel: 'low' | 'medium' | 'high'
+  helpfulnessScore: number  // 帮助他人的得分
+
+  // 个人信息
+  ageGroup: '18-30' | '31-45' | '46-60' | '60+'
+  occupation?: string
+}
+
+// AI 匹配结果
+export interface AIMatchResult {
+  userId: string
+  partyId: string
+  partyName: string
+  matchScore: number  // 0-100 匹配度
+  reasons: string[]  // 匹配原因
+  expectedBenefit: string
+}
+
+// AI 推荐响应
+export interface AIRecommendationResponse {
+  recommendations: AIMatchResult[]
+  suggestNewGroup: boolean
+  newGroupSuggestion?: {
+    name: string
+    targetMembers: string[]
+    reason: string
+    estimatedSize: number
+  }
+}
+
 export interface Task {
   id: string
   title: string
@@ -1010,3 +1064,125 @@ export const mockPatientRiskData: PatientRiskData[] = [
     }
   }
 ]
+
+// 患者康复画像数据
+export const patientProfiles: PatientProfile[] = [
+  {
+    userId: '1',
+    injuryType: 'Knee Rehabilitation',
+    injuryDate: '2024-08-15',
+    surgeryDate: '2024-08-20',
+    currentPhase: 'mid',
+    recoveryProgress: 42,
+    weeklyTrainingDays: 5,
+    dailyTrainingMinutes: 45,
+    complianceRate: 78,
+    currentDifficulty: 'intermediate',
+    recoveryGoal: 'sport',
+    targetSport: 'Basketball',
+    targetTimeline: 6,
+    averageSentimentScore: 0.3,
+    activityLevel: 'high',
+    helpfulnessScore: 7,
+    ageGroup: '18-30',
+    occupation: 'Software Engineer'
+  },
+  {
+    userId: '2',
+    injuryType: 'Shoulder Impingement',
+    injuryDate: '2024-07-10',
+    currentPhase: 'mid',
+    recoveryProgress: 55,
+    weeklyTrainingDays: 4,
+    dailyTrainingMinutes: 30,
+    complianceRate: 85,
+    currentDifficulty: 'intermediate',
+    recoveryGoal: 'work',
+    targetTimeline: 4,
+    averageSentimentScore: 0.6,
+    activityLevel: 'medium',
+    helpfulnessScore: 9,
+    ageGroup: '31-45',
+    occupation: 'Teacher'
+  },
+  {
+    userId: '3',
+    injuryType: 'Knee Rehabilitation',
+    injuryDate: '2024-08-01',
+    surgeryDate: '2024-08-05',
+    currentPhase: 'mid',
+    recoveryProgress: 38,
+    weeklyTrainingDays: 6,
+    dailyTrainingMinutes: 50,
+    complianceRate: 82,
+    currentDifficulty: 'intermediate',
+    recoveryGoal: 'sport',
+    targetSport: 'Basketball',
+    targetTimeline: 7,
+    averageSentimentScore: 0.1,
+    activityLevel: 'high',
+    helpfulnessScore: 5,
+    ageGroup: '18-30',
+    occupation: 'Student'
+  },
+  {
+    userId: '4',
+    injuryType: 'Ankle Sprain Recovery',
+    injuryDate: '2024-09-20',
+    currentPhase: 'early',
+    recoveryProgress: 25,
+    weeklyTrainingDays: 3,
+    dailyTrainingMinutes: 20,
+    complianceRate: 45,
+    currentDifficulty: 'beginner',
+    recoveryGoal: 'daily_life',
+    targetTimeline: 3,
+    averageSentimentScore: -0.2,
+    activityLevel: 'low',
+    helpfulnessScore: 3,
+    ageGroup: '46-60',
+    occupation: 'Office Worker'
+  },
+  {
+    userId: '5',
+    injuryType: 'Hip Replacement Recovery',
+    injuryDate: '2024-06-15',
+    surgeryDate: '2024-06-20',
+    currentPhase: 'late',
+    recoveryProgress: 75,
+    weeklyTrainingDays: 5,
+    dailyTrainingMinutes: 40,
+    complianceRate: 92,
+    currentDifficulty: 'advanced',
+    recoveryGoal: 'daily_life',
+    targetTimeline: 2,
+    averageSentimentScore: 0.8,
+    activityLevel: 'high',
+    helpfulnessScore: 10,
+    ageGroup: '60+',
+    occupation: 'Retired'
+  },
+  {
+    userId: '6',
+    injuryType: 'Knee Rehabilitation',
+    injuryDate: '2024-09-01',
+    surgeryDate: '2024-09-05',
+    currentPhase: 'early',
+    recoveryProgress: 20,
+    weeklyTrainingDays: 4,
+    dailyTrainingMinutes: 35,
+    complianceRate: 65,
+    currentDifficulty: 'beginner',
+    recoveryGoal: 'sport',
+    targetSport: 'Soccer',
+    targetTimeline: 8,
+    averageSentimentScore: -0.1,
+    activityLevel: 'medium',
+    helpfulnessScore: 4,
+    ageGroup: '18-30',
+    occupation: 'Professional Athlete'
+  }
+]
+
+// 当前用户的画像数据
+export const currentUserProfile: PatientProfile = patientProfiles[0]

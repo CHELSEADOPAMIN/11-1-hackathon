@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, BookOpen, Brain, Calendar, Heart, Mail, MessageCircle, Shield, TrendingUp, Users, Zap } from 'lucide-react'
+import { Activity, ArrowRight, BookOpen, Brain, Calendar, Heart, Mail, MessageCircle, Shield, Sparkles, Target, TrendingUp, UserCheck, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
@@ -237,6 +237,198 @@ export default function LandingPage() {
                 <BookOpen className="w-8 h-8 text-orange-600 mb-3" />
                 <h4 className="font-semibold text-gray-900 mb-2">Knowledge Articles</h4>
                 <p className="text-2xl font-bold text-orange-600">89</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Smart Matching Section */}
+      <section className="px-6 py-20 bg-gradient-to-br from-[#EAE6F5] to-purple-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-600 rounded-full font-medium">
+                <Sparkles className="w-4 h-4 mr-2" />
+                AI Smart Matching
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900">
+                Find Your Perfect Recovery Partners
+              </h3>
+              <p className="text-lg text-gray-600">
+                Our advanced AI analyzes your recovery phase, training intensity, goals, and personality
+                to match you with the most compatible support groups and recovery partners.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-gray-700">
+                  <Brain className="w-5 h-5 text-purple-600 mr-3" />
+                  Multi-dimensional compatibility analysis
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <Target className="w-5 h-5 text-purple-600 mr-3" />
+                  Goal and timeline alignment
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <UserCheck className="w-5 h-5 text-purple-600 mr-3" />
+                  Personality and sentiment matching
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <Sparkles className="w-5 h-5 text-purple-600 mr-3" />
+                  Automatic group suggestions
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-6">
+                  <h4 className="font-semibold text-gray-900">AI Recommendations for You</h4>
+                  <Brain className="w-6 h-6 text-purple-600" />
+                </div>
+
+                {/* Match Result 1 */}
+                <div className="border border-purple-200 rounded-lg p-4 bg-purple-50">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium text-gray-900">Knee Recovery Warriors</span>
+                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">95% Match</span>
+                  </div>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>✓ Similar recovery phase (mid-stage)</p>
+                    <p>✓ Matching training intensity</p>
+                    <p>✓ Same sport goal (basketball)</p>
+                  </div>
+                  <p className="text-xs text-purple-600 mt-2 font-medium">
+                    Expected: High motivation through peer learning
+                  </p>
+                </div>
+
+                {/* Match Result 2 */}
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium text-gray-900">Advanced Knee Training</span>
+                    <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">88% Match</span>
+                  </div>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>✓ High training intensity</p>
+                    <p>✓ Advanced difficulty level</p>
+                    <p>✓ Positive attitude fit</p>
+                  </div>
+                </div>
+
+                {/* New Group Suggestion */}
+                <div className="border-2 border-dashed border-purple-300 rounded-lg p-4 bg-purple-25">
+                  <div className="flex items-center mb-2">
+                    <Sparkles className="w-4 h-4 text-purple-600 mr-2" />
+                    <span className="font-medium text-purple-900">New Group Suggestion</span>
+                  </div>
+                  <p className="text-sm text-purple-700">
+                    "Basketball Return Squad - 6 Month Goal" for athletes with similar timelines
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Group Exercise Section */}
+      <section className="px-6 py-20 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="bg-gradient-to-br from-[#8573bd] to-[#E8B98A] rounded-2xl p-8 text-white">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xl font-bold">Live Group Exercise</h4>
+                  <Activity className="w-8 h-8" />
+                </div>
+
+                {/* Live Session Example */}
+                <div className="bg-white/20 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-medium">Knee Strengthening Session</span>
+                    <span className="bg-green-500 text-xs px-2 py-1 rounded-full">LIVE</span>
+                  </div>
+                  <div className="flex items-center space-x-4 text-sm">
+                    <div className="flex items-center">
+                      <Users className="w-4 h-4 mr-1" />
+                      <span>12 participants</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      <span>45 min remaining</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Participant Avatars */}
+                <div className="space-y-3">
+                  <p className="text-sm opacity-90">Active participants:</p>
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                      <div key={i} className="w-8 h-8 bg-white/30 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium">
+                        {String.fromCharCode(64 + i)}
+                      </div>
+                    ))}
+                    <div className="w-8 h-8 bg-white/20 rounded-full border-2 border-white flex items-center justify-center text-xs">
+                      +6
+                    </div>
+                  </div>
+                </div>
+
+                {/* Exercise Progress */}
+                <div className="bg-white/20 rounded-lg p-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm">Current Exercise: Leg Extensions</span>
+                    <span className="text-xs">3/5 sets</span>
+                  </div>
+                  <div className="w-full bg-white/20 rounded-full h-2">
+                    <div className="bg-white h-2 rounded-full" style={{ width: '60%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="inline-flex items-center px-4 py-2 bg-[#EAE6F5] text-[#8573bd] rounded-full font-medium">
+                <Activity className="w-4 h-4 mr-2" />
+                Interactive Group Exercise
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900">
+                Exercise Together, Recover Faster
+              </h3>
+              <p className="text-lg text-gray-600">
+                Join live group exercise sessions with your matched recovery partners.
+                Real-time synchronization, progress tracking, and mutual motivation
+                make rehabilitation more engaging and effective.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-gray-700">
+                  <Activity className="w-5 h-5 text-[#8573bd] mr-3" />
+                  Live synchronized exercise sessions
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <Users className="w-5 h-5 text-[#8573bd] mr-3" />
+                  Real-time participant interaction
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <TrendingUp className="w-5 h-5 text-[#8573bd] mr-3" />
+                  Shared progress tracking
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <Heart className="w-5 h-5 text-[#8573bd] mr-3" />
+                  Peer motivation and support
+                </li>
+              </ul>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="bg-[#EAE6F5] rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-[#8573bd]">89%</div>
+                  <div className="text-sm text-gray-600">Higher completion rate</div>
+                </div>
+                <div className="bg-orange-50 rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-[#E8B98A]">3.2x</div>
+                  <div className="text-sm text-gray-600">More engagement</div>
+                </div>
               </div>
             </div>
           </div>
