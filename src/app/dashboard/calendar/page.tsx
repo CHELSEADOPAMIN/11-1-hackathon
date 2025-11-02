@@ -1,8 +1,10 @@
 'use client'
 
-import { addMonths, eachDayOfInterval, endOfMonth, format, isSameDay, isSameMonth, startOfMonth, subMonths } from 'date-fns'
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, User, X } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { addMonths, eachDayOfInterval, endOfMonth, format, isSameDay, isSameMonth, startOfMonth, subMonths, differenceInDays, parseISO } from 'date-fns'
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, User, X, AlertCircle, CheckCircle2, FileText, Send } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { currentTreatmentPlan, agendaMilestones, AgendaMilestone, TreatmentPlan, currentUser } from '@/lib/mockData'
+import toast from 'react-hot-toast'
 
 
 
@@ -55,27 +57,34 @@ const initialcalendarEvents = [
   }
 ]
 
-const eventTypeColors = {
-  therapy: 'bg-blue-100 text-blue-700 border-blue-200',
-  checkup: 'bg-green-100 text-green-700 border-green-200',
-  exercise: 'bg-purple-100 text-purple-700 border-purple-200',
-  consultation: 'bg-orange-100 text-orange-700 border-orange-200'
-}
 
 const eventTypeNames = {
   therapy: 'Physical Therapy',
   checkup: 'Follow-up',
   exercise: 'Rehab Training',
-  consultation: 'Nutrition Consult'
+  consultation: 'Nutrition Consult',
+  deadline: 'Deadline',
+  milestone: 'Milestone',
+  checkpoint: 'Checkpoint'
+}
+
+const eventTypeColors = {
+  therapy: 'bg-blue-100 text-blue-700 border-blue-200',
+  checkup: 'bg-green-100 text-green-700 border-green-200',
+  exercise: 'bg-purple-100 text-purple-700 border-purple-200',
+  consultation: 'bg-orange-100 text-orange-700 border-orange-200',
+  deadline: 'bg-red-100 text-red-700 border-red-300',
+  milestone: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+  checkpoint: 'bg-yellow-100 text-yellow-700 border-yellow-200'
 }
 
 export default function CalendarPage() {
-  const { events: calendarEvents } = useCalendar()
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(new Date())
-
-  // 添加这一行 // Original events to state
   const [calendarEvents, setCalendarEvents] = useState(initialcalendarEvents)
+  const [treatmentPlan] = useState<TreatmentPlan>(currentTreatmentPlan)
+  const [milestones, setMilestones] = useState<AgendaMilestone[]>(agendaMilestones)
+  const [showAgendaView, setShowAgendaView] = useState(false)
 
   const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState({
@@ -85,6 +94,145 @@ export default function CalendarPage() {
     therapist: 'Dr. Li',
     location: 'Rehabilitation Center A'
   })
+
+  // Convert milestones to calendar events
+  useEffect(() => {
+    const milestoneEvents: any[] = milestones.map((milestone) => ({
+      id: milestone.id,
+      title: milestone.title,
+      date: new Date(milestone.targetDate),
+      duration: 0,
+      type: milestone.type as 'deadline' | 'milestone' | 'checkpoint',
+      description: milestone.description,
+      weekNumber: milestone.weekNumber
+    }))
+    
+    // Add deadline event for treatment plan
+    const deadlineEvent: any = {
+      id: 'treatment-deadline',
+      title: `Treatment Plan Deadline: ${treatmentPlan.title}`,
+      date: new Date(treatmentPlan.endDate),
+      duration: 0,
+      type: 'deadline' as const,
+      description: `Final deadline for ${treatmentPlan.title}`,
+      doctor: treatmentPlan.doctor,
+      therapist: treatmentPlan.physiotherapist
+    }
+    
+    setCalendarEvents((prev: any[]) => {
+      // Remove all old agenda/milestone events first
+      const filtered = prev.filter((e: any) => 
+        !e.id?.startsWith('agenda-day-') && 
+        !e.id?.startsWith('milestone-') &&
+        e.id !== 'treatment-deadline'
+      )
+      
+      // Remove duplicates by checking date and title
+      const uniqueMilestoneEvents = milestoneEvents.filter((me: any, index: number, self: any[]) => {
+        return index === self.findIndex((other: any) => 
+          other.id === me.id || 
+          (other.date.getTime() === me.date.getTime() && 
+           other.title === me.title &&
+           (other.type === 'milestone' || other.type === 'checkpoint' || other.type === 'deadline'))
+        )
+      })
+      
+      return [...filtered, ...uniqueMilestoneEvents, deadlineEvent]
+    })
+  }, [milestones, treatmentPlan])
+
+  // Function to send progress report
+  const handleSendProgressReport = useCallback((dueMilestones: AgendaMilestone[], daysUntilDeadline: number, isDeadlineDay: boolean = false) => {
+    // Calculate progress based on completed agenda items
+    const completedAgendas = milestones.filter(m => m.completed).length
+    const totalAgendas = milestones.length
+    const agendaCompletionRate = totalAgendas > 0 ? Math.round((completedAgendas / totalAgendas) * 100) : 0
+    
+    // Calculate progress based on completed events
+    const completedEvents = calendarEvents.filter((e: any) => {
+      const eventDate = new Date(e.date)
+      eventDate.setHours(0, 0, 0, 0)
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      return eventDate <= today
+    }).length
+    const totalEvents = calendarEvents.length
+    const eventCompletionRate = totalEvents > 0 ? Math.round((completedEvents / totalEvents) * 100) : 0
+
+    const report = {
+      treatmentPlanId: treatmentPlan.id,
+      weekNumber: dueMilestones.length > 0 ? dueMilestones[0].weekNumber : Math.floor((differenceInDays(new Date(), parseISO(treatmentPlan.startDate)) / 7) + 1),
+      completionRate: agendaCompletionRate,
+      eventCompletionRate: eventCompletionRate,
+      notes: isDeadlineDay 
+        ? `Final treatment completion report. ${completedAgendas} of ${totalAgendas} daily agendas completed (${agendaCompletionRate}%). Treatment plan ended.`
+        : `Progress report. ${dueMilestones.length > 0 ? `Agendas due: ${dueMilestones.map(m => m.title).join(', ')}. ` : ''}Days until deadline: ${daysUntilDeadline}`,
+      sentToPhysiotherapist: !isDeadlineDay,
+      sentToDoctor: isDeadlineDay || daysUntilDeadline <= 3
+    }
+
+    // On deadline day, send final report to doctor
+    if (isDeadlineDay) {
+      toast.success(
+        `📋 Final progress report sent to Dr. ${treatmentPlan.doctor}`,
+        {
+          duration: 6000,
+          icon: '✅',
+        }
+      )
+      toast.success(
+        `Treatment plan completed! ${agendaCompletionRate}% of daily agendas completed.`,
+        {
+          duration: 5000,
+          icon: '🎉',
+        }
+      )
+    } else if (daysUntilDeadline <= 7 && daysUntilDeadline > 0) {
+      // Regular progress report to physiotherapist
+      toast.success(
+        `Progress report sent to ${treatmentPlan.physiotherapist}`,
+        {
+          duration: 4000,
+          icon: '📤',
+        }
+      )
+    }
+  }, [milestones, calendarEvents, treatmentPlan])
+
+  // Check deadlines and send progress reports
+  useEffect(() => {
+    const checkDeadlines = () => {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      
+      // Check treatment plan deadline (end of 12th week)
+      const deadlineDate = new Date(treatmentPlan.endDate)
+      deadlineDate.setHours(0, 0, 0, 0)
+      const daysUntilDeadline = differenceInDays(deadlineDate, today)
+      const isDeadlineDay = daysUntilDeadline === 0
+
+      // Check for today's agenda items
+      const todayAgendas = milestones.filter(m => {
+        const agendaDate = new Date(m.targetDate)
+        agendaDate.setHours(0, 0, 0, 0)
+        return isSameDay(agendaDate, today)
+      })
+
+      // On deadline day (end of 12th week), send final progress report to doctor
+      if (isDeadlineDay) {
+        handleSendProgressReport(todayAgendas, 0, true) // true = isDeadlineDay
+      } else if (todayAgendas.length > 0) {
+        // For regular days, just track completion (no report sent)
+        // Reports are only sent on the deadline
+      }
+    }
+
+    // Check on mount and set interval to check daily
+    checkDeadlines()
+    const interval = setInterval(checkDeadlines, 24 * 60 * 60 * 1000) // Check daily
+    
+    return () => clearInterval(interval)
+  }, [milestones, treatmentPlan, handleSendProgressReport])
 
   // 从 localStorage 加载数据
   useEffect(() => {
@@ -97,17 +245,51 @@ export default function CalendarPage() {
           ...event,
           date: new Date(event.date)
         }))
-        setCalendarEvents(eventsWithDates)
+        setCalendarEvents((prev: any[]) => {
+          // Filter out agenda/milestone events from localStorage (they're handled by milestones useEffect)
+          const nonAgendaEvents = eventsWithDates.filter((event: any) => {
+            return !event.id?.startsWith('agenda-day-') && 
+                   !event.id?.startsWith('milestone-') &&
+                   event.id !== 'treatment-deadline' &&
+                   !event.weekNumber
+          })
+          
+          // Only add non-agenda events that don't already exist
+          const newEvents = nonAgendaEvents.filter((e: any) => 
+            !prev.some((existing: any) => existing.id === e.id)
+          )
+          
+          return [...prev, ...newEvents]
+        })
       } catch (error) {
         console.error('Failed to load events from localStorage:', error)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // 保存数据到 localStorage
   useEffect(() => {
     localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents))
   }, [calendarEvents])
+
+  // Function to manually send progress report
+  const handleManualSendReport = () => {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const deadlineDate = new Date(treatmentPlan.endDate)
+    deadlineDate.setHours(0, 0, 0, 0)
+    const daysUntilDeadline = differenceInDays(deadlineDate, today)
+    const isDeadlineDay = daysUntilDeadline === 0
+    
+    const todayAgendas = milestones.filter(m => {
+      const agendaDate = new Date(m.targetDate)
+      agendaDate.setHours(0, 0, 0, 0)
+      return isSameDay(agendaDate, today)
+    })
+
+    handleSendProgressReport(todayAgendas, daysUntilDeadline, isDeadlineDay)
+  }
 
   const monthStart = startOfMonth(currentDate)
   const monthEnd = endOfMonth(currentDate)
@@ -157,20 +339,178 @@ export default function CalendarPage() {
 
 
   const getEventsForDate = (date: Date) => {
-    return calendarEvents.filter(event =>
+    return calendarEvents.filter((event: any) =>
       isSameDay(event.date, date)
     )
   }
 
   const selectedDateEvents = getEventsForDate(selectedDate)
 
+  // Calculate progress
+  const completedMilestones = milestones.filter(m => m.completed).length
+  const progressPercentage = Math.round((completedMilestones / milestones.length) * 100)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const deadlineDate = new Date(treatmentPlan.endDate)
+  deadlineDate.setHours(0, 0, 0, 0)
+  const daysUntilDeadline = differenceInDays(deadlineDate, today)
+
   return (
     <div className="space-y-6">
       {/* 页面标题 */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">My Recovery Calendar</h1>
-        <p className="text-gray-600">Manage your recovery plans and appointment schedules</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Recovery Calendar</h1>
+          <p className="text-gray-600">Manage your recovery plans and appointment schedules</p>
+        </div>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setShowAgendaView(!showAgendaView)}
+            className="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors flex items-center"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            {showAgendaView ? 'Calendar View' : '12-Week Agenda'}
+          </button>
+          {currentUser.role === 'admin' && (
+            <button
+              onClick={handleManualSendReport}
+              className="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center"
+            >
+              <Send className="w-4 h-4 mr-2" />
+              Send Progress Report
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Treatment Plan Status Card */}
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-sm border border-indigo-200 p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">{treatmentPlan.title}</h2>
+            <p className="text-gray-600 text-sm mb-4">{treatmentPlan.description}</p>
+            <div className="flex items-center space-x-6 text-sm">
+              <div>
+                <span className="text-gray-500">Physiotherapist:</span>
+                <span className="ml-2 font-medium text-gray-900">{treatmentPlan.physiotherapist}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">Doctor:</span>
+                <span className="ml-2 font-medium text-gray-900">{treatmentPlan.doctor}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">Deadline:</span>
+                <span className={`ml-2 font-medium ${daysUntilDeadline <= 7 ? 'text-red-600' : 'text-gray-900'}`}>
+                  {format(deadlineDate, 'MMM dd, yyyy')} ({daysUntilDeadline > 0 ? `${daysUntilDeadline} days left` : 'Deadline passed'})
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="text-center ml-6">
+            <div className="text-3xl font-bold text-indigo-600 mb-1">{progressPercentage}%</div>
+            <div className="text-sm text-gray-600">Progress</div>
+            <div className="w-24 bg-gray-200 rounded-full h-2 mt-2">
+              <div 
+                className="bg-indigo-600 h-2 rounded-full transition-all"
+                style={{ width: `${progressPercentage}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        {daysUntilDeadline <= 7 && daysUntilDeadline > 0 && (
+          <div className="mt-4 flex items-center p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <AlertCircle className="w-5 h-5 text-yellow-600 mr-2" />
+            <span className="text-sm text-yellow-800">
+              <strong>Reminder:</strong> Treatment plan deadline is in {daysUntilDeadline} days. Progress report will be automatically sent.
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Agenda View */}
+      {showAgendaView && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">12-Week Treatment Agenda (84 Days)</h2>
+            <div className="text-sm text-gray-600">
+              {milestones.filter(m => m.completed).length} of {milestones.length} completed
+            </div>
+          </div>
+          
+          {/* Group by week for better organization */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((weekNum) => {
+            const weekAgendas = milestones.filter(m => m.weekNumber === weekNum)
+            const completedCount = weekAgendas.filter(m => m.completed).length
+            const weekTitle = weekAgendas[0]?.title.split(':')[0] || `Week ${weekNum}`
+            
+            return (
+              <div key={weekNum} className="mb-6">
+                <div className="flex items-center justify-between mb-3 p-3 bg-indigo-50 rounded-lg">
+                  <h3 className="font-semibold text-indigo-900">{weekTitle}</h3>
+                  <span className="text-sm text-indigo-700">{completedCount} / {weekAgendas.length} days completed</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-2">
+                  {weekAgendas.map((milestone) => {
+                    const milestoneDate = new Date(milestone.targetDate)
+                    const isPast = milestoneDate < today
+                    const isDue = isSameDay(milestoneDate, today)
+                    
+                    return (
+                      <div
+                        key={milestone.id}
+                        className={`p-3 rounded-lg border-2 text-sm ${
+                          milestone.completed
+                            ? 'bg-green-50 border-green-300'
+                            : isDue
+                            ? 'bg-yellow-50 border-yellow-300'
+                            : isPast
+                            ? 'bg-gray-50 border-gray-300'
+                            : 'bg-white border-gray-200'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
+                            milestone.type === 'deadline'
+                              ? 'bg-red-100 text-red-700'
+                              : milestone.type === 'checkpoint'
+                              ? 'bg-yellow-100 text-yellow-700'
+                              : 'bg-indigo-100 text-indigo-700'
+                          }`}>
+                            Day {(weekNum - 1) * 7 + weekAgendas.indexOf(milestone) + 1}
+                          </span>
+                          {milestone.completed && (
+                            <CheckCircle2 className="w-4 h-4 text-green-600" />
+                          )}
+                        </div>
+                        <h4 className="font-semibold text-gray-900 text-xs mb-1 line-clamp-2">{milestone.title}</h4>
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+                          <span>{format(milestoneDate, 'MMM d')}</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            setMilestones(prev =>
+                              prev.map(m =>
+                                m.id === milestone.id ? { ...m, completed: !m.completed } : m
+                              )
+                            )
+                          }}
+                          className={`w-full px-2 py-1 rounded text-xs ${
+                            milestone.completed
+                              ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {milestone.completed ? '✓ Done' : 'Mark Done'}
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* 日历主体 */}
@@ -234,7 +574,7 @@ export default function CalendarPage() {
 
                     {dayEvents.length > 0 && (
                       <div className="space-y-1">
-                        {dayEvents.slice(0, 2).map((event) => (
+                        {dayEvents.slice(0, 2).map((event: any) => (
                           <div
                             key={event.id}
                             className={`
@@ -272,7 +612,7 @@ export default function CalendarPage() {
 
             {selectedDateEvents.length > 0 ? (
               <div className="space-y-3">
-                {selectedDateEvents.map((event) => (
+                {selectedDateEvents.map((event: any) => (
                   <div
                     key={event.id}
                     className={`
@@ -298,17 +638,17 @@ export default function CalendarPage() {
                         {event.location}
                       </div>
 
-                      {(event as any).therapist && (
+                      {event.therapist && (
                         <div className="flex items-center">
                           <User className="w-3 h-3 mr-2" />
-                          {(event as any).therapist}
+                          {event.therapist}
                         </div>
                       )}
 
-                      {(event as any).doctor && (
+                      {event.doctor && (
                         <div className="flex items-center">
                           <User className="w-3 h-3 mr-2" />
-                          {(event as any).doctor}
+                          {event.doctor}
                         </div>
                       )}
                     </div>
@@ -336,21 +676,21 @@ export default function CalendarPage() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-600">Physical Therapy</span>
                 <span className="font-medium">
-                  {calendarEvents.filter(e => e.type === 'therapy').length} times
+                  {calendarEvents.filter((e: any) => e.type === 'therapy').length} times
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-600">Rehab Training</span>
                 <span className="font-medium">
-                  {calendarEvents.filter(e => e.type === 'exercise').length} times
+                  {calendarEvents.filter((e: any) => e.type === 'exercise').length} times
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-600">Follow-ups</span>
                 <span className="font-medium">
-                  {calendarEvents.filter(e => e.type === 'checkup').length} times
+                  {calendarEvents.filter((e: any) => e.type === 'checkup').length} times
                 </span>
               </div>
             </div>

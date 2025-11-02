@@ -14,7 +14,9 @@ import {
   Settings,
   User,
   Users,
-  Video
+  Video,
+  Flame,
+  Target
 } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -191,6 +193,63 @@ export default function Sidebar() {
           {navigationItems.map(item => renderNavItem(item))}
         </ul>
       </nav>
+
+      {/* Progress Card with Tooltip - Right above divider */}
+      <div className="px-4 pb-4">
+        <div className="relative group">
+          {/* Main Card */}
+          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div className="flex items-center gap-3 mb-3">
+              {/* Left: Icon and Title */}
+              <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
+                <Target className="w-5 h-5 text-blue-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-semibold text-gray-900 text-xs">Physical Therapy</h4>
+              </div>
+            </div>
+            
+            {/* Horizontal Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden mb-3">
+              <div 
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all"
+                style={{ width: '40%' }}
+              ></div>
+            </div>
+            
+            {/* Bottom: Progress and Streak */}
+            <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center text-gray-500">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-1.5"></span>
+                <span>40% complete</span>
+              </div>
+              <div className="flex items-center text-orange-600">
+                <Flame className="w-3 h-3 mr-1" />
+                <span>5 day streak</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Tooltip on Right Side on Hover */}
+          <div className="absolute left-full top-0 ml-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none">
+            <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-lg w-64">
+              <h4 className="font-semibold text-gray-900 text-sm mb-2">Physical Therapy</h4>
+              <p className="text-xs text-gray-600 mb-3">
+                Therapy sessions provide professional guidance and ensure your recovery stays on track with expert supervision.
+              </p>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-gray-600">2/5 missions completed today</span>
+                <div className="flex items-center text-orange-600">
+                  <Flame className="w-3 h-3 mr-1" />
+                  <span>5 day streak</span>
+                </div>
+              </div>
+            </div>
+            {/* Tooltip Arrow */}
+            <div className="absolute left-0 top-4 -ml-1 w-2 h-2 bg-white border-l border-t border-gray-200 transform rotate-45"></div>
+          </div>
+        </div>
+      </div>
 
       {/* Bottom Actions */}
       <div className="p-4 border-t border-gray-200 space-y-2">

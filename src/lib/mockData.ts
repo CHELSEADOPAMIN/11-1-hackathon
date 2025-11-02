@@ -804,6 +804,44 @@ export interface ExercisePlanItem {
   repeatForWeeks?: number // Number of weeks to repeat
 }
 
+export interface TreatmentPlan {
+  id: string
+  title: string
+  description: string
+  startDate: string // ISO date string
+  endDate: string // ISO date string (deadline)
+  durationWeeks: number
+  physiotherapist: string
+  doctor: string
+  status: 'active' | 'completed' | 'paused'
+  progressPercentage: number
+}
+
+export interface AgendaMilestone {
+  id: string
+  weekNumber: number
+  title: string
+  description: string
+  targetDate: string // ISO date string
+  completed: boolean
+  type: 'milestone' | 'checkpoint' | 'deadline'
+}
+
+export interface ProgressReport {
+  id: string
+  patientId: string
+  treatmentPlanId: string
+  reportDate: string
+  weekNumber: number
+  completionRate: number
+  painLevel?: number
+  mobilityScore?: number
+  notes: string
+  sentToPhysiotherapist: boolean
+  sentToDoctor: boolean
+  sentAt?: string
+}
+
 export const exercisePlanItems: ExercisePlanItem[] = [
   {
     id: 'plan-1',
@@ -863,6 +901,102 @@ export const exercisePlanItems: ExercisePlanItem[] = [
     repeatForWeeks: 4
   }
 ]
+
+// Treatment Plan Data
+export const currentTreatmentPlan: TreatmentPlan = {
+  id: 'treatment-plan-1',
+  title: 'Post-ACL Reconstruction Recovery',
+  description: 'Comprehensive 12-week rehabilitation program following ACL reconstruction surgery',
+  startDate: new Date().toISOString().split('T')[0], // Today
+  endDate: new Date(Date.now() + 12 * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 12 weeks from now
+  durationWeeks: 12,
+  physiotherapist: 'Dr. Wang',
+  doctor: 'Dr. Li',
+  status: 'active',
+  progressPercentage: 0
+}
+
+// Generate 12-week agenda with daily items (84 days total)
+export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] => {
+  const start = new Date(startDate)
+  start.setHours(0, 0, 0, 0)
+  const milestones: AgendaMilestone[] = []
+  
+  const weekTitles = [
+    'Week 1: Initial Recovery Phase',
+    'Week 2: Early Mobilization',
+    'Week 3: Range of Motion Progress',
+    'Week 4: Strength Building Begins',
+    'Week 5: Intermediate Phase',
+    'Week 6: Mid-term Assessment',
+    'Week 7: Advanced Exercises',
+    'Week 8: Functional Training',
+    'Week 9: Sport-Specific Prep',
+    'Week 10: Return to Activity Prep',
+    'Week 11: Final Phase Assessment',
+    'Week 12: Treatment Completion'
+  ]
+  
+  // Generate daily agenda items for 12 weeks (84 days)
+  for (let day = 0; day < 84; day++) {
+    const currentDate = new Date(start)
+    currentDate.setDate(start.getDate() + day)
+    const weekNumber = Math.floor(day / 7) + 1
+    const dayOfWeek = day % 7
+    const isLastDay = day === 83 // Last day of 12th week
+    
+    // Determine agenda type based on day
+    let type: 'milestone' | 'checkpoint' | 'deadline' = 'milestone'
+    if (isLastDay) {
+      type = 'deadline'
+    } else if (dayOfWeek === 0 && weekNumber % 2 === 0) {
+      // Every other Sunday is a checkpoint
+      type = 'checkpoint'
+    }
+    
+    // Generate agenda title based on day and week
+    let title = ''
+    if (isLastDay) {
+      title = `Treatment Completion - Final Assessment`
+    } else if (dayOfWeek === 0) {
+      // Sunday - weekly review
+      const weekTitle = weekTitles[weekNumber - 1].split(': ')[1] || weekTitles[weekNumber - 1]
+      title = `Day ${day + 1}: Weekly Review - ${weekTitle}`
+    } else if (dayOfWeek === 1) {
+      // Monday
+      title = `Day ${day + 1}: Morning Exercise Routine`
+    } else if (dayOfWeek === 2) {
+      // Tuesday
+      title = `Day ${day + 1}: Strength Training Session`
+    } else if (dayOfWeek === 3) {
+      // Wednesday
+      title = `Day ${day + 1}: Flexibility & Mobility Work`
+    } else if (dayOfWeek === 4) {
+      // Thursday
+      title = `Day ${day + 1}: Balance & Coordination Training`
+    } else if (dayOfWeek === 5) {
+      // Friday
+      title = `Day ${day + 1}: Functional Movement Practice`
+    } else {
+      // Saturday
+      title = `Day ${day + 1}: Recovery & Light Activity`
+    }
+    
+    milestones.push({
+      id: `agenda-day-${day + 1}`,
+      weekNumber: weekNumber,
+      title: title,
+      description: `Daily rehabilitation agenda for ${weekTitles[weekNumber - 1]}. Day ${day + 1} of 84.`,
+      targetDate: currentDate.toISOString().split('T')[0],
+      completed: false,
+      type: type
+    })
+  }
+  
+  return milestones
+}
+
+export const agendaMilestones = generateAgendaMilestones(currentTreatmentPlan.startDate)
 
 // Group exercises available
 export const groupExercises: GroupExercise[] = [
