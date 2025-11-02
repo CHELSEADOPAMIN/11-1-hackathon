@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { ArrowRight, Calendar, Heart, Image, LogOut, MessageCircle, Send, Smile, User, Users } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function LobbyPage() {
   const { joinedParty, setJoinedParty } = useParty()

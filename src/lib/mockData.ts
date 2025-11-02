@@ -255,6 +255,17 @@ export function setJoinedParty(party: Party | null) {
   joinedParty = party
 }
 
+// User's interest categories (for party filtering)
+export const userInterests: string[] = ['Knee', 'Shoulder', 'Spine']
+
+// Currently joined party (can only be one at a time)
+export let joinedParty: Party | null = null
+
+// Function to set joined party (enforces single party rule)
+export function setJoinedParty(party: Party | null) {
+  joinedParty = party
+}
+
 // Today's tasks
 export const todaysTasks: Task[] = [
   {
