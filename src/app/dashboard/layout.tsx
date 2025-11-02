@@ -11,14 +11,51 @@ export default function DashboardLayout({
   return (
     <PartyProvider>
       <CalendarProvider>
-        <div className="flex h-screen bg-gray-50">
+        <div className="flex h-screen bg-gray-50 overflow-hidden">
           {/* 左侧固定导航栏 */}
           <Sidebar />
 
           {/* 右侧主内容区域 */}
-          <main className="flex-1 overflow-auto">
-            <div className="px-8 pt-8 pb-6">
-              {children}
+          <main className="flex-1 overflow-auto relative z-0">
+            <div className="flex flex-col">
+              <div className="px-8 pt-8 pb-8">
+                {children}
+              </div>
+              {/* Footer */}
+              <footer className="border-t border-gray-200 bg-white px-8 py-4">
+                <p className="text-sm text-gray-500 text-center">
+                  Built by{' '}
+                  <span className="font-medium text-gray-700">
+                    <a
+                      href="https://www.linkedin.com/in/chelsea-yang-21204930b"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                    >
+                      Chelsea Yang
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://www.linkedin.com/in/gege-ardiyansyah"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                    >
+                      Gege Ardiyansyah
+                    </a>
+                    , Hang Li, Jane Kittiyanpanya,{' '}
+                    <a
+                      href="https://www.linkedin.com/in/ravicha-suksawasdi-na-ayuthaya"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                    >
+                      Ravicha Suksawasdi Na Ayuthaya
+                    </a>
+                    , Vedro Suwandi
+                  </span>
+                </p>
+              </footer>
             </div>
           </main>
         </div>

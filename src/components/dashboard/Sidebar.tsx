@@ -166,7 +166,7 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col">
+    <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col overflow-visible relative z-10">
       {/* User Info Area */}
       <div className="p-6 border-b border-gray-200">
         <Link
@@ -231,7 +231,7 @@ export default function Sidebar() {
           </div>
 
           {/* Tooltip on Right Side on Hover */}
-          <div className="absolute left-full top-0 ml-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none">
+          <div className="absolute left-full top-0 ml-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] pointer-events-none" style={{ willChange: 'opacity, visibility' }}>
             <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-lg w-64">
               <h4 className="font-semibold text-gray-900 text-sm mb-2">Physical Therapy</h4>
               <p className="text-xs text-gray-600 mb-3">

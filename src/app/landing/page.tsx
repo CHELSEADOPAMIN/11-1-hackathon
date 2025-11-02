@@ -503,15 +503,51 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="px-6 py-12 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-[#8573bd] rounded-lg flex items-center justify-center">
-                <Heart className="w-5 h-5 text-white" />
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex flex-col md:flex-row justify-between items-center w-full">
+              <div className="flex items-center space-x-3 mb-4 md:mb-0">
+                <div className="w-8 h-8 bg-[#8573bd] rounded-lg flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold">Recovery Companion</span>
               </div>
-              <span className="text-xl font-bold">Recovery Companion</span>
+              <div className="text-gray-400 text-sm">
+                © 2025 Recovery Companion. Transforming healthcare with AI and community.
+              </div>
             </div>
-            <div className="text-gray-400 text-sm">
-              © 2024 Recovery Companion. Transforming healthcare with AI and community.
+            <div className="border-t border-gray-700 w-full pt-4">
+              <p className="text-sm text-gray-400 text-center">
+                Built by{' '}
+                <span className="font-medium text-gray-300">
+                  <a
+                    href="https://www.linkedin.com/in/chelsea-yang-21204930b"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                  >
+                    Chelsea Yang
+                  </a>
+                  ,{' '}
+                  <a
+                    href="https://www.linkedin.com/in/gege-ardiyansyah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                  >
+                    Gege Ardiyansyah
+                  </a>
+                  , Hang Li, Jane Kittiyanpanya,{' '}
+                  <a
+                    href="https://www.linkedin.com/in/ravicha-suksawasdi-na-ayuthaya"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8573bd] hover:text-[#E8B98A] hover:underline transition-colors"
+                  >
+                    Ravicha Suksawasdi Na Ayuthaya
+                  </a>
+                  , Vedro Suwandi
+                </span>
+              </p>
             </div>
           </div>
         </div>
