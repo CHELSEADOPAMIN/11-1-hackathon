@@ -96,7 +96,7 @@ export async function generateCareEmail(
 
   const prompt = `
 # AI Role
-You are a care specialist from the "Recovery Companion" community. Your tone is warm, genuine, and encouraging, but never mechanical or preachy.
+You are a care specialist from the "Healing Together" community. Your tone is warm, genuine, and encouraging, but never mechanical or preachy.
 
 # Task Instructions
 Please write a short (about 100-150 words) care email for the following patient. The email should:
@@ -191,18 +191,18 @@ function generateFallbackAnalysis(patientData: PatientRiskData): RiskAnalysisRes
  * Fallback email when AI is not available
  */
 function generateFallbackEmail(patientData: PatientRiskData): string {
-  return `Subject: A Greeting from Recovery Companion Community 👋
+  return `Subject: A Greeting from Healing Together Community 👋
 
 Hi ${patientData.patientName},
 
 Just wanted to reach out and say hello. We know that recovering from ${patientData.injury.toLowerCase()} can be a long and challenging journey, especially when progress feels slow.
 
-Please remember, you're not fighting this alone. In our "Recovery Companion" community, there are many friends who are going through similar experiences, and their insights and encouragement might give you new strength.
+Please remember, you're not fighting this alone. In our "Healing Together" community, there are many friends who are going through similar experiences, and their insights and encouragement might give you new strength.
 
 If you have time, come back and see everyone. You might discover some useful tips, or just chat with the community. We're all here to support you!
 
 Looking forward to seeing you again: ${process.env.NEXT_PUBLIC_APP_URL || 'https://healing-together-ruddy.vercel.app'}
 
 Best regards,
-Your Recovery Companion Team`
+Your Healing Together Team`
 }

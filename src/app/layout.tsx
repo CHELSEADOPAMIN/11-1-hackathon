@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Recovery Companion - AI-Powered Rehabilitation Platform",
+  title: "Healing Together - AI-Powered Rehabilitation Platform",
   description: "Transform your recovery journey with intelligent patient care, proactive support, and a thriving community.",
 };
 

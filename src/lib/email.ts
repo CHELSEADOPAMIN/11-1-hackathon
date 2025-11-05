@@ -30,7 +30,7 @@ export async function sendCareEmail(emailData: EmailData): Promise<boolean> {
     console.log('📧 Attempting to send real email to:', emailData.to)
 
     const { data, error } = await resend.emails.send({
-      from: emailData.from || 'Recovery Companion <onboarding@resend.dev>',
+      from: emailData.from || 'Healing Together <onboarding@resend.dev>',
       to: [emailData.to],
       subject: emailData.subject,
       html: emailData.html,
@@ -94,14 +94,14 @@ export function formatEmailAsHTML(plainText: string): string {
   return `
     <div style="max-width: 600px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #374151;">
       <div style="background: #8573bd; padding: 24px; text-align: center; border-radius: 8px 8px 0 0;">
-        <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 700;">Recovery Companion</h1>
+        <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 700;">Healing Together</h1>
         <p style="color: #e0e7ff; margin: 8px 0 0 0; font-size: 14px;">Your journey to recovery, together</p>
       </div>
       <div style="background: white; padding: 32px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
         ${html}
         <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb; text-align: center;">
           <p style="margin: 0; font-size: 12px; color: #6b7280;">
-            This email was sent with care by your Recovery Companion team.<br>
+            This email was sent with care by your Healing Together team.<br>
             If you have any questions, please don't hesitate to reach out.
           </p>
         </div>
