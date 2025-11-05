@@ -5,6 +5,7 @@ import { AIMatchResult, AIRecommendationResponse, availableParties, currentUser,
 import { useParty } from '@/lib/PartyContext'
 import { cn } from '@/lib/utils'
 import { Brain, CheckCircle, Info, Loader2, MessageCircle, Search, Send, User, Users, XCircle, Zap } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 
 const Card = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -30,6 +31,8 @@ const CardContent = ({ children, className }: { children: React.ReactNode, class
 )
 
 export default function DiscoverPage() {
+  const t = useTranslations('Discover')
+  const tCommon = useTranslations('Common')
   const { joinedParty, setJoinedParty } = useParty()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedParty, setSelectedParty] = useState<string | null>(null)
@@ -102,7 +105,7 @@ export default function DiscoverPage() {
   const handleJoinParty = (partyId: string) => {
     if (joinedParty && joinedParty.id !== partyId) {
       // Already in another party, show warning or handle leave/join
-      if (confirm('You are already in a party. Leave your current party to join this one?')) {
+      if (confirm(t('confirm.leaveCurrent'))) {
         setJoinedParty(filteredParties.find(p => p.id === partyId) || null)
       }
     } else {
@@ -111,7 +114,7 @@ export default function DiscoverPage() {
   }
 
   const handleLeaveParty = () => {
-    if (confirm('Are you sure you want to leave this party?')) {
+    if (confirm(t('confirm.leaveParty'))) {
       setJoinedParty(null)
       setSelectedParty(null)
     }
@@ -130,9 +133,9 @@ export default function DiscoverPage() {
     const now = new Date()
     const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60))
 
-    if (diffInMinutes < 1) return 'Just now'
-    if (diffInMinutes < 60) return `${diffInMinutes}m ago`
-    if (diffInMinutes < 1440) return `${Math.floor(diffInMinutes / 60)}h ago`
+    if (diffInMinutes < 1) return t('time.justNow')
+    if (diffInMinutes < 60) return t('time.minsAgo', { count: diffInMinutes })
+    if (diffInMinutes < 1440) return t('time.hoursAgo', { count: Math.floor(diffInMinutes / 60) })
     return date.toLocaleDateString()
   }
 
@@ -170,7 +173,7 @@ export default function DiscoverPage() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <Brain className="w-6 h-6 mr-2" />
-              <h2 className="text-2xl font-bold">AI Smart Matching Recommendations</h2>
+              <h2 className="text-2xl font-bold">{t('ai.title')}</h2>
             </div>
             <button
               onClick={() => setShowAISection(false)}
@@ -179,14 +182,12 @@ export default function DiscoverPage() {
               ✕
             </button>
           </div>
-          <p className="mb-4 opacity-90">
-            Based on your recovery progress, training intensity, and goals, we&apos;ve selected these groups for you:
-          </p>
+          <p className="mb-4 opacity-90">{t('ai.subtitle')}</p>
 
           {loadingRecommendations ? (
             <div className="flex items-center justify-center py-8">
               <Loader2 className="w-8 h-8 animate-spin mr-3" />
-              <span>AI is analyzing your profile...</span>
+              <span>{t('ai.loading')}</span>
             </div>
           ) : aiRecommendations?.recommendations ? (
             <div className="space-y-3">
@@ -197,10 +198,10 @@ export default function DiscoverPage() {
                       <h3 className="font-semibold text-lg">{rec.partyName}</h3>
                       <div className="flex items-center mt-2">
                         <div className="bg-white/30 rounded-full px-3 py-1 text-sm mr-3">
-                          Match: {rec.matchScore}%
+                          {t('ai.matchLabel', { score: rec.matchScore })}
                         </div>
                         <div className="bg-[#E8B98A]/30 rounded-full px-3 py-1 text-sm">
-                          #{index + 1} Recommended
+                          #{index + 1} {t('ai.recommended')}
                         </div>
                       </div>
                     </div>
@@ -210,13 +211,13 @@ export default function DiscoverPage() {
                         className="bg-white/20 text-white px-3 py-2 rounded-lg font-medium hover:bg-white/30 transition-colors flex items-center"
                       >
                         <Info className="w-4 h-4 mr-1" />
-                        Details
+                        {t('ai.details')}
                       </button>
                       <button
                         onClick={() => handleJoinParty(rec.partyId)}
                         className="bg-white text-[#8573bd] px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
                       >
-                        Join Group
+                        {t('ai.joinGroup')}
                       </button>
                     </div>
                   </div>
@@ -231,7 +232,7 @@ export default function DiscoverPage() {
                   </div>
 
                   <div className="text-sm opacity-80 italic">
-                    Expected benefit: {rec.expectedBenefit}
+                    {t('ai.expectedBenefit')}: {rec.expectedBenefit}
                   </div>
                 </div>
               ))}
@@ -241,16 +242,14 @@ export default function DiscoverPage() {
                 <div className="bg-orange-200/20 border border-orange-300/30 rounded-lg p-4 mt-4">
                   <div className="flex items-center mb-2">
                     <Zap className="w-5 h-5 mr-2" />
-                    <h4 className="font-semibold">AI Suggests Creating New Group</h4>
+                    <h4 className="font-semibold">{t('ai.suggestNewGroup.title')}</h4>
                   </div>
                   <h5 className="font-medium mb-2">{aiRecommendations.newGroupSuggestion.name}</h5>
                   <p className="text-sm opacity-90 mb-3">{aiRecommendations.newGroupSuggestion.reason}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">
-                      Estimated size: {aiRecommendations.newGroupSuggestion.estimatedSize} members
-                    </span>
+                    <span className="text-sm">{t('ai.suggestNewGroup.estimated', { count: aiRecommendations.newGroupSuggestion.estimatedSize })}</span>
                     <button className="bg-orange-200/30 text-white px-3 py-1 rounded text-sm hover:bg-orange-200/40 transition-colors">
-                      Create Group
+                      {t('ai.suggestNewGroup.create')}
                     </button>
                   </div>
                 </div>
@@ -258,12 +257,12 @@ export default function DiscoverPage() {
             </div>
           ) : (
             <div className="text-center py-4">
-              <p className="opacity-80">Unable to load recommendations. Please try again later.</p>
+              <p className="opacity-80">{t('ai.error')}</p>
               <button
                 onClick={fetchAIRecommendations}
                 className="mt-2 bg-white/20 px-4 py-2 rounded-lg hover:bg-white/30 transition-colors"
               >
-                Retry
+                {t('ai.retry')}
               </button>
             </div>
           )}
@@ -276,10 +275,8 @@ export default function DiscoverPage() {
         <Card className="flex flex-col overflow-hidden">
           <CardHeader>
             <div>
-              <CardTitle>Discover Parties</CardTitle>
-              <CardDescription>
-                Find communities that match your interests: {userInterests.join(', ')}
-              </CardDescription>
+              <CardTitle>{t('list.title')}</CardTitle>
+              <CardDescription>{t('list.subtitle', { interests: userInterests.join(', ') })}</CardDescription>
             </div>
             <div className="mt-4 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -287,7 +284,7 @@ export default function DiscoverPage() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search parties..."
+                placeholder={t('list.searchPlaceholder')}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>
@@ -297,7 +294,7 @@ export default function DiscoverPage() {
               <div className="flex items-center justify-center h-full text-gray-400">
                 <div className="text-center">
                   <Users className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p>No parties found matching your interests</p>
+                  <p>{t('list.empty')}</p>
                 </div>
               </div>
             ) : (
@@ -360,7 +357,7 @@ export default function DiscoverPage() {
                     </div>
                     {joinedParty?.id === selectedPartyData.id && (
                       <span className="ml-4 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                        Joined
+                        {t('details.joined')}
                       </span>
                     )}
                   </div>
@@ -369,29 +366,29 @@ export default function DiscoverPage() {
                   <div className="space-y-6">
                     {/* Party Info */}
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-3">Party Information</h3>
+                      <h3 className="font-semibold text-gray-900 mb-3">{t('details.infoTitle')}</h3>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-sm text-gray-600">Category</span>
+                          <span className="text-sm text-gray-600">{t('details.category')}</span>
                           <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                             {selectedPartyData.category}
                           </span>
                         </div>
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-sm text-gray-600">Members</span>
+                          <span className="text-sm text-gray-600">{t('details.members')}</span>
                           <span className="text-sm font-medium text-gray-900">
                             {selectedPartyData.memberCount}
                             {selectedPartyData.maxMembers && ` / ${selectedPartyData.maxMembers}`}
                           </span>
                         </div>
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-sm text-gray-600">Created</span>
+                          <span className="text-sm text-gray-600">{t('details.created')}</span>
                           <span className="text-sm font-medium text-gray-900">
                             {formatDate(selectedPartyData.createdAt)}
                           </span>
                         </div>
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-sm text-gray-600">Organizer</span>
+                          <span className="text-sm text-gray-600">{t('details.organizer')}</span>
                           <div className="flex items-center space-x-2">
                             <User className="w-4 h-4 text-gray-400" />
                             <span className="text-sm font-medium text-gray-900">
@@ -410,7 +407,7 @@ export default function DiscoverPage() {
                           className="w-full flex items-center justify-center px-4 py-3 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors font-medium"
                         >
                           <XCircle className="w-5 h-5 mr-2" />
-                          Leave Party
+                          {t('details.leave')}
                         </button>
                       ) : (
                         <button
@@ -426,20 +423,18 @@ export default function DiscoverPage() {
                           {joinedParty ? (
                             <>
                               <XCircle className="w-5 h-5 mr-2" />
-                              Already in another party
+                              {t('details.alreadyInAnother')}
                             </>
                           ) : (
                             <>
                               <CheckCircle className="w-5 h-5 mr-2" />
-                              Join Party
+                              {t('details.join')}
                             </>
                           )}
                         </button>
                       )}
                       {joinedParty && joinedParty.id !== selectedPartyData.id && (
-                        <p className="mt-2 text-xs text-center text-gray-500">
-                          You can only join one party at a time
-                        </p>
+                        <p className="mt-2 text-xs text-center text-gray-500">{t('details.onlyOne')}</p>
                       )}
                     </div>
                   </div>
@@ -449,7 +444,7 @@ export default function DiscoverPage() {
               <div className="flex items-center justify-center h-full min-h-[200px] text-gray-400">
                 <div className="text-center">
                   <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p>Select a party to view details</p>
+                  <p>{t('details.selectPrompt')}</p>
                 </div>
               </div>
             )}
@@ -460,8 +455,8 @@ export default function DiscoverPage() {
             <CardHeader>
               <div className="flex items-center">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                <CardTitle className="text-lg">Public Chat</CardTitle>
-                <span className="ml-2 text-xs text-gray-500">(All Parties)</span>
+                <CardTitle className="text-lg">{t('chat.title')}</CardTitle>
+                <span className="ml-2 text-xs text-gray-500">{t('chat.scope')}</span>
               </div>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col overflow-hidden p-0">
@@ -470,7 +465,7 @@ export default function DiscoverPage() {
                   <div className="flex items-center justify-center h-full text-gray-400">
                     <div className="text-center">
                       <MessageCircle className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                      <p className="text-sm">No messages yet. Be the first to chat!</p>
+                      <p className="text-sm">{t('chat.empty')}</p>
                     </div>
                   </div>
                 ) : (
@@ -517,7 +512,7 @@ export default function DiscoverPage() {
                     value={messageInput}
                     onChange={(e) => setMessageInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Type a message to all parties..."
+                    placeholder={t('chat.placeholder')}
                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
                   />
                   <button

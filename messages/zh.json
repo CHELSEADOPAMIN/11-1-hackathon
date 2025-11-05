@@ -370,5 +370,58 @@
       "location": "地点",
       "confirm": "确认预约"
     }
+  },
+  "Discover": {
+    "ai": {
+      "title": "AI 智能匹配推荐",
+      "subtitle": "基于你的康复进度、训练强度和目标，为你精选以下群组：",
+      "loading": "AI 正在分析你的资料...",
+      "matchLabel": "匹配度：{score}%",
+      "recommended": "推荐",
+      "details": "详情",
+      "joinGroup": "加入群组",
+      "expectedBenefit": "预期收益",
+      "suggestNewGroup": {
+        "title": "AI 建议创建新群组",
+        "estimated": "预计规模：{count} 人",
+        "create": "创建群组"
+      },
+      "error": "无法加载推荐，请稍后重试。",
+      "retry": "重试"
+    },
+    "list": {
+      "title": "发现群组",
+      "subtitle": "寻找与你兴趣匹配的社区：{interests}",
+      "searchPlaceholder": "搜索群组...",
+      "empty": "没有找到与你兴趣匹配的群组"
+    },
+    "details": {
+      "joined": "已加入",
+      "infoTitle": "群组信息",
+      "category": "分类",
+      "members": "成员数",
+      "created": "创建时间",
+      "organizer": "组织者",
+      "leave": "退出群组",
+      "join": "加入群组",
+      "alreadyInAnother": "你已加入其他群组",
+      "onlyOne": "同一时间只能加入一个群组",
+      "selectPrompt": "选择一个群组查看详情"
+    },
+    "chat": {
+      "title": "公共聊天",
+      "scope": "（全部群组）",
+      "empty": "暂无消息，来发一条吧！",
+      "placeholder": "对所有群组发送消息..."
+    },
+    "confirm": {
+      "leaveCurrent": "你已在其他群组，是否先退出再加入此群组？",
+      "leaveParty": "确定要退出该群组吗？"
+    },
+    "time": {
+      "justNow": "刚刚",
+      "minsAgo": "{count} 分钟前",
+      "hoursAgo": "{count} 小时前"
+    }
   }
 }

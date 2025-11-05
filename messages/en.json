@@ -370,5 +370,58 @@
       "location": "Location",
       "confirm": "Confirm Booking"
     }
+  },
+  "Discover": {
+    "ai": {
+      "title": "AI Smart Matching Recommendations",
+      "subtitle": "Based on your recovery progress, training intensity, and goals, we've selected these groups for you:",
+      "loading": "AI is analyzing your profile...",
+      "matchLabel": "Match: {score}%",
+      "recommended": "Recommended",
+      "details": "Details",
+      "joinGroup": "Join Group",
+      "expectedBenefit": "Expected benefit",
+      "suggestNewGroup": {
+        "title": "AI Suggests Creating New Group",
+        "estimated": "Estimated size: {count} members",
+        "create": "Create Group"
+      },
+      "error": "Unable to load recommendations. Please try again later.",
+      "retry": "Retry"
+    },
+    "list": {
+      "title": "Discover Parties",
+      "subtitle": "Find communities that match your interests: {interests}",
+      "searchPlaceholder": "Search parties...",
+      "empty": "No parties found matching your interests"
+    },
+    "details": {
+      "joined": "Joined",
+      "infoTitle": "Party Information",
+      "category": "Category",
+      "members": "Members",
+      "created": "Created",
+      "organizer": "Organizer",
+      "leave": "Leave Party",
+      "join": "Join Party",
+      "alreadyInAnother": "Already in another party",
+      "onlyOne": "You can only join one party at a time",
+      "selectPrompt": "Select a party to view details"
+    },
+    "chat": {
+      "title": "Public Chat",
+      "scope": "(All Parties)",
+      "empty": "No messages yet. Be the first to chat!",
+      "placeholder": "Type a message to all parties..."
+    },
+    "confirm": {
+      "leaveCurrent": "You are already in a party. Leave your current party to join this one?",
+      "leaveParty": "Are you sure you want to leave this party?"
+    },
+    "time": {
+      "justNow": "Just now",
+      "minsAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago"
+    }
   }
 }
