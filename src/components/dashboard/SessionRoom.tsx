@@ -1,47 +1,45 @@
-'use client'
+'use client';
 
-import { friends, currentUser } from '@/lib/mockData'
-import { cn } from '@/lib/utils'
-import { 
-  Mic, 
-  MicOff, 
-  Video, 
-  VideoOff, 
-  Users, 
-  MessageSquare, 
-  Settings,
-  PhoneOff,
+import { friends, currentUser } from '@/lib/mockData';
+import { cn, formatTime } from '@/lib/utils';
+import {
   Maximize2,
+  MessageSquare,
+  Mic,
+  MicOff,
+  PhoneOff,
+  Settings,
   Share2,
-  User
-} from 'lucide-react'
-import { useState } from 'react'
+  Users,
+  Video,
+  VideoOff
+} from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 interface SessionRoomProps {
-  sessionTitle?: string
-  onLeave?: () => void
-  isHost?: boolean
-  participantCount?: number // Number of actual participants in the room
+  sessionTitle?: string;
+  onLeave?: () => void;
+  isHost?: boolean;
+  participantCount?: number;
 }
 
 interface Message {
-  id: string
-  author: string
-  content: string
-  timestamp: Date
+  id: string;
+  author: string;
+  content: string;
+  timestamp: Date;
 }
 
 // Pixelated cartoon avatar component with floating animation using GIF files
-function PixelatedAvatar({ 
-  isCurrentUser, 
-  color, 
+function PixelatedAvatar({
+  isCurrentUser,
   delay,
   avatarIndex
-}: { 
-  isCurrentUser: boolean
-  color: string
-  delay: number
-  avatarIndex: number
+}: {
+  isCurrentUser: boolean;
+  delay: number;
+  avatarIndex: number;
 }) {
   // Map avatar index to GIF files
   const avatarGifs = [
@@ -109,62 +107,54 @@ function PixelatedAvatar({
   )
 }
 
-export default function SessionRoom({ 
-  sessionTitle = 'Group Exercise',
+export default function SessionRoom({
+  sessionTitle,
   onLeave,
   isHost = false,
-  participantCount = 6 // Default to 6, but can be overridden
+  participantCount = 6
 }: SessionRoomProps) {
-  const [micEnabled, setMicEnabled] = useState(false)
-  const [videoEnabled, setVideoEnabled] = useState(false)
-  const [showChat, setShowChat] = useState(false)
-  const [message, setMessage] = useState('')
+  const locale = useLocale();
+  const commonT = useTranslations('GroupExercise.common');
+  const sessionT = useTranslations('GroupExercise.sessionRoom');
+  const [micEnabled, setMicEnabled] = useState(false);
+  const [videoEnabled, setVideoEnabled] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       author: friends[0].name,
-      content: 'Thanks everyone for joining!',
+      content: sessionT('initialMessage'),
       timestamp: new Date()
     }
-  ])
+  ]);
+
+  const title = sessionTitle ?? commonT('defaultTitle');
   
   // Participants based on actual participant count in the room
   // Always includes currentUser, plus up to (participantCount - 1) other participants
-  const actualParticipantCount = Math.min(Math.max(participantCount, 1), 6) // Clamp between 1 and 6
-  const otherParticipantCount = Math.max(actualParticipantCount - 1, 0) // Exclude current user
+  const actualParticipantCount = Math.min(Math.max(participantCount, 1), 6);
+  const otherParticipantCount = Math.max(actualParticipantCount - 1, 0);
   
   const participants = [
     currentUser,
     ...friends.slice(0, otherParticipantCount)
   ]
   
-  const avatarColors = [
-    '#3B82F6', // blue
-    '#10B981', // green
-    '#F59E0B', // orange
-    '#EF4444', // red
-    '#8B5CF6', // purple
-    '#EC4899'  // pink
-  ]
-
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!message.trim()) return
+  const handleSendMessage = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!message.trim()) return;
 
     const newMessage: Message = {
       id: Date.now().toString(),
       author: currentUser.name,
       content: message,
       timestamp: new Date()
-    }
+    };
 
-    setMessages([...messages, newMessage])
-    setMessage('')
-  }
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  }
+    setMessages([...messages, newMessage]);
+    setMessage('');
+  };
 
   return (
     <div className="h-screen flex flex-col bg-gray-900">
@@ -174,17 +164,17 @@ export default function SessionRoom({
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <Users className="w-5 h-5 text-gray-300" />
-              <h2 className="text-xl font-semibold text-white">{sessionTitle}</h2>
+              <h2 className="text-xl font-semibold text-white">{title}</h2>
             </div>
             <span className="text-sm text-gray-400">
-              {participants.length} participants
+              {sessionT('participants', { count: participants.length })}
             </span>
           </div>
           
           <div className="flex items-center space-x-2">
             {isHost && (
               <button className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
-                Host Controls
+                {commonT('hostControls')}
               </button>
             )}
             <button className="p-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
@@ -207,8 +197,8 @@ export default function SessionRoom({
               {/* Video Placeholder */}
               <div className="w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col items-center justify-center">
                 <Video className="w-24 h-24 text-gray-600 mb-4" />
-                <p className="text-white text-xl font-semibold mb-2">Exercise Instruction Video</p>
-                <p className="text-gray-400 text-sm">Follow along with the guided exercise</p>
+                <p className="text-white text-xl font-semibold mb-2">{sessionT('videoTitle')}</p>
+                <p className="text-gray-400 text-sm">{sessionT('videoSubtitle')}</p>
               </div>
               
               {/* Play overlay */}
@@ -254,9 +244,8 @@ export default function SessionRoom({
                 >
                   {/* Pixelated Avatar */}
                   <div className="relative mb-2">
-                    <PixelatedAvatar 
+                    <PixelatedAvatar
                       isCurrentUser={isCurrent}
-                      color={avatarColors[index]}
                       delay={index * 0.5}
                       avatarIndex={index}
                     />
@@ -281,7 +270,7 @@ export default function SessionRoom({
           <div className="w-1/3 bg-gray-800 border-l border-gray-700 flex flex-col">
             {/* Chat Header */}
             <div className="px-4 py-3 border-b border-gray-700 flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-white">Chat</h3>
+              <h3 className="text-lg font-semibold text-white">{sessionT('chatTitle')}</h3>
               <button
                 onClick={() => setShowChat(false)}
                 className="p-1 text-gray-400 hover:text-white rounded"
@@ -311,7 +300,7 @@ export default function SessionRoom({
                     )}
                     <p className="text-sm">{msg.content}</p>
                     <p className="text-xs mt-1 opacity-70">
-                      {formatTime(msg.timestamp)}
+                      {formatTime(msg.timestamp, locale)}
                     </p>
                   </div>
                 </div>
@@ -325,7 +314,7 @@ export default function SessionRoom({
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Type a message..."
+                  placeholder={sessionT('chatPlaceholder')}
                   className="flex-1 px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
@@ -387,7 +376,7 @@ export default function SessionRoom({
 
           <div className="flex items-center space-x-3">
             <button className="px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors text-sm">
-              Participants
+              {commonT('participantsButton')}
               <Users className="w-4 h-4 inline ml-2" />
             </button>
             
@@ -396,7 +385,7 @@ export default function SessionRoom({
               className="flex items-center px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
             >
               <PhoneOff className="w-5 h-5 mr-2" />
-              Leave Session
+              {sessionT('leave')}
             </button>
           </div>
         </div>
@@ -404,4 +393,3 @@ export default function SessionRoom({
     </div>
   )
 }
-

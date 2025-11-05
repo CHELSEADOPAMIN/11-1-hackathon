@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Anmelden",
+    "dashboard": "Dashboard",
+    "community": "Community",
+    "friends": "Freunde",
+    "discover": "Entdecken",
+    "lobby": "Lobby",
+    "session": "Session",
+    "groupExercise": "Gruppentraining",
+    "knowledge": "Wissensbasis",
+    "calendar": "Kalender",
+    "profile": "Profil"
+  },
+  "Landing": {
+    "title": "Reha-Begleiter",
+    "heroTitle": "Ihre KI-gestützte",
+    "heroSubtitle": "Reise zur Genesung",
+    "heroDescription": "Erleben Sie die Zukunft der Rehabilitation mit intelligenter Patientenbetreuung, proaktiver Unterstützung und einer engagierten Community, die Sie niemals alleine lässt.",
+    "getStarted": "Jetzt starten",
+    "watchDemo": "Demo ansehen",
+    "features": {
+      "aiPowered": "KI-gestützte Pflege",
+      "aiPoweredDesc": "Fortschrittliche Algorithmen analysieren Ihren Genesungsverlauf und geben personalisierte Empfehlungen.",
+      "community": "Unterstützende Community",
+      "communityDesc": "Vernetzen Sie sich mit Menschen in ähnlichen Situationen und teilen Sie Erfahrungen in sicherer Umgebung.",
+      "tracking": "Fortschrittsverfolgung",
+      "trackingDesc": "Behalten Sie Ihre Meilensteine mit detaillierten Analysen und Einblicken im Blick."
+    }
+  },
+  "Login": {
+    "title": "Willkommen zurück",
+    "subtitle": "Melden Sie sich bei Ihrem Genesungsbegleiter an",
+    "fields": {
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "E-Mail eingeben",
+      "password": "Passwort",
+      "passwordPlaceholder": "Passwort eingeben",
+      "rememberMe": "Angemeldet bleiben",
+      "forgotPassword": "Passwort vergessen?"
+    },
+    "actions": {
+      "signIn": "Anmelden",
+      "signingIn": "Anmeldung läuft..."
+    },
+    "divider": "Oder weiter mit",
+    "google": {
+      "button": "Mit Google anmelden",
+      "loading": "Verbindung wird hergestellt..."
+    },
+    "signup": {
+      "prompt": "Noch kein Konto?",
+      "link": "Kostenlos registrieren"
+    },
+    "demo": {
+      "adminTitle": "🔧 Admin-Konto",
+      "adminEmail": "E-Mail:",
+      "adminPassword": "Passwort:",
+      "adminNote": "→ Weiterleitung zum KI-Dashboard für Patienten",
+      "userTitle": "👤 Patienten-Konto",
+      "userHint": "Verwenden Sie eine gültige E-Mail und ein Passwort mit mind. 6 Zeichen",
+      "userExample": "Beispiel: demo@example.com / password123 → Dashboard"
+    }
+  },
+  "Errors": {
+    "emailRequired": "E-Mail ist erforderlich",
+    "invalidEmail": "Bitte eine gültige E-Mail-Adresse eingeben",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordMinLength": "Das Passwort muss mindestens 6 Zeichen haben",
+    "invalidCredentials": "E-Mail oder Passwort ist falsch",
+    "nameRequired": "Name ist erforderlich",
+    "confirmPasswordRequired": "Bitte bestätigen Sie Ihr Passwort",
+    "passwordMismatch": "Die Passwörter stimmen nicht überein",
+    "generic": "Es ist ein Fehler aufgetreten"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Guten Abend",
+        "goodMorning": "Guten Morgen",
+        "goodAfternoon": "Guten Tag",
+        "goodEvening": "Guten Abend"
+      },
+      "todayMessage": "Heute ist {date}, setzen wir unseren Genesungsweg gemeinsam fort 💪",
+      "recoveryDay": "Genesungstag {day}"
+    },
+    "TodaysPlan": {
+      "title": "Heutiger Genesungsplan",
+      "status": "{completed}/{total} erledigt",
+      "progress": "Fortschritt",
+      "minutes": "{count} Minuten",
+      "completedAt": "✓ Abgeschlossen um {time}",
+      "allComplete": "🎉 Großartig! Alle Aufgaben für heute sind erledigt!",
+      "tasks": {
+        "1": {
+          "title": "Morgendliches Dehnen",
+          "description": "15 Minuten Knie-Dehnübungen durchführen"
+        },
+        "2": {
+          "title": "Entzündungshemmer einnehmen",
+          "description": "200 mg Ibuprofen nach dem Essen einnehmen"
+        },
+        "3": {
+          "title": "Physiotherapie",
+          "description": "Physiotherapiesitzung im Rehazentrum um 14:00 Uhr"
+        },
+        "4": {
+          "title": "Abendspaziergang",
+          "description": "20 Minuten gemütlicher Spaziergang nach dem Abendessen"
+        },
+        "5": {
+          "title": "Schmerztagebuch",
+          "description": "Heutiges Schmerzlevel und Befinden notieren"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Genesungsfreunde",
+      "noFriends": "Keine Freunde online",
+      "onlineFriends": "Freunde online",
+      "peopleCount": "{count} Personen"
+    },
+    "Lobby": {
+      "title": "Community-Zentrum"
+    },
+    "WeeklyProgress": {
+      "title": "Wöchentlicher Genesungsfortschritt",
+      "subtitle": "Status der Aufgabenerledigung",
+      "tooltip": {
+        "completed": "Erledigt: {completed}/{total} Aufgaben",
+        "rate": "Erfolgsquote: {rate}%"
+      },
+      "bars": {
+        "completed": "Erledigt",
+        "total": "Gesamtaufgaben"
+      },
+      "summaryTitle": "Wochenübersicht",
+      "summary": {
+        "totalCompleted": "Insgesamt erledigt",
+        "averageRate": "Durchschnittliche Quote",
+        "perfectDays": "Perfekte Tage"
+      },
+      "days": {
+        "mon": "Mo",
+        "tue": "Di",
+        "wed": "Mi",
+        "thu": "Do",
+        "fri": "Fr",
+        "sat": "Sa",
+        "today": "Heute"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Wissensdatenbank zur Rehabilitation",
+    "subtitle": "Fachwissen, das Sie auf Ihrem Genesungsweg begleitet",
+    "search": {
+      "placeholder": "Nach Reha-Wissen suchen..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "Alle",
+        "knee": "Knie",
+        "shoulder": "Schulter",
+        "spine": "Wirbelsäule",
+        "ankle": "Sprunggelenk",
+        "hip": "Hüfte",
+        "wrist": "Handgelenk"
+      }
+    },
+    "stats": {
+      "totalArticles": "Gesamtanzahl Artikel",
+      "expertAuthors": "Fachautoren",
+      "avgReadingTime": "Durchschnittliche Lesezeit",
+      "minutes": "{minutes} Min"
+    },
+    "list": {
+      "heading": "Wissensartikel ({count})",
+      "readingTime": "{minutes} Min",
+      "loadMore": "Weitere Artikel laden"
+    },
+    "empty": {
+      "title": "Keine passenden Artikel gefunden",
+      "description": "Passen Sie die Suche an oder wählen Sie eine andere Kategorie."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Gruppentraining",
+      "joinExercise": "Training beitreten",
+      "participantsButton": "Teilnehmende",
+      "hostControls": "Host-Steuerung"
+    },
+    "page": {
+      "title": "Gruppentraining",
+      "subtitle": "Nimm an einem Krafttrainingskurs teil und trainiere gemeinsam mit anderen",
+      "recommended": {
+        "title": "Für dich empfohlen",
+        "tagline": "Basierend auf deinem Trainingsplan"
+      },
+      "all": {
+        "title": "Alle Trainings"
+      }
+    },
+    "time": {
+      "startingNow": "Beginnt jetzt",
+      "startingAt": "Beginnt {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "Warte auf den Start der Session...",
+      "waitingHint": "Sobald die Gastgeberperson startet, kannst du beitreten.",
+      "participants": "Teilnehmende ({count})",
+      "you": "Du",
+      "online": "Online",
+      "offline": "Offline",
+      "leave": "Verlassen",
+      "join": "Session beitreten"
+    },
+    "sessionRoom": {
+      "videoTitle": "Trainingsanleitung",
+      "videoSubtitle": "Folge den angeleiteten Übungen",
+      "chatTitle": "Chat",
+      "chatPlaceholder": "Nachricht eingeben...",
+      "initialMessage": "Danke, dass ihr alle dabei seid!",
+      "participants": "{count} Teilnehmende",
+      "leave": "Session verlassen"
+    }
+  },
+  "Register": {
+    "title": "Konto erstellen",
+    "subtitle": "Starten Sie Ihre Genesungsreise mit einer personalisierten Erfahrung",
+    "fields": {
+      "name": "Vollständiger Name",
+      "namePlaceholder": "Vollständigen Namen eingeben",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "E-Mail eingeben",
+      "password": "Passwort",
+      "passwordPlaceholder": "Passwort erstellen",
+      "confirmPassword": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Passwort erneut eingeben",
+      "agree": "Ich akzeptiere die Nutzungsbedingungen und Datenschutzrichtlinie"
+    },
+    "actions": {
+      "signUp": "Registrieren",
+      "signingUp": "Konto wird erstellt..."
+    },
+    "signin": {
+      "prompt": "Bereits ein Konto?",
+      "link": "Anmelden"
+    },
+    "success": "Konto erfolgreich erstellt! Weiterleitung..."
+  },
+  "Common": {
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "online": "Online",
+    "offline": "Offline",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "confirmLogout": "Möchten Sie sich wirklich abmelden?",
+    "viewAll": "Alle ansehen",
+    "joinDiscussion": "An Diskussion teilnehmen"
+  },
+  "Time": {
+    "justNow": "Gerade eben",
+    "hoursAgo": "vor {count} Std.",
+    "daysAgo": "vor {count} Tagen"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Sprache wählen",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Physiotherapie",
+      "description": "Therapiesitzungen bieten professionelle Begleitung und halten Ihren Genesungsplan auf Kurs.",
+      "progress": "{percent}% abgeschlossen",
+      "streak": "{days}-Tage-Serie",
+      "missions": "{completed}/{total} Aufgaben heute erledigt"
+    }
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Đăng nhập",
+    "dashboard": "Bảng điều khiển",
+    "community": "Cộng đồng",
+    "friends": "Bạn bè",
+    "discover": "Khám phá",
+    "lobby": "Sảnh",
+    "session": "Phiên",
+    "groupExercise": "Tập luyện nhóm",
+    "knowledge": "Kiến thức",
+    "calendar": "Lịch",
+    "profile": "Hồ sơ"
+  },
+  "Landing": {
+    "title": "Người Bạn Đồng Hành Phục Hồi",
+    "heroTitle": "Hành trình phục hồi",
+    "heroSubtitle": "được AI hỗ trợ",
+    "heroDescription": "Trải nghiệm tương lai của phục hồi chức năng với chăm sóc thông minh, hỗ trợ chủ động và cộng đồng luôn bên bạn.",
+    "getStarted": "Bắt đầu ngay",
+    "watchDemo": "Xem demo",
+    "features": {
+      "aiPowered": "Chăm sóc bằng AI",
+      "aiPoweredDesc": "Thuật toán tiên tiến phân tích tiến trình phục hồi và gợi ý phù hợp với bạn.",
+      "community": "Cộng đồng hỗ trợ",
+      "communityDesc": "Kết nối với những người có trải nghiệm tương tự và chia sẻ trong không gian an toàn.",
+      "tracking": "Theo dõi tiến độ",
+      "trackingDesc": "Giám sát từng cột mốc phục hồi bằng dữ liệu và góc nhìn sâu sắc."
+    }
+  },
+  "Login": {
+    "title": "Chào mừng trở lại",
+    "subtitle": "Đăng nhập vào tài khoản phục hồi của bạn",
+    "fields": {
+      "email": "Email",
+      "emailPlaceholder": "Nhập email của bạn",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu",
+      "rememberMe": "Ghi nhớ tôi",
+      "forgotPassword": "Quên mật khẩu?"
+    },
+    "actions": {
+      "signIn": "Đăng nhập",
+      "signingIn": "Đang đăng nhập..."
+    },
+    "divider": "Hoặc tiếp tục với",
+    "google": {
+      "button": "Tiếp tục bằng Google",
+      "loading": "Đang kết nối..."
+    },
+    "signup": {
+      "prompt": "Chưa có tài khoản?",
+      "link": "Đăng ký miễn phí"
+    },
+    "demo": {
+      "adminTitle": "🔧 Tài khoản quản trị",
+      "adminEmail": "Email:",
+      "adminPassword": "Mật khẩu:",
+      "adminNote": "→ Chuyển đến bảng điều khiển phân tích bệnh nhân AI",
+      "userTitle": "👤 Tài khoản bệnh nhân",
+      "userHint": "Sử dụng email hợp lệ và mật khẩu tối thiểu 6 ký tự",
+      "userExample": "Ví dụ: demo@example.com / password123 → Bảng điều khiển"
+    }
+  },
+  "Errors": {
+    "emailRequired": "Vui lòng nhập email",
+    "invalidEmail": "Email không hợp lệ",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+    "invalidCredentials": "Email hoặc mật khẩu không đúng",
+    "nameRequired": "Vui lòng nhập họ tên",
+    "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
+    "passwordMismatch": "Mật khẩu không khớp",
+    "generic": "Đã xảy ra lỗi, vui lòng thử lại"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Chào đêm khuya",
+        "goodMorning": "Chào buổi sáng",
+        "goodAfternoon": "Chào buổi chiều",
+        "goodEvening": "Chào buổi tối"
+      },
+      "todayMessage": "Hôm nay là {date}, hãy tiếp tục hành trình phục hồi cùng nhau 💪",
+      "recoveryDay": "Ngày phục hồi thứ {day}"
+    },
+    "TodaysPlan": {
+      "title": "Kế hoạch phục hồi hôm nay",
+      "status": "Đã hoàn thành {completed}/{total}",
+      "progress": "Tiến độ",
+      "minutes": "{count} phút",
+      "completedAt": "✓ Hoàn thành lúc {time}",
+      "allComplete": "🎉 Tuyệt vời! Bạn đã hoàn thành mọi nhiệm vụ hôm nay!",
+      "tasks": {
+        "1": {
+          "title": "Giãn cơ buổi sáng",
+          "description": "Thực hiện 15 phút giãn cơ gối"
+        },
+        "2": {
+          "title": "Uống thuốc kháng viêm",
+          "description": "Uống Ibuprofen 200 mg sau bữa ăn"
+        },
+        "3": {
+          "title": "Vật lý trị liệu",
+          "description": "Buổi vật lý trị liệu tại trung tâm lúc 14:00"
+        },
+        "4": {
+          "title": "Đi bộ buổi tối",
+          "description": "Đi bộ nhẹ nhàng 20 phút sau bữa tối"
+        },
+        "5": {
+          "title": "Nhật ký cơn đau",
+          "description": "Ghi lại mức độ đau và cảm xúc hôm nay"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Bạn đồng hành phục hồi",
+      "noFriends": "Chưa có bạn nào trực tuyến",
+      "onlineFriends": "Bạn đang trực tuyến",
+      "peopleCount": "{count} người"
+    },
+    "Lobby": {
+      "title": "Trung tâm cộng đồng"
+    },
+    "WeeklyProgress": {
+      "title": "Tiến độ hàng tuần",
+      "subtitle": "Trạng thái nhiệm vụ",
+      "tooltip": {
+        "completed": "Hoàn thành: {completed}/{total} nhiệm vụ",
+        "rate": "Tỷ lệ hoàn thành: {rate}%"
+      },
+      "bars": {
+        "completed": "Đã hoàn thành",
+        "total": "Tổng nhiệm vụ"
+      },
+      "summaryTitle": "Tổng kết tuần",
+      "summary": {
+        "totalCompleted": "Tổng số đã hoàn thành",
+        "averageRate": "Tỷ lệ trung bình",
+        "perfectDays": "Số ngày hoàn hảo"
+      },
+      "days": {
+        "mon": "Th 2",
+        "tue": "Th 3",
+        "wed": "Th 4",
+        "thu": "Th 5",
+        "fri": "Th 6",
+        "sat": "Th 7",
+        "today": "Hôm nay"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Kho kiến thức phục hồi",
+    "subtitle": "Kiến thức chuyên môn đồng hành cùng hành trình phục hồi của bạn",
+    "search": {
+      "placeholder": "Tìm kiếm kiến thức phục hồi..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "Tất cả",
+        "knee": "Đầu gối",
+        "shoulder": "Vai",
+        "spine": "Cột sống",
+        "ankle": "Mắt cá chân",
+        "hip": "Hông",
+        "wrist": "Cổ tay"
+      }
+    },
+    "stats": {
+      "totalArticles": "Tổng số bài viết",
+      "expertAuthors": "Tác giả chuyên gia",
+      "avgReadingTime": "Thời gian đọc trung bình",
+      "minutes": "{minutes} phút"
+    },
+    "list": {
+      "heading": "Bài viết kiến thức ({count})",
+      "readingTime": "{minutes} phút",
+      "loadMore": "Tải thêm bài viết"
+    },
+    "empty": {
+      "title": "Không tìm thấy bài viết phù hợp",
+      "description": "Hãy điều chỉnh tiêu chí tìm kiếm hoặc chọn danh mục khác."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Bài tập nhóm",
+      "joinExercise": "Tham gia bài tập",
+      "participantsButton": "Người tham gia",
+      "hostControls": "Điều khiển của người chủ trì"
+    },
+    "page": {
+      "title": "Bài tập nhóm",
+      "subtitle": "Tham gia buổi tập sức mạnh và tập luyện cùng mọi người",
+      "recommended": {
+        "title": "Đề xuất cho bạn",
+        "tagline": "Dựa trên kế hoạch tập luyện của bạn"
+      },
+      "all": {
+        "title": "Tất cả bài tập"
+      }
+    },
+    "time": {
+      "startingNow": "Bắt đầu ngay bây giờ",
+      "startingAt": "Bắt đầu {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "Đang chờ phiên bắt đầu...",
+      "waitingHint": "Bạn có thể tham gia khi người chủ trì bắt đầu.",
+      "participants": "Người tham gia ({count})",
+      "you": "Bạn",
+      "online": "Trực tuyến",
+      "offline": "Ngoại tuyến",
+      "leave": "Rời khỏi",
+      "join": "Tham gia phiên"
+    },
+    "sessionRoom": {
+      "videoTitle": "Video hướng dẫn tập luyện",
+      "videoSubtitle": "Làm theo các động tác trong video hướng dẫn",
+      "chatTitle": "Trò chuyện",
+      "chatPlaceholder": "Nhập tin nhắn...",
+      "initialMessage": "Cảm ơn mọi người đã tham gia!",
+      "participants": "{count} người tham gia",
+      "leave": "Rời phiên"
+    }
+  },
+  "Register": {
+    "title": "Tạo tài khoản mới",
+    "subtitle": "Bắt đầu hành trình phục hồi với trải nghiệm được cá nhân hóa",
+    "fields": {
+      "name": "Họ và tên",
+      "namePlaceholder": "Nhập họ và tên",
+      "email": "Email",
+      "emailPlaceholder": "Nhập email",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Tạo mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+      "agree": "Tôi đồng ý với điều khoản sử dụng và chính sách bảo mật"
+    },
+    "actions": {
+      "signUp": "Đăng ký",
+      "signingUp": "Đang tạo tài khoản..."
+    },
+    "signin": {
+      "prompt": "Đã có tài khoản?",
+      "link": "Đăng nhập"
+    },
+    "success": "Tạo tài khoản thành công! Đang chuyển hướng..."
+  },
+  "Common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "online": "Trực tuyến",
+    "offline": "Ngoại tuyến",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "confirmLogout": "Bạn có chắc muốn đăng xuất?",
+    "viewAll": "Xem tất cả",
+    "joinDiscussion": "Tham gia thảo luận"
+  },
+  "Time": {
+    "justNow": "Vừa xong",
+    "hoursAgo": "{count} giờ trước",
+    "daysAgo": "{count} ngày trước"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Chọn ngôn ngữ",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Vật lý trị liệu",
+      "description": "Các buổi trị liệu cùng chuyên gia giúp bạn luôn đi đúng lộ trình phục hồi.",
+      "progress": "Hoàn thành {percent}%",
+      "streak": "Liên tiếp {days} ngày",
+      "missions": "{completed}/{total} nhiệm vụ đã hoàn thành hôm nay"
+    }
+  }
+}

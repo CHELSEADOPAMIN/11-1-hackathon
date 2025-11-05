@@ -1,81 +1,96 @@
-'use client'
+'use client';
 
-import SessionRoom from '@/components/dashboard/SessionRoom'
-import WaitingRoom from '@/components/dashboard/WaitingRoom'
-import { groupExercises } from '@/lib/mockData'
-import { formatDistanceToNow } from 'date-fns'
-import { Clock, Pin, Users } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import SessionRoom from '@/components/dashboard/SessionRoom';
+import WaitingRoom from '@/components/dashboard/WaitingRoom';
+import { groupExercises } from '@/lib/mockData';
+import { Clock, Pin, Users } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 export default function SessionPage() {
-  const router = useRouter()
-  const [inSession, setInSession] = useState(false)
-  const [selectedGroup, setSelectedGroup] = useState<string | null>(null)
-  const [showWaitingRoom, setShowWaitingRoom] = useState(false)
+  const locale = useLocale();
+  const tPage = useTranslations('GroupExercise.page');
+  const tCommon = useTranslations('GroupExercise.common');
+  const tTime = useTranslations('GroupExercise.time');
+  const [inSession, setInSession] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  const [showWaitingRoom, setShowWaitingRoom] = useState(false);
 
-  // Sort groups: pinned first, then by start time
   const sortedGroups = [...groupExercises].sort((a, b) => {
-    if (a.isPinned && !b.isPinned) return -1
-    if (!a.isPinned && b.isPinned) return 1
-    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
-  })
+    if (a.isPinned && !b.isPinned) return -1;
+    if (!a.isPinned && b.isPinned) return 1;
+    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime();
+  });
 
   const handleJoinGroup = (groupId: string) => {
-    setSelectedGroup(groupId)
-    setShowWaitingRoom(true)
-  }
+    setSelectedGroup(groupId);
+    setShowWaitingRoom(true);
+  };
 
   const handleJoinSession = () => {
-    setInSession(true)
-  }
+    setInSession(true);
+  };
 
   const handleLeave = () => {
-    setInSession(false)
-    setShowWaitingRoom(false)
-    setSelectedGroup(null)
-  }
+    setInSession(false);
+    setShowWaitingRoom(false);
+    setSelectedGroup(null);
+  };
 
   const getSelectedGroupData = () => {
-    return groupExercises.find(g => g.id === selectedGroup)
-  }
+    return groupExercises.find((group) => group.id === selectedGroup);
+  };
 
   const formatStartTime = (startTime: string) => {
-    const date = new Date(startTime)
-    const now = new Date()
-    const diffInMinutes = Math.floor((date.getTime() - now.getTime()) / (1000 * 60))
+    const target = new Date(startTime);
+    const diffMs = target.getTime() - Date.now();
+    const diffMinutes = Math.round(diffMs / 60000);
 
-    if (diffInMinutes < 1) return 'Starting now'
-    if (diffInMinutes < 60) return `Starting in ${diffInMinutes} minutes`
-    return `Starting ${formatDistanceToNow(date, { addSuffix: true })}`
-  }
+    if (diffMinutes <= 0) {
+      return tTime('startingNow');
+    }
+
+    const relativeTime = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+
+    if (diffMinutes < 60) {
+      return tTime('startingAt', { time: relativeTime.format(Math.max(diffMinutes, 1), 'minute') });
+    }
+
+    const diffHours = Math.round(diffMinutes / 60);
+    if (diffHours < 24) {
+      return tTime('startingAt', { time: relativeTime.format(Math.max(diffHours, 1), 'hour') });
+    }
+
+    const diffDays = Math.round(diffHours / 24);
+    return tTime('startingAt', { time: relativeTime.format(Math.max(diffDays, 1), 'day') });
+  };
 
   // Show session room if in active session
   if (inSession) {
-    const groupData = getSelectedGroupData()
+    const groupData = getSelectedGroupData();
     return (
       <SessionRoom
-        sessionTitle={groupData?.title || "Group Exercise"}
+        sessionTitle={groupData?.title || tCommon('defaultTitle')}
         onLeave={handleLeave}
         participantCount={groupData?.participantCount || 6}
       />
-    )
+    );
   }
 
   // Show waiting room if a group is selected
   if (showWaitingRoom && selectedGroup) {
-    const groupData = getSelectedGroupData()
+    const groupData = getSelectedGroupData();
     return (
       <div className="p-6">
         <WaitingRoom
-          sessionTitle={groupData?.title || "Group Exercise"}
+          sessionTitle={groupData?.title || tCommon('defaultTitle')}
           startTime={formatStartTime(groupData?.startTime || new Date().toISOString())}
           onJoinSession={handleJoinSession}
           onLeave={handleLeave}
           participantCount={groupData?.participantCount || 6}
         />
       </div>
-    )
+    );
   }
 
   // Show group list (default view)
@@ -83,8 +98,8 @@ export default function SessionPage() {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Group Exercise</h1>
-        <p className="text-gray-600">Join a strength training session and exercise together with others</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">{tPage('title')}</h1>
+        <p className="text-gray-600">{tPage('subtitle')}</p>
       </div>
 
       {/* Pinned Exercises Section */}
@@ -92,8 +107,8 @@ export default function SessionPage() {
         <div>
           <div className="flex items-center mb-4">
             <Pin className="w-5 h-5 text-blue-600 mr-2" />
-            <h2 className="text-xl font-semibold text-gray-900">Recommended for You</h2>
-            <span className="ml-2 text-sm text-gray-500">Based on your training plan</span>
+            <h2 className="text-xl font-semibold text-gray-900">{tPage('recommended.title')}</h2>
+            <span className="ml-2 text-sm text-gray-500">{tPage('recommended.tagline')}</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sortedGroups
@@ -124,7 +139,7 @@ export default function SessionPage() {
                     </div>
                   </div>
                   <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm">
-                    Join Exercise
+                    {tCommon('joinExercise')}
                   </button>
                 </div>
               ))}
@@ -134,7 +149,7 @@ export default function SessionPage() {
 
       {/* All Exercises Section */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">All Exercises</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">{tPage('all.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedGroups.map((group) => (
             <div
@@ -162,13 +177,12 @@ export default function SessionPage() {
                 </div>
               </div>
               <button className="w-full mt-3 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm">
-                Join Exercise
+                {tCommon('joinExercise')}
               </button>
             </div>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
-

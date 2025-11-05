@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "ログイン",
+    "dashboard": "ダッシュボード",
+    "community": "コミュニティ",
+    "friends": "フレンド",
+    "discover": "発見",
+    "lobby": "ロビー",
+    "session": "セッション",
+    "groupExercise": "グループエクササイズ",
+    "knowledge": "ナレッジ",
+    "calendar": "カレンダー",
+    "profile": "プロフィール"
+  },
+  "Landing": {
+    "title": "リカバリーコンパニオン",
+    "heroTitle": "AI が支える",
+    "heroSubtitle": "あなた専用のリハビリ旅",
+    "heroDescription": "インテリジェントなケアとプロアクティブなサポート、そして寄り添うコミュニティで、未来のリハビリを体験しましょう。",
+    "getStarted": "今すぐ始める",
+    "watchDemo": "デモを見る",
+    "features": {
+      "aiPowered": "AI ケア",
+      "aiPoweredDesc": "高度なアルゴリズムが回復状況を解析し、パーソナライズされた提案を行います。",
+      "community": "支え合うコミュニティ",
+      "communityDesc": "同じ経験を持つ仲間とつながり、安全な場で共有できます。",
+      "tracking": "進捗トラッキング",
+      "trackingDesc": "詳細な分析とインサイトで、回復の節目を確実に確認しましょう。"
+    }
+  },
+  "Login": {
+    "title": "お帰りなさい",
+    "subtitle": "リカバリーアカウントにログインしてください",
+    "fields": {
+      "email": "メールアドレス",
+      "emailPlaceholder": "メールアドレスを入力",
+      "password": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "rememberMe": "ログイン状態を保持する",
+      "forgotPassword": "パスワードをお忘れですか？"
+    },
+    "actions": {
+      "signIn": "ログイン",
+      "signingIn": "ログイン中..."
+    },
+    "divider": "または次で続行",
+    "google": {
+      "button": "Google でログイン",
+      "loading": "接続中..."
+    },
+    "signup": {
+      "prompt": "アカウントをお持ちでないですか？",
+      "link": "無料で登録"
+    },
+    "demo": {
+      "adminTitle": "🔧 管理者アカウント",
+      "adminEmail": "メール：",
+      "adminPassword": "パスワード：",
+      "adminNote": "→ AI 患者分析ダッシュボードに移動",
+      "userTitle": "👤 患者アカウント",
+      "userHint": "有効なメールと6文字以上のパスワードをご利用ください",
+      "userExample": "例：demo@example.com / password123 → ダッシュボード"
+    }
+  },
+  "Errors": {
+    "emailRequired": "メールアドレスは必須です",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordMinLength": "パスワードは6文字以上で入力してください",
+    "invalidCredentials": "メールアドレスまたはパスワードが正しくありません",
+    "nameRequired": "名前を入力してください",
+    "confirmPasswordRequired": "確認用パスワードを入力してください",
+    "passwordMismatch": "パスワードが一致しません",
+    "generic": "エラーが発生しました"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "こんばんは",
+        "goodMorning": "おはようございます",
+        "goodAfternoon": "こんにちは",
+        "goodEvening": "こんばんは"
+      },
+      "todayMessage": "今日は {date}。一緒に回復を続けましょう 💪",
+      "recoveryDay": "回復 {day} 日目"
+    },
+    "TodaysPlan": {
+      "title": "本日の回復プラン",
+      "status": "{completed}/{total} 件完了",
+      "progress": "進捗",
+      "minutes": "{count} 分",
+      "completedAt": "✓ {time} に完了",
+      "allComplete": "🎉 素晴らしい！本日のタスクはすべて完了です！",
+      "tasks": {
+        "1": {
+          "title": "朝のストレッチ",
+          "description": "15分間の膝ストレッチを行う"
+        },
+        "2": {
+          "title": "抗炎症薬を服用",
+          "description": "食後にイブプロフェン200mgを服用"
+        },
+        "3": {
+          "title": "理学療法",
+          "description": "14:00にリハビリセンターで理学療法を受ける"
+        },
+        "4": {
+          "title": "夕方のウォーキング",
+          "description": "夕食後に20分の軽い散歩をする"
+        },
+        "5": {
+          "title": "痛みの記録",
+          "description": "本日の痛みの度合いや気持ちを記録する"
+        }
+      }
+    },
+    "Friends": {
+      "title": "リカバリー仲間",
+      "noFriends": "オンラインの仲間はいません",
+      "onlineFriends": "オンラインの仲間",
+      "peopleCount": "{count} 人"
+    },
+    "Lobby": {
+      "title": "コミュニティハブ"
+    },
+    "WeeklyProgress": {
+      "title": "週間回復状況",
+      "subtitle": "タスクの完了状況",
+      "tooltip": {
+        "completed": "完了: {completed}/{total} 件",
+        "rate": "完了率: {rate}%"
+      },
+      "bars": {
+        "completed": "完了済み",
+        "total": "合計タスク"
+      },
+      "summaryTitle": "週間サマリー",
+      "summary": {
+        "totalCompleted": "合計完了数",
+        "averageRate": "平均完了率",
+        "perfectDays": "完璧な日数"
+      },
+      "days": {
+        "mon": "月",
+        "tue": "火",
+        "wed": "水",
+        "thu": "木",
+        "fri": "金",
+        "sat": "土",
+        "today": "今日"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "リカバリー知識ベース",
+    "subtitle": "専門的な知識でリハビリの歩みをサポートします",
+    "search": {
+      "placeholder": "リハビリに関する知識を検索..."
+    },
+    "filters": {
+      "categoryWithCount": "{name}（{count}）",
+      "categories": {
+        "all": "すべて",
+        "knee": "膝",
+        "shoulder": "肩",
+        "spine": "脊椎",
+        "ankle": "足首",
+        "hip": "股関節",
+        "wrist": "手首"
+      }
+    },
+    "stats": {
+      "totalArticles": "記事総数",
+      "expertAuthors": "専門家執筆者",
+      "avgReadingTime": "平均読了時間",
+      "minutes": "{minutes} 分"
+    },
+    "list": {
+      "heading": "知識記事（{count}）",
+      "readingTime": "{minutes} 分",
+      "loadMore": "さらに記事を読み込む"
+    },
+    "empty": {
+      "title": "関連する記事が見つかりませんでした",
+      "description": "検索条件を調整するか、別のカテゴリを選択してください。"
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "グループトレーニング",
+      "joinExercise": "トレーニングに参加",
+      "participantsButton": "参加者",
+      "hostControls": "ホストコントロール"
+    },
+    "page": {
+      "title": "グループトレーニング",
+      "subtitle": "筋力トレーニングセッションに参加して仲間と一緒に体を動かそう",
+      "recommended": {
+        "title": "あなたへのおすすめ",
+        "tagline": "トレーニングプランに基づく提案"
+      },
+      "all": {
+        "title": "すべてのトレーニング"
+      }
+    },
+    "time": {
+      "startingNow": "まもなく開始",
+      "startingAt": "{time}に開始します"
+    },
+    "waitingRoom": {
+      "waitingTitle": "セッション開始を待機中...",
+      "waitingHint": "ホストがセッションを開始すると参加できます。",
+      "participants": "参加者（{count}）",
+      "you": "自分",
+      "online": "オンライン",
+      "offline": "オフライン",
+      "leave": "退出",
+      "join": "セッションに参加"
+    },
+    "sessionRoom": {
+      "videoTitle": "エクササイズ解説動画",
+      "videoSubtitle": "ガイドに沿って一緒に動きましょう",
+      "chatTitle": "チャット",
+      "chatPlaceholder": "メッセージを入力...",
+      "initialMessage": "参加してくれてありがとう！",
+      "participants": "{count} 名の参加者",
+      "leave": "セッションを退出"
+    }
+  },
+  "Register": {
+    "title": "アカウントを作成",
+    "subtitle": "あなた専用のリハビリ体験をここから始めましょう",
+    "fields": {
+      "name": "氏名",
+      "namePlaceholder": "氏名を入力してください",
+      "email": "メールアドレス",
+      "emailPlaceholder": "メールアドレスを入力",
+      "password": "パスワード",
+      "passwordPlaceholder": "パスワードを設定",
+      "confirmPassword": "パスワード確認",
+      "confirmPasswordPlaceholder": "もう一度パスワードを入力",
+      "agree": "利用規約およびプライバシーポリシーに同意します"
+    },
+    "actions": {
+      "signUp": "登録する",
+      "signingUp": "アカウントを作成しています..."
+    },
+    "signin": {
+      "prompt": "すでにアカウントをお持ちですか？",
+      "link": "ログイン"
+    },
+    "success": "アカウントを作成しました。リダイレクトします..."
+  },
+  "Common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "confirm": "確認",
+    "close": "閉じる",
+    "online": "オンライン",
+    "offline": "オフライン",
+    "settings": "設定",
+    "logout": "ログアウト",
+    "confirmLogout": "本当にログアウトしますか？",
+    "viewAll": "すべて表示",
+    "joinDiscussion": "ディスカッションに参加"
+  },
+  "Time": {
+    "justNow": "たった今",
+    "hoursAgo": "{count} 時間前",
+    "daysAgo": "{count} 日前"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "言語を選択",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "理学療法",
+      "description": "専門家によるセッションで、回復計画をしっかりと前進させましょう。",
+      "progress": "{percent}% 完了",
+      "streak": "{days} 日連続",
+      "missions": "本日 {completed}/{total} 件達成"
+    }
+  }
+}

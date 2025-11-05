@@ -163,10 +163,10 @@ export default function DiscoverPage() {
   }, [chatMessages])
 
   return (
-    <div className="space-y-6">
+    <div className="h-full flex flex-col">
       {/* AI Recommendations Section */}
       {showAISection && (
-        <div className="bg-gradient-to-r from-[#8573bd] to-[#E8B98A] rounded-xl p-6 text-white">
+        <div className="bg-gradient-to-r from-[#8573bd] to-[#E8B98A] rounded-xl p-4 text-white mb-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <Brain className="w-6 h-6 mr-2" />
@@ -271,9 +271,9 @@ export default function DiscoverPage() {
       )}
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[calc(100vh-4rem)]">
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 min-h-0 overflow-hidden">
         {/* Left Column: Party List */}
-        <Card className="flex flex-col overflow-hidden h-full">
+        <Card className="flex flex-col overflow-hidden">
           <CardHeader>
             <div>
               <CardTitle>Discover Parties</CardTitle>
@@ -347,7 +347,7 @@ export default function DiscoverPage() {
         </Card>
 
         {/* Right Column: Two Rows - Party Details and Public Chat */}
-        <div className="flex flex-col gap-6 h-[calc(100vh-4rem)]">
+        <div className="flex flex-col gap-4 min-h-0">
           {/* Top Row: Party Details */}
           <Card className="flex flex-col overflow-hidden flex-1 min-h-0">
             {selectedPartyData ? (
@@ -552,4 +552,3 @@ export default function DiscoverPage() {
     </div>
   )
 }
-

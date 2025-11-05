@@ -3,11 +3,15 @@
 import { authenticateUser, LoginCredentials } from '@/lib/mockData'
 import { cn } from '@/lib/utils'
 import { Chrome, Eye, EyeOff, Lock, Mail } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function LoginPage() {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('Login')
+  const errorsT = useTranslations('Errors')
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -35,15 +39,15 @@ export default function LoginPage() {
     const newErrors: { email?: string, password?: string } = {}
 
     if (!formData.email) {
-      newErrors.email = 'Email is required'
+      newErrors.email = errorsT('emailRequired')
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
+      newErrors.email = errorsT('invalidEmail')
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required'
+      newErrors.password = errorsT('passwordRequired')
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters'
+      newErrors.password = errorsT('passwordMinLength')
     }
 
     setErrors(newErrors)
@@ -70,11 +74,15 @@ export default function LoginPage() {
 
       if (result.success && result.redirectTo) {
         // 根据用户角色跳转到不同页面
-        router.push(result.redirectTo)
+        const target = result.redirectTo.startsWith('/') ? result.redirectTo : `/${result.redirectTo}`
+        router.push(`/${locale}${target}`)
       } else {
         // 显示错误信息
+        const errorMessage = result.error === 'Invalid email or password'
+          ? errorsT('invalidCredentials')
+          : errorsT('generic')
         setErrors({
-          email: result.error || 'Login failed',
+          email: errorMessage,
           password: ' ' // 避免重复显示错误
         })
       }
@@ -86,7 +94,7 @@ export default function LoginPage() {
     // Simulate Google OAuth
     setTimeout(() => {
       setIsLoading(false)
-      router.push('/dashboard')
+      router.push(`/${locale}/dashboard`)
     }, 1000)
   }
 
@@ -100,8 +108,8 @@ export default function LoginPage() {
               <div className="w-4 h-4 bg-[#E8B98A] rounded"></div>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your recovery companion account</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
+          <p className="text-gray-600">{t('subtitle')}</p>
         </div>
 
         {/* Login Form */}
@@ -110,7 +118,7 @@ export default function LoginPage() {
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
+                {t('fields.email')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -128,7 +136,7 @@ export default function LoginPage() {
                       ? "border-red-300 focus:ring-red-500"
                       : "border-gray-300"
                   )}
-                  placeholder="Enter your email"
+                  placeholder={t('fields.emailPlaceholder')}
                 />
               </div>
               {errors.email && (
@@ -139,7 +147,7 @@ export default function LoginPage() {
             {/* Password Field */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                {t('fields.password')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -157,7 +165,7 @@ export default function LoginPage() {
                       ? "border-red-300 focus:ring-red-500"
                       : "border-gray-300"
                   )}
-                  placeholder="Enter your password"
+                  placeholder={t('fields.passwordPlaceholder')}
                 />
                 <button
                   type="button"
@@ -186,14 +194,14 @@ export default function LoginPage() {
                   className="h-4 w-4 text-[#8573bd] focus:ring-[#8573bd] border-gray-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                  Remember me
+                  {t('fields.rememberMe')}
                 </label>
               </div>
               <button
                 type="button"
                 className="text-sm text-[#8573bd] hover:text-[#E8B98A] font-medium"
               >
-                Forgot password?
+                {t('fields.forgotPassword')}
               </button>
             </div>
 
@@ -211,10 +219,10 @@ export default function LoginPage() {
               {isLoading ? (
                 <div className="flex items-center">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Signing in...
+                  {t('actions.signingIn')}
                 </div>
               ) : (
-                'Sign In'
+                t('actions.signIn')
               )}
             </button>
           </form>
@@ -226,7 +234,7 @@ export default function LoginPage() {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">{t('divider')}</span>
               </div>
             </div>
           </div>
@@ -245,23 +253,23 @@ export default function LoginPage() {
               )}
             >
               <Chrome className="w-5 h-5 mr-3 text-gray-500" />
-              {isLoading ? 'Connecting...' : 'Continue with Google'}
+              {isLoading ? t('google.loading') : t('google.button')}
             </button>
           </div>
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
+              {t('signup.prompt')}{' '}
               <button
                 type="button"
                 className="font-medium text-[#8573bd] hover:text-[#E8B98A]"
                 onClick={() => {
                   // For demo, just redirect to dashboard
-                  router.push('/dashboard')
+                  router.push(`/${locale}/register`)
                 }}
               >
-                Sign up for free
+                {t('signup.link')}
               </button>
             </p>
           </div>
@@ -271,26 +279,26 @@ export default function LoginPage() {
         <div className="mt-6 space-y-3">
           {/* Admin Account */}
           <div className="p-4 bg-[#EAE6F5] rounded-lg border border-[#8573bd]">
-            <h3 className="text-sm font-medium text-gray-900 mb-2">🔧 Admin Account</h3>
+            <h3 className="text-sm font-medium text-gray-900 mb-2">{t('demo.adminTitle')}</h3>
             <p className="text-xs text-gray-700 mb-1">
-              <strong>Email:</strong> admin@healing-together.com
+              <strong>{t('demo.adminEmail')}</strong> admin@healing-together.com
             </p>
             <p className="text-xs text-gray-700">
-              <strong>Password:</strong> admin123
+              <strong>{t('demo.adminPassword')}</strong> admin123
             </p>
             <p className="text-xs text-[#8573bd] mt-1 italic">
-              → Redirects to AI Patient Analysis Dashboard
+              {t('demo.adminNote')}
             </p>
           </div>
 
           {/* Regular User */}
           <div className="p-4 bg-orange-50 rounded-lg border border-[#E8B98A]">
-            <h3 className="text-sm font-medium text-gray-900 mb-2">👤 Patient Account</h3>
+            <h3 className="text-sm font-medium text-gray-900 mb-2">{t('demo.userTitle')}</h3>
             <p className="text-xs text-gray-700">
-              Use any valid email format and password (6+ characters)
+              {t('demo.userHint')}
             </p>
             <p className="text-xs text-[#E8B98A] mt-1">
-              Example: demo@example.com / password123 → Dashboard
+              {t('demo.userExample')}
             </p>
           </div>
         </div>

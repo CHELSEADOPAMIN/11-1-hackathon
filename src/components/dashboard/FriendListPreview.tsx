@@ -1,20 +1,24 @@
 import { friends } from '@/lib/mockData'
 import { ArrowRight, MessageCircle, User } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 export default function FriendListPreview() {
   // 只显示前4个在线的朋友
+  const t = useTranslations('Dashboard.Friends')
+  const common = useTranslations('Common')
+  const locale = useLocale()
   const onlineFriends = friends.filter(friend => friend.isOnline).slice(0, 4)
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">Recovery Friends</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('title')}</h2>
         <Link
-          href="/dashboard/friends"
+          href={`/${locale}/dashboard/friends`}
           className="flex items-center text-sm text-[#8573bd] hover:text-[#E8B98A] transition-colors"
         >
-          View All
+          {common('viewAll')}
           <ArrowRight className="w-4 h-4 ml-1" />
         </Link>
       </div>
@@ -49,16 +53,16 @@ export default function FriendListPreview() {
       {onlineFriends.length === 0 && (
         <div className="text-center py-8 text-gray-500">
           <User className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-          <p>No friends online</p>
+          <p>{t('noFriends')}</p>
         </div>
       )}
 
       <div className="mt-6 pt-4 border-t border-gray-200">
         <div className="flex items-center justify-between text-sm text-gray-600">
-          <span>Online Friends</span>
+          <span>{t('onlineFriends')}</span>
           <span className="flex items-center">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            {friends.filter(f => f.isOnline).length} people
+            {t('peopleCount', { count: friends.filter(f => f.isOnline).length })}
           </span>
         </div>
       </div>

@@ -1077,6 +1077,7 @@ export const groupExercises: GroupExercise[] = [
 // Navigation menu items
 export interface NavigationItem {
   name: string
+  translationKey: string
   href?: string
   icon: string
   children?: NavigationItem[]
@@ -1085,25 +1086,30 @@ export interface NavigationItem {
 export const navigationItems: NavigationItem[] = [
   {
     name: 'Dashboard',
+    translationKey: 'dashboard',
     href: '/dashboard',
     icon: 'Home'
   },
   {
     name: 'Community',
+    translationKey: 'community',
     icon: 'MessageSquare',
     children: [
       {
         name: 'Friends',
+        translationKey: 'friends',
         href: '/dashboard/friends',
         icon: 'Users'
       },
       {
         name: 'Discover',
+        translationKey: 'discover',
         href: '/dashboard/discover',
         icon: 'Compass'
       },
       {
         name: 'Lobby',
+        translationKey: 'lobby',
         href: '/dashboard/lobby',
         icon: 'MessageSquare'
       }
@@ -1111,16 +1117,19 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     name: 'Group Exercise',
+    translationKey: 'groupExercise',
     href: '/dashboard/session',
     icon: 'Video'
   },
   {
     name: 'Knowledge',
+    translationKey: 'knowledge',
     href: '/dashboard/knowledge',
     icon: 'BookOpen'
   },
   {
     name: 'Calendar',
+    translationKey: 'calendar',
     href: '/dashboard/calendar',
     icon: 'Calendar'
   }

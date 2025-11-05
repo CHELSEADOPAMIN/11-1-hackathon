@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Iniciar sesión",
+    "dashboard": "Tablero",
+    "community": "Comunidad",
+    "friends": "Amigos",
+    "discover": "Descubrir",
+    "lobby": "Lobby",
+    "session": "Sesión",
+    "groupExercise": "Ejercicio en grupo",
+    "knowledge": "Conocimiento",
+    "calendar": "Calendario",
+    "profile": "Perfil"
+  },
+  "Landing": {
+    "title": "Compañero de Recuperación",
+    "heroTitle": "Tu viaje de recuperación",
+    "heroSubtitle": "Impulsado por IA",
+    "heroDescription": "Vive el futuro de la rehabilitación con atención inteligente, apoyo proactivo y una comunidad que nunca te deja solo.",
+    "getStarted": "Comenzar",
+    "watchDemo": "Ver demo",
+    "features": {
+      "aiPowered": "Atención con IA",
+      "aiPoweredDesc": "Algoritmos avanzados analizan tu progreso y ofrecen recomendaciones personalizadas.",
+      "community": "Comunidad solidaria",
+      "communityDesc": "Conéctate con personas que viven experiencias similares y comparte en un espacio seguro.",
+      "tracking": "Seguimiento del progreso",
+      "trackingDesc": "Controla cada hito de recuperación con datos e ideas claras."
+    }
+  },
+  "Login": {
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Ingresa a tu cuenta de recuperación",
+    "fields": {
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Ingresa tu correo",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    },
+    "actions": {
+      "signIn": "Iniciar sesión",
+      "signingIn": "Iniciando sesión..."
+    },
+    "divider": "O continúa con",
+    "google": {
+      "button": "Continuar con Google",
+      "loading": "Conectando..."
+    },
+    "signup": {
+      "prompt": "¿No tienes cuenta?",
+      "link": "Regístrate gratis"
+    },
+    "demo": {
+      "adminTitle": "🔧 Cuenta de administrador",
+      "adminEmail": "Correo:",
+      "adminPassword": "Contraseña:",
+      "adminNote": "→ Redirige al panel de análisis de pacientes con IA",
+      "userTitle": "👤 Cuenta de paciente",
+      "userHint": "Usa un correo válido y una contraseña de al menos 6 caracteres",
+      "userExample": "Ejemplo: demo@example.com / password123 → Tablero"
+    }
+  },
+  "Errors": {
+    "emailRequired": "El correo es obligatorio",
+    "invalidEmail": "Introduce un correo válido",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "invalidCredentials": "Correo o contraseña incorrectos",
+    "nameRequired": "El nombre es obligatorio",
+    "confirmPasswordRequired": "Confirma tu contraseña",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "generic": "Ocurrió un error, inténtalo de nuevo"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Buenas noches",
+        "goodMorning": "Buenos días",
+        "goodAfternoon": "Buenas tardes",
+        "goodEvening": "Buenas noches"
+      },
+      "todayMessage": "Hoy es {date}, sigamos avanzando juntos 💪",
+      "recoveryDay": "Día de recuperación {day}"
+    },
+    "TodaysPlan": {
+      "title": "Plan de recuperación de hoy",
+      "status": "{completed}/{total} completado",
+      "progress": "Progreso",
+      "minutes": "{count} minutos",
+      "completedAt": "✓ Completado a las {time}",
+      "allComplete": "🎉 ¡Excelente! ¡Has completado todas las tareas de hoy!",
+      "tasks": {
+        "1": {
+          "title": "Estiramientos matutinos",
+          "description": "Realiza estiramientos de rodilla durante 15 minutos"
+        },
+        "2": {
+          "title": "Tomar antiinflamatorio",
+          "description": "Toma 200 mg de ibuprofeno después de las comidas"
+        },
+        "3": {
+          "title": "Fisioterapia",
+          "description": "Sesión de fisioterapia en el centro a las 14:00"
+        },
+        "4": {
+          "title": "Caminata vespertina",
+          "description": "Caminata suave de 20 minutos después de la cena"
+        },
+        "5": {
+          "title": "Registro del dolor",
+          "description": "Registra el nivel de dolor y cómo te sientes hoy"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Amigos de recuperación",
+      "noFriends": "No hay amigos en línea",
+      "onlineFriends": "Amigos en línea",
+      "peopleCount": "{count} personas"
+    },
+    "Lobby": {
+      "title": "Centro comunitario"
+    },
+    "WeeklyProgress": {
+      "title": "Progreso semanal",
+      "subtitle": "Estado de las tareas",
+      "tooltip": {
+        "completed": "Completado: {completed}/{total} tareas",
+        "rate": "Tasa de finalización: {rate}%"
+      },
+      "bars": {
+        "completed": "Completado",
+        "total": "Total de tareas"
+      },
+      "summaryTitle": "Resumen semanal",
+      "summary": {
+        "totalCompleted": "Total completado",
+        "averageRate": "Promedio",
+        "perfectDays": "Días perfectos"
+      },
+      "days": {
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mié",
+        "thu": "Jue",
+        "fri": "Vie",
+        "sat": "Sáb",
+        "today": "Hoy"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Base de Conocimiento de Recuperación",
+    "subtitle": "Conocimiento profesional para acompañar tu proceso de rehabilitación",
+    "search": {
+      "placeholder": "Buscar conocimiento de recuperación..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "Todas",
+        "knee": "Rodilla",
+        "shoulder": "Hombro",
+        "spine": "Columna",
+        "ankle": "Tobillo",
+        "hip": "Cadera",
+        "wrist": "Muñeca"
+      }
+    },
+    "stats": {
+      "totalArticles": "Total de artículos",
+      "expertAuthors": "Autores expertos",
+      "avgReadingTime": "Tiempo de lectura promedio",
+      "minutes": "{minutes} min"
+    },
+    "list": {
+      "heading": "Artículos de conocimiento ({count})",
+      "readingTime": "{minutes} min",
+      "loadMore": "Cargar más artículos"
+    },
+    "empty": {
+      "title": "No se encontraron artículos relacionados",
+      "description": "Ajusta la búsqueda o elige otra categoría."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Ejercicio en grupo",
+      "joinExercise": "Unirse al ejercicio",
+      "participantsButton": "Participantes",
+      "hostControls": "Controles del anfitrión"
+    },
+    "page": {
+      "title": "Ejercicio en grupo",
+      "subtitle": "Únete a una sesión de entrenamiento de fuerza y ejercítate con otros",
+      "recommended": {
+        "title": "Recomendado para ti",
+        "tagline": "Según tu plan de entrenamiento"
+      },
+      "all": {
+        "title": "Todos los ejercicios"
+      }
+    },
+    "time": {
+      "startingNow": "Comienza ahora",
+      "startingAt": "Comienza {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "Esperando a que inicie la sesión...",
+      "waitingHint": "Podrás entrar cuando el anfitrión inicie la sesión.",
+      "participants": "Participantes ({count})",
+      "you": "Tú",
+      "online": "En línea",
+      "offline": "Desconectado",
+      "leave": "Salir",
+      "join": "Unirse a la sesión"
+    },
+    "sessionRoom": {
+      "videoTitle": "Video de instrucciones",
+      "videoSubtitle": "Sigue la guía para completar el ejercicio",
+      "chatTitle": "Chat",
+      "chatPlaceholder": "Escribe un mensaje...",
+      "initialMessage": "¡Gracias a todos por unirse!",
+      "participants": "{count} participantes",
+      "leave": "Salir de la sesión"
+    }
+  },
+  "Register": {
+    "title": "Crea tu cuenta",
+    "subtitle": "Inicia tu camino de recuperación con una experiencia personalizada",
+    "fields": {
+      "name": "Nombre completo",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Ingresa tu correo",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Crea una contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "confirmPasswordPlaceholder": "Repite la contraseña",
+      "agree": "Acepto los términos y la política de privacidad"
+    },
+    "actions": {
+      "signUp": "Registrarme",
+      "signingUp": "Creando cuenta..."
+    },
+    "signin": {
+      "prompt": "¿Ya tienes una cuenta?",
+      "link": "Inicia sesión"
+    },
+    "success": "¡Cuenta creada con éxito! Redirigiendo..."
+  },
+  "Common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "online": "En línea",
+    "offline": "Desconectado",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión",
+    "confirmLogout": "¿Seguro que quieres cerrar sesión?",
+    "viewAll": "Ver todo",
+    "joinDiscussion": "Unirse a la discusión"
+  },
+  "Time": {
+    "justNow": "Justo ahora",
+    "hoursAgo": "hace {count} h",
+    "daysAgo": "hace {count} días"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Selecciona un idioma",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Fisioterapia",
+      "description": "Las sesiones guiadas por profesionales mantienen tu recuperación en el camino correcto.",
+      "progress": "{percent}% completado",
+      "streak": "{days} días seguidos",
+      "missions": "{completed}/{total} tareas completadas hoy"
+    }
+  }
+}

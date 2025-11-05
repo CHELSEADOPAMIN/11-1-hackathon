@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Se connecter",
+    "dashboard": "Tableau de bord",
+    "community": "Communauté",
+    "friends": "Amis",
+    "discover": "Découvrir",
+    "lobby": "Lobby",
+    "session": "Session",
+    "groupExercise": "Entraînement de groupe",
+    "knowledge": "Base de connaissances",
+    "calendar": "Calendrier",
+    "profile": "Profil"
+  },
+  "Landing": {
+    "title": "Compagnon de Récupération",
+    "heroTitle": "Votre parcours de guérison",
+    "heroSubtitle": "propulsé par l’IA",
+    "heroDescription": "Découvrez l’avenir de la rééducation avec des soins intelligents, un soutien proactif et une communauté qui vous accompagne chaque jour.",
+    "getStarted": "Commencer",
+    "watchDemo": "Voir la démo",
+    "features": {
+      "aiPowered": "Soins assistés par IA",
+      "aiPoweredDesc": "Des algorithmes avancés analysent votre progression et proposent des recommandations personnalisées.",
+      "community": "Communauté solidaire",
+      "communityDesc": "Échangez avec des personnes qui vivent la même expérience dans un espace sécurisé.",
+      "tracking": "Suivi des progrès",
+      "trackingDesc": "Suivez chaque étape de votre rétablissement avec des analyses précises."
+    }
+  },
+  "Login": {
+    "title": "Bon retour",
+    "subtitle": "Connectez-vous à votre compte de récupération",
+    "fields": {
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "actions": {
+      "signIn": "Se connecter",
+      "signingIn": "Connexion en cours..."
+    },
+    "divider": "Ou continuer avec",
+    "google": {
+      "button": "Continuer avec Google",
+      "loading": "Connexion..."
+    },
+    "signup": {
+      "prompt": "Pas encore de compte ?",
+      "link": "Inscription gratuite"
+    },
+    "demo": {
+      "adminTitle": "🔧 Compte administrateur",
+      "adminEmail": "E-mail :",
+      "adminPassword": "Mot de passe :",
+      "adminNote": "→ Redirection vers le tableau d’analyse des patients IA",
+      "userTitle": "👤 Compte patient",
+      "userHint": "Utilisez un e-mail valide et un mot de passe d’au moins 6 caractères",
+      "userExample": "Ex. : demo@example.com / password123 → Tableau de bord"
+    }
+  },
+  "Errors": {
+    "emailRequired": "L’e-mail est obligatoire",
+    "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+    "passwordRequired": "Le mot de passe est obligatoire",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "invalidCredentials": "E-mail ou mot de passe incorrect",
+    "nameRequired": "Le nom est obligatoire",
+    "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "generic": "Une erreur est survenue"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Bonsoir",
+        "goodMorning": "Bonjour",
+        "goodAfternoon": "Bon après-midi",
+        "goodEvening": "Bonsoir"
+      },
+      "todayMessage": "Nous sommes le {date}, poursuivons ensemble votre rétablissement 💪",
+      "recoveryDay": "Jour de récupération {day}"
+    },
+    "TodaysPlan": {
+      "title": "Plan de récupération du jour",
+      "status": "{completed}/{total} terminées",
+      "progress": "Progression",
+      "minutes": "{count} minutes",
+      "completedAt": "✓ Terminé à {time}",
+      "allComplete": "🎉 Excellent ! Toutes les tâches du jour sont accomplies !",
+      "tasks": {
+        "1": {
+          "title": "Étirements matinaux",
+          "description": "Effectuer 15 minutes d’étirements du genou"
+        },
+        "2": {
+          "title": "Prendre un anti-inflammatoire",
+          "description": "Prendre 200 mg d’ibuprofène après les repas"
+        },
+        "3": {
+          "title": "Séance de kinésithérapie",
+          "description": "Séance au centre de rééducation à 14 h"
+        },
+        "4": {
+          "title": "Marche du soir",
+          "description": "Marche douce de 20 minutes après le dîner"
+        },
+        "5": {
+          "title": "Journal de la douleur",
+          "description": "Noter votre douleur et vos ressentis du jour"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Amis de récupération",
+      "noFriends": "Aucun ami en ligne",
+      "onlineFriends": "Amis en ligne",
+      "peopleCount": "{count} personnes"
+    },
+    "Lobby": {
+      "title": "Centre communautaire"
+    },
+    "WeeklyProgress": {
+      "title": "Progrès hebdomadaire",
+      "subtitle": "Suivi des tâches",
+      "tooltip": {
+        "completed": "Terminées : {completed}/{total} tâches",
+        "rate": "Taux d’achèvement : {rate}%"
+      },
+      "bars": {
+        "completed": "Terminées",
+        "total": "Tâches totales"
+      },
+      "summaryTitle": "Résumé de la semaine",
+      "summary": {
+        "totalCompleted": "Total réalisées",
+        "averageRate": "Taux moyen",
+        "perfectDays": "Jours parfaits"
+      },
+      "days": {
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mer",
+        "thu": "Jeu",
+        "fri": "Ven",
+        "sat": "Sam",
+        "today": "Aujourd’hui"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Base de connaissances sur la récupération",
+    "subtitle": "Des ressources professionnelles pour soutenir votre rééducation",
+    "search": {
+      "placeholder": "Rechercher des connaissances sur la récupération..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "Toutes",
+        "knee": "Genou",
+        "shoulder": "Épaule",
+        "spine": "Colonne vertébrale",
+        "ankle": "Cheville",
+        "hip": "Hanche",
+        "wrist": "Poignet"
+      }
+    },
+    "stats": {
+      "totalArticles": "Nombre total d’articles",
+      "expertAuthors": "Auteurs experts",
+      "avgReadingTime": "Temps de lecture moyen",
+      "minutes": "{minutes} min"
+    },
+    "list": {
+      "heading": "Articles de connaissances ({count})",
+      "readingTime": "{minutes} min",
+      "loadMore": "Charger plus d’articles"
+    },
+    "empty": {
+      "title": "Aucun article correspondant",
+      "description": "Modifiez votre recherche ou choisissez une autre catégorie."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Entraînement collectif",
+      "joinExercise": "Rejoindre l'entraînement",
+      "participantsButton": "Participants",
+      "hostControls": "Commandes de l'hôte"
+    },
+    "page": {
+      "title": "Entraînement collectif",
+      "subtitle": "Participez à une séance de renforcement musculaire et entraînez-vous avec d'autres",
+      "recommended": {
+        "title": "Recommandé pour vous",
+        "tagline": "Selon votre programme d'entraînement"
+      },
+      "all": {
+        "title": "Tous les entraînements"
+      }
+    },
+    "time": {
+      "startingNow": "Commence maintenant",
+      "startingAt": "Commence {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "En attente du début de la session...",
+      "waitingHint": "Vous pourrez rejoindre lorsque l'hôte aura lancé la session.",
+      "participants": "Participants ({count})",
+      "you": "Vous",
+      "online": "En ligne",
+      "offline": "Hors ligne",
+      "leave": "Quitter",
+      "join": "Rejoindre la session"
+    },
+    "sessionRoom": {
+      "videoTitle": "Vidéo d'instruction",
+      "videoSubtitle": "Suivez les exercices guidés",
+      "chatTitle": "Discussion",
+      "chatPlaceholder": "Saisissez un message...",
+      "initialMessage": "Merci à tous de votre présence !",
+      "participants": "{count} participants",
+      "leave": "Quitter la session"
+    }
+  },
+  "Register": {
+    "title": "Créer votre compte",
+    "subtitle": "Commencez votre parcours de rééducation avec une expérience personnalisée",
+    "fields": {
+      "name": "Nom complet",
+      "namePlaceholder": "Entrez votre nom complet",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe",
+      "confirmPassword": "Confirmez le mot de passe",
+      "confirmPasswordPlaceholder": "Saisissez à nouveau le mot de passe",
+      "agree": "J'accepte les conditions d'utilisation et la politique de confidentialité"
+    },
+    "actions": {
+      "signUp": "S'inscrire",
+      "signingUp": "Création du compte..."
+    },
+    "signin": {
+      "prompt": "Vous avez déjà un compte ?",
+      "link": "Se connecter"
+    },
+    "success": "Compte créé avec succès ! Redirection en cours..."
+  },
+  "Common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "close": "Fermer",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "settings": "Paramètres",
+    "logout": "Se déconnecter",
+    "confirmLogout": "Voulez-vous vraiment vous déconnecter ?",
+    "viewAll": "Tout voir",
+    "joinDiscussion": "Rejoindre la discussion"
+  },
+  "Time": {
+    "justNow": "À l’instant",
+    "hoursAgo": "il y a {count} h",
+    "daysAgo": "il y a {count} jours"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Choisir la langue",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Kinésithérapie",
+      "description": "Des séances guidées par des professionnels qui maintiennent votre rétablissement sur la bonne voie.",
+      "progress": "{percent}% accompli",
+      "streak": "{days} jours d’affilée",
+      "missions": "{completed}/{total} tâches réalisées aujourd’hui"
+    }
+  }
+}

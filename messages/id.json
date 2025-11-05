@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Masuk",
+    "dashboard": "Dasbor",
+    "community": "Komunitas",
+    "friends": "Teman",
+    "discover": "Temukan",
+    "lobby": "Lobi",
+    "session": "Sesi",
+    "groupExercise": "Latihan Grup",
+    "knowledge": "Pengetahuan",
+    "calendar": "Kalender",
+    "profile": "Profil"
+  },
+  "Landing": {
+    "title": "Pendamping Pemulihan",
+    "heroTitle": "Perjalanan Pemulihan",
+    "heroSubtitle": "Dengan Kekuatan AI",
+    "heroDescription": "Rasakan masa depan rehabilitasi dengan perawatan cerdas, dukungan proaktif, dan komunitas hangat yang selalu ada untuk Anda.",
+    "getStarted": "Mulai Sekarang",
+    "watchDemo": "Tonton Demo",
+    "features": {
+      "aiPowered": "Perawatan Berbasis AI",
+      "aiPoweredDesc": "Algoritma canggih menganalisis pola pemulihan Anda dan memberi rekomendasi personal.",
+      "community": "Komunitas Pendukung",
+      "communityDesc": "Terhubung dengan teman seperjuangan dan berbagi pengalaman pemulihan secara aman.",
+      "tracking": "Pelacakan Kemajuan",
+      "trackingDesc": "Pantau setiap tonggak pemulihan dengan data dan wawasan mendalam."
+    }
+  },
+  "Login": {
+    "title": "Selamat Datang Kembali",
+    "subtitle": "Masuk ke akun pendamping pemulihan Anda",
+    "fields": {
+      "email": "Alamat Email",
+      "emailPlaceholder": "Masukkan email Anda",
+      "password": "Kata Sandi",
+      "passwordPlaceholder": "Masukkan kata sandi Anda",
+      "rememberMe": "Ingat saya",
+      "forgotPassword": "Lupa kata sandi?"
+    },
+    "actions": {
+      "signIn": "Masuk",
+      "signingIn": "Sedang masuk..."
+    },
+    "divider": "Atau lanjutkan dengan",
+    "google": {
+      "button": "Lanjutkan dengan Google",
+      "loading": "Menghubungkan..."
+    },
+    "signup": {
+      "prompt": "Belum punya akun?",
+      "link": "Daftar gratis"
+    },
+    "demo": {
+      "adminTitle": "🔧 Akun Admin",
+      "adminEmail": "Email:",
+      "adminPassword": "Kata sandi:",
+      "adminNote": "→ Dialihkan ke Dasbor Analisis Pasien AI",
+      "userTitle": "👤 Akun Pasien",
+      "userHint": "Gunakan format email yang valid dan kata sandi minimal 6 karakter",
+      "userExample": "Contoh: demo@example.com / password123 → Dasbor"
+    }
+  },
+  "Errors": {
+    "emailRequired": "Email wajib diisi",
+    "invalidEmail": "Masukkan alamat email yang valid",
+    "passwordRequired": "Kata sandi wajib diisi",
+    "passwordMinLength": "Kata sandi minimal 6 karakter",
+    "invalidCredentials": "Email atau kata sandi salah",
+    "nameRequired": "Nama wajib diisi",
+    "confirmPasswordRequired": "Harap konfirmasi kata sandi",
+    "passwordMismatch": "Kata sandi tidak cocok",
+    "generic": "Terjadi kesalahan, silakan coba lagi"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Larut malam",
+        "goodMorning": "Selamat pagi",
+        "goodAfternoon": "Selamat sore",
+        "goodEvening": "Selamat malam"
+      },
+      "todayMessage": "Hari ini {date}, mari lanjutkan perjalanan pemulihan bersama 💪",
+      "recoveryDay": "Hari pemulihan ke-{day}"
+    },
+    "TodaysPlan": {
+      "title": "Rencana Pemulihan Hari Ini",
+      "status": "{completed}/{total} selesai",
+      "progress": "Kemajuan",
+      "minutes": "{count} menit",
+      "completedAt": "✓ Selesai pada {time}",
+      "allComplete": "🎉 Hebat! Semua tugas hari ini sudah selesai!",
+      "tasks": {
+        "1": {
+          "title": "Peregangan Pagi",
+          "description": "Lakukan peregangan lutut selama 15 menit"
+        },
+        "2": {
+          "title": "Minum Obat Anti-inflamasi",
+          "description": "Minum Ibuprofen 200 mg setelah makan"
+        },
+        "3": {
+          "title": "Fisioterapi",
+          "description": "Sesi fisioterapi di pusat rehabilitasi pukul 14.00"
+        },
+        "4": {
+          "title": "Jalan Sore",
+          "description": "Berjalan santai 20 menit setelah makan malam"
+        },
+        "5": {
+          "title": "Catatan Nyeri",
+          "description": "Catat tingkat nyeri dan perasaan Anda hari ini"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Teman Pemulihan",
+      "noFriends": "Tidak ada teman yang online",
+      "onlineFriends": "Teman yang online",
+      "peopleCount": "{count} orang"
+    },
+    "Lobby": {
+      "title": "Pusat Komunitas"
+    },
+    "WeeklyProgress": {
+      "title": "Progres Pemulihan Mingguan",
+      "subtitle": "Status penyelesaian tugas",
+      "tooltip": {
+        "completed": "Selesai: {completed}/{total} tugas",
+        "rate": "Tingkat penyelesaian: {rate}%"
+      },
+      "bars": {
+        "completed": "Selesai",
+        "total": "Total Tugas"
+      },
+      "summaryTitle": "Ringkasan Mingguan",
+      "summary": {
+        "totalCompleted": "Total selesai",
+        "averageRate": "Rata-rata",
+        "perfectDays": "Hari sempurna"
+      },
+      "days": {
+        "mon": "Sen",
+        "tue": "Sel",
+        "wed": "Rab",
+        "thu": "Kam",
+        "fri": "Jum",
+        "sat": "Sab",
+        "today": "Hari ini"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Pusat Pengetahuan Pemulihan",
+    "subtitle": "Pengetahuan profesional untuk mendukung perjalanan rehabilitasi Anda",
+    "search": {
+      "placeholder": "Cari pengetahuan pemulihan..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "Semua",
+        "knee": "Lutut",
+        "shoulder": "Pundak",
+        "spine": "Tulang belakang",
+        "ankle": "Pergelangan kaki",
+        "hip": "Panggul",
+        "wrist": "Pergelangan tangan"
+      }
+    },
+    "stats": {
+      "totalArticles": "Jumlah artikel",
+      "expertAuthors": "Penulis ahli",
+      "avgReadingTime": "Waktu baca rata-rata",
+      "minutes": "{minutes} menit"
+    },
+    "list": {
+      "heading": "Artikel Pengetahuan ({count})",
+      "readingTime": "{minutes} menit",
+      "loadMore": "Muat lebih banyak artikel"
+    },
+    "empty": {
+      "title": "Tidak ditemukan artikel terkait",
+      "description": "Silakan ubah kriteria pencarian atau pilih kategori lain."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Latihan Kelompok",
+      "joinExercise": "Gabung Latihan",
+      "participantsButton": "Peserta",
+      "hostControls": "Kontrol Host"
+    },
+    "page": {
+      "title": "Latihan Kelompok",
+      "subtitle": "Bergabunglah dengan sesi latihan kekuatan dan berolahraga bersama orang lain",
+      "recommended": {
+        "title": "Rekomendasi untuk Anda",
+        "tagline": "Berdasarkan rencana latihan Anda"
+      },
+      "all": {
+        "title": "Semua Latihan"
+      }
+    },
+    "time": {
+      "startingNow": "Dimulai sekarang",
+      "startingAt": "Dimulai {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "Menunggu sesi dimulai...",
+      "waitingHint": "Anda dapat bergabung setelah host memulai sesi.",
+      "participants": "Peserta ({count})",
+      "you": "Anda",
+      "online": "Online",
+      "offline": "Offline",
+      "leave": "Keluar",
+      "join": "Gabung Sesi"
+    },
+    "sessionRoom": {
+      "videoTitle": "Video Instruksi Latihan",
+      "videoSubtitle": "Ikuti gerakan latihan bersama panduan",
+      "chatTitle": "Obrolan",
+      "chatPlaceholder": "Tulis pesan...",
+      "initialMessage": "Terima kasih semuanya sudah bergabung!",
+      "participants": "{count} peserta",
+      "leave": "Tinggalkan Sesi"
+    }
+  },
+  "Register": {
+    "title": "Buat akun Anda",
+    "subtitle": "Mulai perjalanan pemulihan dengan pengalaman yang dipersonalisasi",
+    "fields": {
+      "name": "Nama Lengkap",
+      "namePlaceholder": "Masukkan nama lengkap",
+      "email": "Alamat Email",
+      "emailPlaceholder": "Masukkan email",
+      "password": "Kata Sandi",
+      "passwordPlaceholder": "Buat kata sandi",
+      "confirmPassword": "Konfirmasi Kata Sandi",
+      "confirmPasswordPlaceholder": "Masukkan ulang kata sandi",
+      "agree": "Saya menyetujui syarat dan kebijakan privasi"
+    },
+    "actions": {
+      "signUp": "Daftar",
+      "signingUp": "Sedang membuat akun..."
+    },
+    "signin": {
+      "prompt": "Sudah punya akun?",
+      "link": "Masuk"
+    },
+    "success": "Akun berhasil dibuat! Sedang mengalihkan..."
+  },
+  "Common": {
+    "loading": "Memuat...",
+    "error": "Kesalahan",
+    "success": "Berhasil",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "confirm": "Konfirmasi",
+    "close": "Tutup",
+    "online": "Online",
+    "offline": "Offline",
+    "settings": "Pengaturan",
+    "logout": "Keluar",
+    "confirmLogout": "Yakin ingin keluar?",
+    "viewAll": "Lihat semua",
+    "joinDiscussion": "Ikut diskusi"
+  },
+  "Time": {
+    "justNow": "Baru saja",
+    "hoursAgo": "{count} jam lalu",
+    "daysAgo": "{count} hari lalu"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Pilih bahasa",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Fisioterapi",
+      "description": "Sesi terapi memberikan bimbingan profesional dan menjaga pemulihan Anda tetap terarah.",
+      "progress": "Selesai {percent}%",
+      "streak": "Beruntun {days} hari",
+      "missions": "{completed}/{total} misi selesai hari ini"
+    }
+  }
+}

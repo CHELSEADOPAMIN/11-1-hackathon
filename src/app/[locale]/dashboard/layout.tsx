@@ -17,8 +17,8 @@ export default function DashboardLayout({
 
           {/* 右侧主内容区域 */}
           <main className="flex-1 overflow-auto relative z-0">
-            <div className="flex flex-col">
-              <div className="px-8 pt-8 pb-8">
+            <div className="flex flex-col h-full">
+              <div className="flex-1 px-8 pt-8 pb-8">
                 {children}
               </div>
               {/* Footer */}

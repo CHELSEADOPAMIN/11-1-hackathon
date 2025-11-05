@@ -1,30 +1,36 @@
 import { lobbyPosts } from '@/lib/mockData'
 import { ArrowRight, Heart, MessageCircle, MessageSquare, User } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 export default function LobbyPreview() {
   // 只显示最新的3条帖子
+  const locale = useLocale()
+  const t = useTranslations('Dashboard.Lobby')
+  const common = useTranslations('Common')
+  const time = useTranslations('Time')
   const recentPosts = lobbyPosts.slice(0, 3)
 
   const formatTimeAgo = (timestamp: string) => {
     const now = new Date()
     const postTime = new Date(timestamp)
     const diffInHours = Math.floor((now.getTime() - postTime.getTime()) / (1000 * 60 * 60))
+    const diffInMinutes = Math.floor((now.getTime() - postTime.getTime()) / (1000 * 60))
 
-    if (diffInHours < 1) return 'Just now'
-    if (diffInHours < 24) return `${diffInHours}h ago`
-    return `${Math.floor(diffInHours / 24)}d ago`
+    if (diffInMinutes < 60) return time('justNow')
+    if (diffInHours < 24) return time('hoursAgo', { count: diffInHours })
+    return time('daysAgo', { count: Math.floor(diffInHours / 24) })
   }
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">Community Hub</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('title')}</h2>
         <Link
-          href="/dashboard/lobby"
+          href={`/${locale}/dashboard/lobby`}
           className="flex items-center text-sm text-[#8573bd] hover:text-[#E8B98A] transition-colors"
         >
-          View All
+          {common('viewAll')}
           <ArrowRight className="w-4 h-4 ml-1" />
         </Link>
       </div>
@@ -70,11 +76,11 @@ export default function LobbyPreview() {
 
       <div className="mt-6 pt-4 border-t border-gray-200">
         <Link
-          href="/dashboard/lobby"
+          href={`/${locale}/dashboard/lobby`}
           className="flex items-center justify-center w-full py-2 text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
         >
           <MessageSquare className="w-4 h-4 mr-2" />
-          Join Discussion
+          {common('joinDiscussion')}
         </Link>
       </div>
     </div>

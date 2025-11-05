@@ -1,8 +1,9 @@
 'use client'
 
 import { Task, todaysTasks } from '@/lib/mockData'
-import { cn } from '@/lib/utils'
+import { cn, formatTime } from '@/lib/utils'
 import { CheckCircle2, Circle, Clipboard, Clock, Dumbbell, Pill, Stethoscope } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 const taskIcons = {
@@ -20,6 +21,8 @@ const taskColors = {
 }
 
 export default function TodaysPlan() {
+  const t = useTranslations('Dashboard.TodaysPlan')
+  const locale = useLocale()
   const [tasks, setTasks] = useState<Task[]>(todaysTasks)
 
   const toggleTask = (taskId: string) => {
@@ -37,16 +40,16 @@ export default function TodaysPlan() {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">Today's Recovery Plan</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('title')}</h2>
         <div className="text-sm text-gray-500">
-          {completedCount}/{totalCount} Completed
+          {t('status', { completed: completedCount, total: totalCount })}
         </div>
       </div>
 
       {/* 进度条 */}
       <div className="mb-6">
         <div className="flex justify-between text-sm text-gray-600 mb-2">
-          <span>Progress</span>
+          <span>{t('progress')}</span>
           <span>{Math.round(progressPercentage)}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -62,6 +65,9 @@ export default function TodaysPlan() {
         {tasks.map((task) => {
           const Icon = taskIcons[task.type]
           const iconColor = taskColors[task.type]
+          const title = t(`tasks.${task.id}.title`, { defaultMessage: task.title })
+          const description = t(`tasks.${task.id}.description`, { defaultMessage: task.description ?? '' })
+          const completedTime = task.completedAt ? formatTime(new Date(task.completedAt), locale) : null
 
           return (
             <div
@@ -89,7 +95,7 @@ export default function TodaysPlan() {
                     "font-medium",
                     task.completed ? "text-gray-500 line-through" : "text-gray-900"
                   )}>
-                    {task.title}
+                    {title}
                   </h3>
                 </div>
 
@@ -97,22 +103,19 @@ export default function TodaysPlan() {
                   "text-sm",
                   task.completed ? "text-gray-400" : "text-gray-600"
                 )}>
-                  {task.description}
+                  {description}
                 </p>
 
                 {task.duration && (
                   <div className="flex items-center mt-2 text-xs text-gray-500">
                     <Clock className="w-3 h-3 mr-1" />
-                    {task.duration} minutes
+                    {t('minutes', { count: task.duration })}
                   </div>
                 )}
 
-                {task.completed && task.completedAt && (
+                {task.completed && completedTime && (
                   <div className="text-xs text-green-600 mt-1">
-                    ✓ Completed at {new Date(task.completedAt).toLocaleTimeString('en-US', {
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
+                    {t('completedAt', { time: completedTime })}
                   </div>
                 )}
               </div>
@@ -127,7 +130,7 @@ export default function TodaysPlan() {
           <div className="flex items-center">
             <CheckCircle2 className="w-5 h-5 text-green-500 mr-2" />
             <span className="text-green-800 font-medium">
-              🎉 Excellent! All tasks for today are completed!
+              {t('allComplete')}
             </span>
           </div>
         </div>

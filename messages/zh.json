@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "登录",
+    "dashboard": "仪表盘",
+    "community": "社区",
+    "friends": "好友",
+    "discover": "发现",
+    "lobby": "大厅",
+    "session": "会话",
+    "groupExercise": "团体训练",
+    "knowledge": "知识库",
+    "calendar": "日历",
+    "profile": "个人资料"
+  },
+  "Landing": {
+    "title": "康复伙伴",
+    "heroTitle": "您的AI驱动",
+    "heroSubtitle": "康复之旅",
+    "heroDescription": "体验康复的未来，拥有智能患者护理、主动支持和一个永远不会让您独自康复的繁荣社区。",
+    "getStarted": "开始使用",
+    "watchDemo": "观看演示",
+    "features": {
+      "aiPowered": "AI驱动护理",
+      "aiPoweredDesc": "先进算法分析您的康复模式并提供个性化建议。",
+      "community": "支持性社区",
+      "communityDesc": "与有相似经历的人联系，在安全环境中分享经验。",
+      "tracking": "进度跟踪",
+      "trackingDesc": "通过详细的分析和洞察监控您的康复里程碑。"
+    }
+  },
+  "Login": {
+    "title": "欢迎回来",
+    "subtitle": "登录您的康复伙伴账号",
+    "fields": {
+      "email": "邮箱地址",
+      "emailPlaceholder": "请输入邮箱",
+      "password": "密码",
+      "passwordPlaceholder": "请输入密码",
+      "rememberMe": "记住我",
+      "forgotPassword": "忘记密码？"
+    },
+    "actions": {
+      "signIn": "登录",
+      "signingIn": "登录中..."
+    },
+    "divider": "或通过以下方式继续",
+    "google": {
+      "button": "使用 Google 登录",
+      "loading": "连接中..."
+    },
+    "signup": {
+      "prompt": "还没有账号？",
+      "link": "立即免费注册"
+    },
+    "demo": {
+      "adminTitle": "🔧 管理员账号",
+      "adminEmail": "邮箱：",
+      "adminPassword": "密码：",
+      "adminNote": "→ 登录后跳转至 AI 患者分析仪表盘",
+      "userTitle": "👤 患者账号",
+      "userHint": "使用任意有效邮箱格式和 6 位以上密码即可登录体验",
+      "userExample": "示例：demo@example.com / password123 → 仪表盘"
+    }
+  },
+  "Errors": {
+    "emailRequired": "邮箱是必填项",
+    "invalidEmail": "请输入有效的邮箱地址",
+    "passwordRequired": "密码是必填项",
+    "passwordMinLength": "密码至少需要 6 个字符",
+    "invalidCredentials": "邮箱或密码不正确",
+    "nameRequired": "姓名是必填项",
+    "confirmPasswordRequired": "请再次输入密码",
+    "passwordMismatch": "两次输入的密码不一致",
+    "generic": "操作失败，请稍后重试"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "深夜好",
+        "goodMorning": "早上好",
+        "goodAfternoon": "下午好",
+        "goodEvening": "晚上好"
+      },
+      "todayMessage": "今天是 {date}，让我们继续一起前进 💪",
+      "recoveryDay": "康复第 {day} 天"
+    },
+    "TodaysPlan": {
+      "title": "今日康复计划",
+      "status": "{completed}/{total} 已完成",
+      "progress": "进度",
+      "minutes": "{count} 分钟",
+      "completedAt": "✓ 完成时间 {time}",
+      "allComplete": "🎉 太棒了！你已完成今日所有任务！",
+      "tasks": {
+        "1": {
+          "title": "晨间拉伸",
+          "description": "进行 15 分钟膝关节拉伸训练"
+        },
+        "2": {
+          "title": "服用消炎药",
+          "description": "饭后服用 200mg 布洛芬"
+        },
+        "3": {
+          "title": "物理治疗",
+          "description": "下午 2 点到康复中心进行物理治疗"
+        },
+        "4": {
+          "title": "晚间散步",
+          "description": "晚饭后轻松步行 20 分钟"
+        },
+        "5": {
+          "title": "疼痛记录",
+          "description": "记录今日疼痛程度与感受"
+        }
+      }
+    },
+    "Friends": {
+      "title": "康复伙伴",
+      "noFriends": "当前没有好友在线",
+      "onlineFriends": "在线好友",
+      "peopleCount": "{count} 人"
+    },
+    "Lobby": {
+      "title": "社区动态"
+    },
+    "WeeklyProgress": {
+      "title": "每周康复进度",
+      "subtitle": "任务完成情况",
+      "tooltip": {
+        "completed": "已完成：{completed}/{total} 项任务",
+        "rate": "完成率：{rate}%"
+      },
+      "bars": {
+        "completed": "已完成",
+        "total": "总任务"
+      },
+      "summaryTitle": "每周总结",
+      "summary": {
+        "totalCompleted": "累计完成",
+        "averageRate": "平均完成率",
+        "perfectDays": "满分天数"
+      },
+      "days": {
+        "mon": "周一",
+        "tue": "周二",
+        "wed": "周三",
+        "thu": "周四",
+        "fri": "周五",
+        "sat": "周六",
+        "today": "今天"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "康复知识库",
+    "subtitle": "专业的康复知识，陪伴您的康复旅程",
+    "search": {
+      "placeholder": "搜索康复相关内容..."
+    },
+    "filters": {
+      "categoryWithCount": "{name}（{count}）",
+      "categories": {
+        "all": "全部",
+        "knee": "膝关节",
+        "shoulder": "肩部",
+        "spine": "脊柱",
+        "ankle": "踝关节",
+        "hip": "髋部",
+        "wrist": "手腕"
+      }
+    },
+    "stats": {
+      "totalArticles": "文章总数",
+      "expertAuthors": "专家作者",
+      "avgReadingTime": "平均阅读时长",
+      "minutes": "{minutes} 分钟"
+    },
+    "list": {
+      "heading": "知识文章（{count}）",
+      "readingTime": "{minutes} 分钟",
+      "loadMore": "加载更多文章"
+    },
+    "empty": {
+      "title": "未找到相关的文章",
+      "description": "请尝试调整搜索条件或选择其他分类。"
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "团体训练",
+      "joinExercise": "加入训练",
+      "participantsButton": "参与者",
+      "hostControls": "主持控制"
+    },
+    "page": {
+      "title": "团体训练",
+      "subtitle": "加入力量训练课程，与伙伴一起运动",
+      "recommended": {
+        "title": "为你推荐",
+        "tagline": "基于你的训练计划"
+      },
+      "all": {
+        "title": "全部训练"
+      }
+    },
+    "time": {
+      "startingNow": "正在开始",
+      "startingAt": "将在{time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "正在等待课程开始...",
+      "waitingHint": "主持人开始课程后即可加入。",
+      "participants": "参与者（{count}）",
+      "you": "我",
+      "online": "在线",
+      "offline": "离线",
+      "leave": "离开",
+      "join": "加入课程"
+    },
+    "sessionRoom": {
+      "videoTitle": "训练引导视频",
+      "videoSubtitle": "跟随视频一起完成动作",
+      "chatTitle": "聊天",
+      "chatPlaceholder": "输入消息...",
+      "initialMessage": "感谢大家一起参加！",
+      "participants": "{count} 位参与者",
+      "leave": "离开课程"
+    }
+  },
+  "Register": {
+    "title": "创建新账号",
+    "subtitle": "开启专属于你的智能康复体验",
+    "fields": {
+      "name": "姓名",
+      "namePlaceholder": "请输入您的姓名",
+      "email": "邮箱地址",
+      "emailPlaceholder": "请输入邮箱",
+      "password": "密码",
+      "passwordPlaceholder": "请设置登录密码",
+      "confirmPassword": "确认密码",
+      "confirmPasswordPlaceholder": "请再次输入密码",
+      "agree": "我已阅读并同意服务条款与隐私政策"
+    },
+    "actions": {
+      "signUp": "立即注册",
+      "signingUp": "正在创建账号..."
+    },
+    "signin": {
+      "prompt": "已经有账号？",
+      "link": "去登录"
+    },
+    "success": "账号创建成功，正在跳转..."
+  },
+  "Common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "confirm": "确认",
+    "close": "关闭",
+    "online": "在线",
+    "offline": "离线",
+    "settings": "设置",
+    "logout": "退出登录",
+    "confirmLogout": "确定要退出登录吗？",
+    "viewAll": "查看全部",
+    "joinDiscussion": "加入讨论"
+  },
+  "Time": {
+    "justNow": "刚刚",
+    "hoursAgo": "{count} 小时前",
+    "daysAgo": "{count} 天前"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "选择语言",
+    "languages": {
+      "en": "英语",
+      "zh": "中文",
+      "th": "泰语",
+      "id": "印尼语",
+      "de": "德语",
+      "es": "西班牙语",
+      "fr": "法语",
+      "ja": "日语",
+      "ko": "韩语",
+      "vi": "越南语"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "物理治疗",
+      "description": "康复训练提供专业指导，帮助你在专家陪伴下保持康复节奏。",
+      "progress": "{percent}% 完成",
+      "streak": "连续 {days} 天",
+      "missions": "{completed}/{total} 项任务今日已完成"
+    }
+  }
+}

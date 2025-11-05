@@ -1,16 +1,21 @@
 'use client'
 
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { Activity, ArrowRight, BookOpen, Brain, Calendar, Heart, Mail, MessageCircle, Shield, Sparkles, Target, TrendingUp, UserCheck, Users, X, Zap } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function LandingPage() {
   const [showVideoModal, setShowVideoModal] = useState(false)
+  const t = useTranslations('Landing')
+  const tNav = useTranslations('Navigation')
+  const locale = useLocale()
 
   // Update page title
   useEffect(() => {
-    document.title = 'Recovery Companion - AI-Powered Rehabilitation Platform'
-  }, [])
+    document.title = t('title') + ' - AI-Powered Rehabilitation Platform'
+  }, [t])
 
   // YouTube 视频 ID
   // 视频链接: https://youtu.be/bVH0yUiHFCM
@@ -27,14 +32,17 @@ export default function LandingPage() {
             <div className="w-10 h-10 bg-[#8573bd] rounded-xl flex items-center justify-center">
               <Heart className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Recovery Companion</span>
+            <span className="text-2xl font-bold text-gray-900">{t('title')}</span>
           </div>
-          <Link
-            href="/login"
-            className="px-6 py-2 bg-[#8573bd] text-white rounded-lg hover:bg-[#E8B98A] transition-colors font-medium"
-          >
-            Sign In
-          </Link>
+          <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
+            <Link
+              href={`/${locale}/login`}
+              className="px-6 py-2 bg-[#8573bd] text-white rounded-lg hover:bg-[#E8B98A] transition-colors font-medium"
+            >
+              {tNav('signIn')}
+            </Link>
+          </div>
         </nav>
       </header>
 
@@ -42,26 +50,25 @@ export default function LandingPage() {
       <section className="px-6 py-20">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Your AI-Powered
-            <span className="text-[#8573bd] block">Recovery Journey</span>
+            {t('heroTitle')}
+            <span className="text-[#8573bd] block">{t('heroSubtitle')}</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Experience the future of rehabilitation with intelligent patient care,
-            proactive support, and a thriving community that never lets you recover alone.
+            {t('heroDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/login"
+              href={`/${locale}/login`}
               className="inline-flex items-center px-8 py-4 bg-[#8573bd] text-white rounded-xl hover:bg-[#E8B98A] transition-colors font-semibold text-lg shadow-lg"
             >
-              Start Your Recovery
+              {t('getStarted')}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
             <button
               onClick={() => setShowVideoModal(true)}
               className="inline-flex items-center px-8 py-4 border-2 border-[#8573bd] text-[#8573bd] rounded-xl hover:bg-[#8573bd] hover:text-white transition-colors font-semibold text-lg"
             >
-              Watch Demo
+              {t('watchDemo')}
             </button>
           </div>
         </div>

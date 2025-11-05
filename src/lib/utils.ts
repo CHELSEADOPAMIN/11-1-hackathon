@@ -5,18 +5,35 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat('en-US', {
+export function formatDate(
+  date: Date,
+  locale = 'en-US',
+  options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
-  }).format(date)
+    day: 'numeric'
+  }
+): string {
+  return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
-export function getGreeting(): string {
+export function formatTime(
+  date: Date,
+  locale = 'en-US',
+  options: Intl.DateTimeFormatOptions = {
+    hour: '2-digit',
+    minute: '2-digit'
+  }
+): string {
+  return new Intl.DateTimeFormat(locale, options).format(date)
+}
+
+export type GreetingKey = 'lateNight' | 'goodMorning' | 'goodAfternoon' | 'goodEvening'
+
+export function getGreetingKey(): GreetingKey {
   const hour = new Date().getHours()
-  if (hour < 6) return 'Late night'
-  if (hour < 12) return 'Good morning'
-  if (hour < 18) return 'Good afternoon'
-  return 'Good evening'
+  if (hour < 6) return 'lateNight'
+  if (hour < 12) return 'goodMorning'
+  if (hour < 18) return 'goodAfternoon'
+  return 'goodEvening'
 }

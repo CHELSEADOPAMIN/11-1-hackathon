@@ -1,0 +1,301 @@
+{
+  "Navigation": {
+    "signIn": "Sign In",
+    "dashboard": "Dashboard",
+    "community": "Community",
+    "friends": "Friends",
+    "discover": "Discover",
+    "lobby": "Lobby",
+    "session": "Session",
+    "groupExercise": "Group Exercise",
+    "knowledge": "Knowledge",
+    "calendar": "Calendar",
+    "profile": "Profile"
+  },
+  "Landing": {
+    "title": "Recovery Companion",
+    "heroTitle": "Your AI-Powered",
+    "heroSubtitle": "Recovery Journey",
+    "heroDescription": "Experience the future of rehabilitation with intelligent patient care, proactive support, and a thriving community that never lets you recover alone.",
+    "getStarted": "Get Started",
+    "watchDemo": "Watch Demo",
+    "features": {
+      "aiPowered": "AI-Powered Care",
+      "aiPoweredDesc": "Advanced algorithms analyze your recovery patterns and provide personalized recommendations.",
+      "community": "Supportive Community",
+      "communityDesc": "Connect with others on similar journeys and share experiences in a safe environment.",
+      "tracking": "Progress Tracking",
+      "trackingDesc": "Monitor your recovery milestones with detailed analytics and insights."
+    }
+  },
+  "Login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your recovery companion account",
+    "fields": {
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?"
+    },
+    "actions": {
+      "signIn": "Sign In",
+      "signingIn": "Signing in..."
+    },
+    "divider": "Or continue with",
+    "google": {
+      "button": "Continue with Google",
+      "loading": "Connecting..."
+    },
+    "signup": {
+      "prompt": "Don't have an account?",
+      "link": "Sign up for free"
+    },
+    "demo": {
+      "adminTitle": "🔧 Admin Account",
+      "adminEmail": "Email:",
+      "adminPassword": "Password:",
+      "adminNote": "→ Redirects to AI Patient Analysis Dashboard",
+      "userTitle": "👤 Patient Account",
+      "userHint": "Use any valid email format and password (6+ characters)",
+      "userExample": "Example: demo@example.com / password123 → Dashboard"
+    }
+  },
+  "Errors": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "invalidCredentials": "Invalid email or password",
+    "nameRequired": "Name is required",
+    "confirmPasswordRequired": "Please confirm your password",
+    "passwordMismatch": "Passwords do not match",
+    "generic": "Something went wrong"
+  },
+  "Dashboard": {
+    "Greeting": {
+      "greetings": {
+        "lateNight": "Late night",
+        "goodMorning": "Good morning",
+        "goodAfternoon": "Good afternoon",
+        "goodEvening": "Good evening"
+      },
+      "todayMessage": "Today is {date}, let's continue our recovery journey together 💪",
+      "recoveryDay": "Recovery Day {day}"
+    },
+    "TodaysPlan": {
+      "title": "Today's Recovery Plan",
+      "status": "{completed}/{total} Completed",
+      "progress": "Progress",
+      "minutes": "{count} minutes",
+      "completedAt": "✓ Completed at {time}",
+      "allComplete": "🎉 Excellent! All tasks for today are completed!",
+      "tasks": {
+        "1": {
+          "title": "Morning Stretching",
+          "description": "Perform 15-minute knee joint stretching exercises"
+        },
+        "2": {
+          "title": "Take Anti-inflammatory",
+          "description": "Take Ibuprofen 200mg after meals"
+        },
+        "3": {
+          "title": "Physical Therapy",
+          "description": "Physical therapy session at rehabilitation center at 2 PM"
+        },
+        "4": {
+          "title": "Evening Walk",
+          "description": "20-minute gentle walk after dinner"
+        },
+        "5": {
+          "title": "Pain Log",
+          "description": "Record today's pain level and feelings"
+        }
+      }
+    },
+    "Friends": {
+      "title": "Recovery Friends",
+      "noFriends": "No friends online",
+      "onlineFriends": "Online Friends",
+      "peopleCount": "{count} people"
+    },
+    "Lobby": {
+      "title": "Community Hub"
+    },
+    "WeeklyProgress": {
+      "title": "Weekly Recovery Progress",
+      "subtitle": "Task Completion Status",
+      "tooltip": {
+        "completed": "Completed: {completed}/{total} tasks",
+        "rate": "Completion Rate: {rate}%"
+      },
+      "bars": {
+        "completed": "Completed",
+        "total": "Total Tasks"
+      },
+      "summaryTitle": "Weekly Summary",
+      "summary": {
+        "totalCompleted": "Total Completed",
+        "averageRate": "Average Rate",
+        "perfectDays": "Perfect Days"
+      },
+      "days": {
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat",
+        "today": "Today"
+      }
+    }
+  },
+  "Knowledge": {
+    "title": "Recovery Knowledge Base",
+    "subtitle": "Professional recovery knowledge to support your rehabilitation journey",
+    "search": {
+      "placeholder": "Search recovery knowledge..."
+    },
+    "filters": {
+      "categoryWithCount": "{name} ({count})",
+      "categories": {
+        "all": "All",
+        "knee": "Knee",
+        "shoulder": "Shoulder",
+        "spine": "Spine",
+        "ankle": "Ankle",
+        "hip": "Hip",
+        "wrist": "Wrist"
+      }
+    },
+    "stats": {
+      "totalArticles": "Total Articles",
+      "expertAuthors": "Expert Authors",
+      "avgReadingTime": "Avg. Reading Time",
+      "minutes": "{minutes} min"
+    },
+    "list": {
+      "heading": "Knowledge Articles ({count})",
+      "readingTime": "{minutes} min",
+      "loadMore": "Load More Articles"
+    },
+    "empty": {
+      "title": "No related articles found",
+      "description": "Try adjusting your search criteria or selecting another category."
+    }
+  },
+  "GroupExercise": {
+    "common": {
+      "defaultTitle": "Group Exercise",
+      "joinExercise": "Join Exercise",
+      "participantsButton": "Participants",
+      "hostControls": "Host Controls"
+    },
+    "page": {
+      "title": "Group Exercise",
+      "subtitle": "Join a strength training session and exercise together with others",
+      "recommended": {
+        "title": "Recommended for You",
+        "tagline": "Based on your training plan"
+      },
+      "all": {
+        "title": "All Exercises"
+      }
+    },
+    "time": {
+      "startingNow": "Starting now",
+      "startingAt": "Starts {time}"
+    },
+    "waitingRoom": {
+      "waitingTitle": "Waiting for session to start...",
+      "waitingHint": "You'll be able to join once the host starts the session.",
+      "participants": "Participants ({count})",
+      "you": "You",
+      "online": "Online",
+      "offline": "Offline",
+      "leave": "Leave",
+      "join": "Join Session"
+    },
+    "sessionRoom": {
+      "videoTitle": "Exercise Instruction Video",
+      "videoSubtitle": "Follow along with the guided exercise",
+      "chatTitle": "Chat",
+      "chatPlaceholder": "Type a message...",
+      "initialMessage": "Thanks everyone for joining!",
+      "participants": "{count} participants",
+      "leave": "Leave Session"
+    }
+  },
+  "Register": {
+    "title": "Create your account",
+    "subtitle": "Start your recovery journey with a personalized experience",
+    "fields": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "agree": "I agree to the terms and privacy policy"
+    },
+    "actions": {
+      "signUp": "Sign Up",
+      "signingUp": "Creating account..."
+    },
+    "signin": {
+      "prompt": "Already have an account?",
+      "link": "Sign in"
+    },
+    "success": "Account created successfully! Redirecting..."
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "online": "Online",
+    "offline": "Offline",
+    "settings": "Settings",
+    "logout": "Logout",
+    "confirmLogout": "Are you sure you want to logout?",
+    "viewAll": "View All",
+    "joinDiscussion": "Join Discussion"
+  },
+  "Time": {
+    "justNow": "Just now",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Select Language",
+    "languages": {
+      "en": "English",
+      "zh": "中文",
+      "th": "ไทย",
+      "id": "Bahasa Indonesia",
+      "de": "Deutsch",
+      "es": "Español",
+      "fr": "Français",
+      "ja": "日本語",
+      "ko": "한국어",
+      "vi": "Tiếng Việt"
+    }
+  },
+  "Sidebar": {
+    "progressCard": {
+      "title": "Physical Therapy",
+      "description": "Therapy sessions provide professional guidance and ensure your recovery stays on track with expert supervision.",
+      "progress": "{percent}% complete",
+      "streak": "{days} day streak",
+      "missions": "{completed}/{total} missions completed today"
+    }
+  }
+}
