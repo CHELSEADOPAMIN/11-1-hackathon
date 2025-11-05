@@ -921,7 +921,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
   const start = new Date(startDate)
   start.setHours(0, 0, 0, 0)
   const milestones: AgendaMilestone[] = []
-  
+
   const weekTitles = [
     'Week 1: Initial Recovery Phase',
     'Week 2: Early Mobilization',
@@ -936,7 +936,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
     'Week 11: Final Phase Assessment',
     'Week 12: Treatment Completion'
   ]
-  
+
   // Generate daily agenda items for 12 weeks (84 days)
   for (let day = 0; day < 84; day++) {
     const currentDate = new Date(start)
@@ -944,7 +944,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
     const weekNumber = Math.floor(day / 7) + 1
     const dayOfWeek = day % 7
     const isLastDay = day === 83 // Last day of 12th week
-    
+
     // Determine agenda type based on day
     let type: 'milestone' | 'checkpoint' | 'deadline' = 'milestone'
     if (isLastDay) {
@@ -953,7 +953,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
       // Every other Sunday is a checkpoint
       type = 'checkpoint'
     }
-    
+
     // Generate agenda title based on day and week
     let title = ''
     if (isLastDay) {
@@ -981,7 +981,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
       // Saturday
       title = `Day ${day + 1}: Recovery & Light Activity`
     }
-    
+
     milestones.push({
       id: `agenda-day-${day + 1}`,
       weekNumber: weekNumber,
@@ -992,7 +992,7 @@ export const generateAgendaMilestones = (startDate: string): AgendaMilestone[] =
       type: type
     })
   }
-  
+
   return milestones
 }
 
@@ -1178,7 +1178,7 @@ export const mockPatientRiskData: PatientRiskData[] = [
   {
     patientId: '3',
     patientName: 'Palm',
-    email: 'rsuksawasdi@gmail.com',
+    email: 'yangqiqi789@gmail.com',
     injury: 'Spine Rehabilitation',
     weeksInTherapy: 12,
     data: {

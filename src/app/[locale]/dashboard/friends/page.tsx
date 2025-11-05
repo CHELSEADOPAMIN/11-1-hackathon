@@ -1,10 +1,11 @@
 'use client'
 
-import { chatMessages, currentUser, friends as initialFriends, availableUsers, PendingFriendRequest } from '@/lib/mockData'
-import { cn } from '@/lib/utils'
-import { MessageCircle, MoreVertical, Search, Send, User, UserPlus, Check, X, Clock } from 'lucide-react'
-import { useState } from 'react'
 import AddFriendModal from '@/components/dashboard/AddFriendModal'
+import { availableUsers, chatMessages, currentUser, friends as initialFriends, PendingFriendRequest } from '@/lib/mockData'
+import { cn } from '@/lib/utils'
+import { Check, Clock, MessageCircle, MoreVertical, Search, Send, User, UserPlus, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 // Replicating the UI components from community.tsx using existing styles
 
@@ -44,6 +45,8 @@ const AvatarFallback = ({ children }: { children: React.ReactNode }) => (
 
 
 export default function FriendsPage() {
+  const t = useTranslations('FriendsPage')
+  const tCommon = useTranslations('Common')
   const [friendsList, setFriendsList] = useState(initialFriends)
   // Initialize with some mock received requests for demonstration
   const [pendingRequests, setPendingRequests] = useState<PendingFriendRequest[]>([
@@ -70,12 +73,12 @@ export default function FriendsPage() {
   const [activeTab, setActiveTab] = useState<'friends' | 'received' | 'sent'>('friends')
 
   const selectedFriendData = friendsList.find(f => f.id === selectedFriend)
-  
+
   // Separate sent and received requests
-  const receivedRequests = pendingRequests.filter(r => 
+  const receivedRequests = pendingRequests.filter(r =>
     r.receiverId === currentUser.id && r.status === 'pending'
   )
-  const sentRequests = pendingRequests.filter(r => 
+  const sentRequests = pendingRequests.filter(r =>
     r.senderId === currentUser.id && r.status === 'pending'
   )
 
@@ -94,11 +97,11 @@ export default function FriendsPage() {
     const userToAdd = availableUsers.find(u => u.id === userId)
     // Check if already friends or request already exists
     const alreadyFriends = friendsList.find(f => f.id === userId)
-    const existingRequest = pendingRequests.find(p => 
+    const existingRequest = pendingRequests.find(p =>
       (p.senderId === currentUser.id && p.receiverId === userId && p.status === 'pending') ||
       (p.senderId === userId && p.receiverId === currentUser.id && p.status === 'pending')
     )
-    
+
     if (userToAdd && !alreadyFriends && !existingRequest) {
       const newRequest: PendingFriendRequest = {
         id: `request-${Date.now()}`,
@@ -118,9 +121,9 @@ export default function FriendsPage() {
     const request = pendingRequests.find(r => r.id === requestId)
     if (request && request.receiverId === currentUser.id) {
       // Get the sender (the person who sent the request)
-      const sender = availableUsers.find(u => u.id === request.senderId) || 
-                    friendsList.find(f => f.id === request.senderId)
-      
+      const sender = availableUsers.find(u => u.id === request.senderId) ||
+        friendsList.find(f => f.id === request.senderId)
+
       if (sender && !friendsList.find(f => f.id === request.senderId)) {
         // Add to friends list
         const userToAdd = availableUsers.find(u => u.id === request.senderId)
@@ -128,7 +131,7 @@ export default function FriendsPage() {
           setFriendsList([...friendsList, userToAdd])
         }
         // Update request status
-        setPendingRequests(pendingRequests.map(r => 
+        setPendingRequests(pendingRequests.map(r =>
           r.id === requestId ? { ...r, status: 'accepted' } : r
         ))
         // Switch to friends tab and select the new friend
@@ -145,7 +148,7 @@ export default function FriendsPage() {
     const request = pendingRequests.find(r => r.id === requestId)
     if (request && request.receiverId === currentUser.id) {
       // Update status to rejected
-      setPendingRequests(pendingRequests.map(r => 
+      setPendingRequests(pendingRequests.map(r =>
         r.id === requestId ? { ...r, status: 'rejected' } : r
       ))
     }
@@ -213,15 +216,15 @@ export default function FriendsPage() {
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <CardTitle>Friends</CardTitle>
-              <CardDescription>Connect with your recovery companions</CardDescription>
+              <CardTitle>{t('title')}</CardTitle>
+              <CardDescription>{t('subtitle')}</CardDescription>
             </div>
             <button
               onClick={() => setIsAddFriendModalOpen(true)}
               className="flex items-center justify-center px-4 py-2 bg-[#EAE6F5] text-[#8573bd] rounded-lg hover:bg-[#8573bd] hover:text-white transition-colors"
             >
               <UserPlus className="mr-2 h-4 w-4" />
-              Add Friends
+              {t('addFriend')}
             </button>
           </div>
           {/* Tabs for Friends, Received Requests, and Sent Requests */}
@@ -235,7 +238,7 @@ export default function FriendsPage() {
                   : "border-transparent text-gray-500 hover:text-gray-700"
               )}
             >
-              Friends
+              {t('tabs.friends')}
               {friendsList.length > 0 && (
                 <span className="ml-2 px-2 py-0.5 bg-[#EAE6F5] text-[#8573bd] rounded-full text-xs">
                   {friendsList.length}
@@ -252,7 +255,7 @@ export default function FriendsPage() {
               )}
             >
               <UserPlus className="w-4 h-4 mr-2" />
-              Received
+              {t('tabs.received')}
               {receivedRequests.length > 0 && (
                 <span className="ml-2 px-2 py-0.5 bg-[#EAE6F5] text-[#8573bd] rounded-full text-xs">
                   {receivedRequests.length}
@@ -269,7 +272,7 @@ export default function FriendsPage() {
               )}
             >
               <Clock className="w-4 h-4 mr-2" />
-              Sent
+              {t('tabs.sent')}
               {sentRequests.length > 0 && (
                 <span className="ml-2 px-2 py-0.5 bg-[#EAE6F5] text-[#8573bd] rounded-full text-xs">
                   {sentRequests.length}
@@ -284,7 +287,7 @@ export default function FriendsPage() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search friends by name or injury type..."
+                placeholder={t('searchPlaceholder')}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>
@@ -298,9 +301,9 @@ export default function FriendsPage() {
                   <div className="text-center">
                     <User className="w-12 h-12 mx-auto mb-2 opacity-50" />
                     <p className="text-sm">
-                      {searchTerm.trim() 
-                        ? `No friends found matching &quot;${searchTerm}&quot;`
-                        : 'No friends yet. Add some friends to get started!'
+                      {searchTerm.trim()
+                        ? t('empty.search', { query: searchTerm })
+                        : t('empty.noFriends')
                       }
                     </p>
                   </div>
@@ -308,50 +311,50 @@ export default function FriendsPage() {
               ) : (
                 <div className="space-y-2">
                   {filteredFriends.map((friend) => {
-                const friendMessages = messages[friend.id] || []
-                const lastMessage = friendMessages[friendMessages.length - 1]
-                const isSelected = selectedFriend === friend.id
+                    const friendMessages = messages[friend.id] || []
+                    const lastMessage = friendMessages[friendMessages.length - 1]
+                    const isSelected = selectedFriend === friend.id
 
-                return (
-                  <button
-                    key={friend.id}
-                    onClick={() => setSelectedFriend(friend.id)}
-                    className={cn(
-                      "w-full flex items-center space-x-3 p-4 rounded-lg transition-colors text-left",
-                      isSelected ? "bg-[#EAE6F5] border-2 border-[#8573bd]" : "hover:bg-gray-50 border-2 border-transparent"
-                    )}
-                  >
-                    <div className="relative">
-                      <Avatar className="h-12 w-12">
-                        <AvatarFallback>
-                          <User className="w-6 h-6 text-gray-600" />
-                        </AvatarFallback>
-                      </Avatar>
-                      {friend.isOnline && (
-                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <p className={cn("font-medium", isSelected ? "text-[#8573bd]" : "text-gray-900")}>
-                          {friend.name}
-                        </p>
-                        {lastMessage && (
-                          <span className="text-xs text-gray-500">
-                            {formatTime(lastMessage.timestamp)}
-                          </span>
+                    return (
+                      <button
+                        key={friend.id}
+                        onClick={() => setSelectedFriend(friend.id)}
+                        className={cn(
+                          "w-full flex items-center space-x-3 p-4 rounded-lg transition-colors text-left",
+                          isSelected ? "bg-[#EAE6F5] border-2 border-[#8573bd]" : "hover:bg-gray-50 border-2 border-transparent"
                         )}
-                      </div>
-                      <p className="text-sm text-gray-500 truncate">{friend.injuryType}</p>
-                      {lastMessage && (
-                        <p className="text-sm text-gray-400 truncate mt-1">
-                          {lastMessage.content}
-                        </p>
-                      )}
-                    </div>
-                  </button>
-                )
-              })}
+                      >
+                        <div className="relative">
+                          <Avatar className="h-12 w-12">
+                            <AvatarFallback>
+                              <User className="w-6 h-6 text-gray-600" />
+                            </AvatarFallback>
+                          </Avatar>
+                          {friend.isOnline && (
+                            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <p className={cn("font-medium", isSelected ? "text-[#8573bd]" : "text-gray-900")}>
+                              {friend.name}
+                            </p>
+                            {lastMessage && (
+                              <span className="text-xs text-gray-500">
+                                {formatTime(lastMessage.timestamp)}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500 truncate">{friend.injuryType}</p>
+                          {lastMessage && (
+                            <p className="text-sm text-gray-400 truncate mt-1">
+                              {lastMessage.content}
+                            </p>
+                          )}
+                        </div>
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             </>
@@ -367,53 +370,53 @@ export default function FriendsPage() {
               ) : (
                 <div className="space-y-3">
                   {receivedRequests.map((request) => {
-                      const senderUser = availableUsers.find(u => u.id === request.senderId) || 
-                                        friendsList.find(f => f.id === request.senderId)
-                      if (!senderUser) return null
-                      
-                      return (
-                        <div
-                          key={request.id}
-                          className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-[#8573bd] hover:bg-[#EAE6F5]/30 transition-all"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="relative">
-                              <div className="w-12 h-12 bg-gradient-to-br from-[#8573bd] to-[#E8B98A] rounded-full flex items-center justify-center">
-                                <User className="w-6 h-6 text-white" />
-                              </div>
-                              {senderUser.isOnline && (
-                                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
-                              )}
+                    const senderUser = availableUsers.find(u => u.id === request.senderId) ||
+                      friendsList.find(f => f.id === request.senderId)
+                    if (!senderUser) return null
+
+                    return (
+                      <div
+                        key={request.id}
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-[#8573bd] hover:bg-[#EAE6F5]/30 transition-all"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#8573bd] to-[#E8B98A] rounded-full flex items-center justify-center">
+                              <User className="w-6 h-6 text-white" />
                             </div>
-                            <div>
-                              <h3 className="font-semibold text-gray-900">{senderUser.name}</h3>
-                              <p className="text-sm text-gray-500">{senderUser.injuryType}</p>
-                              <p className="text-xs text-gray-400 mt-1">
-                                Sent {formatTime(request.requestedAt)}
-                              </p>
-                            </div>
+                            {senderUser.isOnline && (
+                              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
+                            )}
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <button
-                              onClick={() => handleAcceptRequest(request.id)}
-                              className="flex items-center px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors"
-                              title="Accept friend request"
-                            >
-                              <Check className="w-4 h-4 mr-1" />
-                              <span className="text-xs">Accept</span>
-                            </button>
-                            <button
-                              onClick={() => handleRejectRequest(request.id)}
-                              className="flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
-                              title="Reject friend request"
-                            >
-                              <X className="w-4 h-4 mr-1" />
-                              <span className="text-xs">Reject</span>
-                            </button>
+                          <div>
+                            <h3 className="font-semibold text-gray-900">{senderUser.name}</h3>
+                            <p className="text-sm text-gray-500">{senderUser.injuryType}</p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              Sent {formatTime(request.requestedAt)}
+                            </p>
                           </div>
                         </div>
-                      )
-                    })}
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => handleAcceptRequest(request.id)}
+                            className="flex items-center px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors"
+                            title="Accept friend request"
+                          >
+                            <Check className="w-4 h-4 mr-1" />
+                            <span className="text-xs">Accept</span>
+                          </button>
+                          <button
+                            onClick={() => handleRejectRequest(request.id)}
+                            className="flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                            title="Reject friend request"
+                          >
+                            <X className="w-4 h-4 mr-1" />
+                            <span className="text-xs">Reject</span>
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </>
@@ -430,42 +433,42 @@ export default function FriendsPage() {
               ) : (
                 <div className="space-y-3">
                   {sentRequests.map((request) => {
-                      const receiverUser = availableUsers.find(u => u.id === request.receiverId)
-                      if (!receiverUser) return null
-                      
-                      return (
-                        <div
-                          key={request.id}
-                          className="flex items-center justify-between p-4 border border-gray-200 rounded-lg bg-gray-50/50"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="relative">
-                              <div className="w-12 h-12 bg-gradient-to-br from-[#8573bd] to-[#E8B98A] rounded-full flex items-center justify-center">
-                                <User className="w-6 h-6 text-white" />
-                              </div>
-                              {receiverUser.isOnline && (
-                                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
-                              )}
+                    const receiverUser = availableUsers.find(u => u.id === request.receiverId)
+                    if (!receiverUser) return null
+
+                    return (
+                      <div
+                        key={request.id}
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-lg bg-gray-50/50"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <div className="relative">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#8573bd] to-[#E8B98A] rounded-full flex items-center justify-center">
+                              <User className="w-6 h-6 text-white" />
                             </div>
-                            <div>
-                              <h3 className="font-semibold text-gray-900">{receiverUser.name}</h3>
-                              <p className="text-sm text-gray-500">{receiverUser.injuryType}</p>
-                              <p className="text-xs text-gray-400 mt-1">
-                                Sent {formatTime(request.requestedAt)} · Waiting for response
-                              </p>
-                            </div>
+                            {receiverUser.isOnline && (
+                              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
+                            )}
                           </div>
-                          <button
-                            onClick={() => handleCancelSentRequest(request.id)}
-                            className="flex items-center px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
-                            title="Cancel request"
-                          >
-                            <X className="w-4 h-4 mr-1" />
-                            <span className="text-xs">Cancel</span>
-                          </button>
+                          <div>
+                            <h3 className="font-semibold text-gray-900">{receiverUser.name}</h3>
+                            <p className="text-sm text-gray-500">{receiverUser.injuryType}</p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              Sent {formatTime(request.requestedAt)} · Waiting for response
+                            </p>
+                          </div>
                         </div>
-                      )
-                    })}
+                        <button
+                          onClick={() => handleCancelSentRequest(request.id)}
+                          className="flex items-center px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+                          title="Cancel request"
+                        >
+                          <X className="w-4 h-4 mr-1" />
+                          <span className="text-xs">Cancel</span>
+                        </button>
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </>
@@ -492,7 +495,7 @@ export default function FriendsPage() {
                 <div className="flex-1">
                   <CardTitle className="text-lg">{selectedFriendData.name}</CardTitle>
                   <CardDescription className="text-sm">
-                    {selectedFriendData.isOnline ? 'Online' : 'Offline'} · {selectedFriendData.injuryType}
+                    {selectedFriendData.isOnline ? tCommon('online') : tCommon('offline')} · {selectedFriendData.injuryType}
                   </CardDescription>
                 </div>
                 <button className="p-2 rounded-lg hover:bg-gray-100">
@@ -507,7 +510,7 @@ export default function FriendsPage() {
                   <div className="flex items-center justify-center h-full text-gray-400">
                     <div className="text-center">
                       <MessageCircle className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                      <p>No messages yet. Start the conversation!</p>
+                      <p>{t('chat.noMessages')}</p>
                     </div>
                   </div>
                 ) : (
@@ -547,7 +550,7 @@ export default function FriendsPage() {
                   value={messageInput}
                   onChange={(e) => setMessageInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Type a message..."
+                  placeholder={t('chat.placeholder')}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
                 <button
@@ -569,7 +572,7 @@ export default function FriendsPage() {
           <div className="flex items-center justify-center h-full text-gray-400">
             <div className="text-center">
               <MessageCircle className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <p>Select a friend to start chatting</p>
+              <p>{t('chat.selectFriend')}</p>
             </div>
           </div>
         )}

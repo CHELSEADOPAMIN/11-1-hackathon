@@ -289,6 +289,41 @@
       "vi": "越南语"
     }
   },
+  "FriendsPage": {
+    "title": "好友",
+    "subtitle": "与康复伙伴建立连接",
+    "addFriend": "添加好友",
+    "tabs": {
+      "friends": "好友",
+      "received": "收到",
+      "sent": "已发送"
+    },
+    "searchPlaceholder": "按姓名或伤情类型搜索好友...",
+    "empty": {
+      "search": "未找到与“{query}”匹配的好友",
+      "noFriends": "还没有好友，添加一些好友开始吧！",
+      "noReceived": "暂无收到的好友请求",
+      "noSent": "暂无已发送的好友请求",
+      "waiting": "正在等待对方回应..."
+    },
+    "requests": {
+      "sentAt": "发送于 {time}",
+      "sentWaiting": "发送于 {time} · 正在等待回应"
+    },
+    "actions": {
+      "accept": "接受",
+      "reject": "拒绝",
+      "cancel": "取消",
+      "acceptTitle": "接受好友请求",
+      "rejectTitle": "拒绝好友请求",
+      "cancelTitle": "撤回请求"
+    },
+    "chat": {
+      "noMessages": "暂无消息，开始聊天吧！",
+      "placeholder": "输入消息...",
+      "selectFriend": "选择一位好友开始聊天"
+    }
+  },
   "Sidebar": {
     "progressCard": {
       "title": "物理治疗",
@@ -296,6 +331,44 @@
       "progress": "{percent}% 完成",
       "streak": "连续 {days} 天",
       "missions": "{completed}/{total} 项任务今日已完成"
+    }
+  },
+  "Calendar": {
+    "title": "我的康复日历",
+    "subtitle": "管理你的康复计划与预约安排",
+    "buttons": {
+      "calendarView": "日历视图",
+      "agendaView": "12 周计划",
+      "sendReport": "发送进度报告"
+    },
+    "agenda": {
+      "title": "12 周治疗计划（84 天）",
+      "daysCompleted": "天已完成",
+      "done": "已完成",
+      "markDone": "标记完成"
+    },
+    "stats": {
+      "title": "月度统计",
+      "totalAppointments": "预约总数",
+      "physicalTherapy": "物理治疗",
+      "rehabTraining": "康复训练",
+      "followUps": "复诊"
+    },
+    "quick": {
+      "title": "快捷操作",
+      "bookTherapy": "预约物理治疗",
+      "bookFollowup": "预约复诊",
+      "scheduleTraining": "安排训练"
+    },
+    "modal": {
+      "bookTitle": "预约物理治疗",
+      "date": "日期",
+      "time": "时间",
+      "duration": "时长（分钟）",
+      "minutes": "{count} 分钟",
+      "therapist": "治疗师",
+      "location": "地点",
+      "confirm": "确认预约"
     }
   }
 }

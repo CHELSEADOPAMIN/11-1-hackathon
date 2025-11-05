@@ -1,9 +1,10 @@
 'use client'
 
-import { addMonths, eachDayOfInterval, endOfMonth, format, isSameDay, isSameMonth, startOfMonth, subMonths, differenceInDays, parseISO } from 'date-fns'
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, User, X, AlertCircle, CheckCircle2, FileText, Send } from 'lucide-react'
-import { useState, useEffect, useCallback } from 'react'
-import { currentTreatmentPlan, agendaMilestones, AgendaMilestone, TreatmentPlan, currentUser } from '@/lib/mockData'
+import { AgendaMilestone, TreatmentPlan, agendaMilestones, currentTreatmentPlan, currentUser } from '@/lib/mockData'
+import { addMonths, differenceInDays, eachDayOfInterval, endOfMonth, format, isSameDay, isSameMonth, parseISO, startOfMonth, subMonths } from 'date-fns'
+import { AlertCircle, Calendar as CalendarIcon, CheckCircle2, ChevronLeft, ChevronRight, Clock, FileText, MapPin, Send, User } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 
@@ -79,6 +80,8 @@ const eventTypeColors = {
 }
 
 export default function CalendarPage() {
+  const t = useTranslations('Calendar')
+  const tCommon = useTranslations('Common')
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(new Date())
 
@@ -108,7 +111,7 @@ export default function CalendarPage() {
       description: milestone.description,
       weekNumber: milestone.weekNumber
     }))
-    
+
     // Add deadline event for treatment plan
     const deadlineEvent: any = {
       id: 'treatment-deadline',
@@ -120,25 +123,25 @@ export default function CalendarPage() {
       doctor: treatmentPlan.doctor,
       therapist: treatmentPlan.physiotherapist
     }
-    
+
     setCalendarEvents((prev: any[]) => {
       // Remove all old agenda/milestone events first
-      const filtered = prev.filter((e: any) => 
-        !e.id?.startsWith('agenda-day-') && 
+      const filtered = prev.filter((e: any) =>
+        !e.id?.startsWith('agenda-day-') &&
         !e.id?.startsWith('milestone-') &&
         e.id !== 'treatment-deadline'
       )
-      
+
       // Remove duplicates by checking date and title
       const uniqueMilestoneEvents = milestoneEvents.filter((me: any, index: number, self: any[]) => {
-        return index === self.findIndex((other: any) => 
-          other.id === me.id || 
-          (other.date.getTime() === me.date.getTime() && 
-           other.title === me.title &&
-           (other.type === 'milestone' || other.type === 'checkpoint' || other.type === 'deadline'))
+        return index === self.findIndex((other: any) =>
+          other.id === me.id ||
+          (other.date.getTime() === me.date.getTime() &&
+            other.title === me.title &&
+            (other.type === 'milestone' || other.type === 'checkpoint' || other.type === 'deadline'))
         )
       })
-      
+
       return [...filtered, ...uniqueMilestoneEvents, deadlineEvent]
     })
   }, [milestones, treatmentPlan])
@@ -149,7 +152,7 @@ export default function CalendarPage() {
     const completedAgendas = milestones.filter(m => m.completed).length
     const totalAgendas = milestones.length
     const agendaCompletionRate = totalAgendas > 0 ? Math.round((completedAgendas / totalAgendas) * 100) : 0
-    
+
     // Calculate progress based on completed events
     const completedEvents = calendarEvents.filter((e: any) => {
       const eventDate = new Date(e.date)
@@ -166,7 +169,7 @@ export default function CalendarPage() {
       weekNumber: dueMilestones.length > 0 ? dueMilestones[0].weekNumber : Math.floor((differenceInDays(new Date(), parseISO(treatmentPlan.startDate)) / 7) + 1),
       completionRate: agendaCompletionRate,
       eventCompletionRate: eventCompletionRate,
-      notes: isDeadlineDay 
+      notes: isDeadlineDay
         ? `Final treatment completion report. ${completedAgendas} of ${totalAgendas} daily agendas completed (${agendaCompletionRate}%). Treatment plan ended.`
         : `Progress report. ${dueMilestones.length > 0 ? `Agendas due: ${dueMilestones.map(m => m.title).join(', ')}. ` : ''}Days until deadline: ${daysUntilDeadline}`,
       sentToPhysiotherapist: !isDeadlineDay,
@@ -206,7 +209,7 @@ export default function CalendarPage() {
     const checkDeadlines = () => {
       const today = new Date()
       today.setHours(0, 0, 0, 0)
-      
+
       // Check treatment plan deadline (end of 12th week)
       const deadlineDate = new Date(treatmentPlan.endDate)
       deadlineDate.setHours(0, 0, 0, 0)
@@ -232,7 +235,7 @@ export default function CalendarPage() {
     // Check on mount and set interval to check daily
     checkDeadlines()
     const interval = setInterval(checkDeadlines, 24 * 60 * 60 * 1000) // Check daily
-    
+
     return () => clearInterval(interval)
   }, [milestones, treatmentPlan, handleSendProgressReport])
 
@@ -250,17 +253,17 @@ export default function CalendarPage() {
         setCalendarEvents((prev: any[]) => {
           // Filter out agenda/milestone events from localStorage (they're handled by milestones useEffect)
           const nonAgendaEvents = eventsWithDates.filter((event: any) => {
-            return !event.id?.startsWith('agenda-day-') && 
-                   !event.id?.startsWith('milestone-') &&
-                   event.id !== 'treatment-deadline' &&
-                   !event.weekNumber
+            return !event.id?.startsWith('agenda-day-') &&
+              !event.id?.startsWith('milestone-') &&
+              event.id !== 'treatment-deadline' &&
+              !event.weekNumber
           })
-          
+
           // Only add non-agenda events that don't already exist
-          const newEvents = nonAgendaEvents.filter((e: any) => 
+          const newEvents = nonAgendaEvents.filter((e: any) =>
             !prev.some((existing: any) => existing.id === e.id)
           )
-          
+
           return [...prev, ...newEvents]
         })
       } catch (error) {
@@ -283,7 +286,7 @@ export default function CalendarPage() {
     deadlineDate.setHours(0, 0, 0, 0)
     const daysUntilDeadline = differenceInDays(deadlineDate, today)
     const isDeadlineDay = daysUntilDeadline === 0
-    
+
     const todayAgendas = milestones.filter(m => {
       const agendaDate = new Date(m.targetDate)
       agendaDate.setHours(0, 0, 0, 0)
@@ -362,8 +365,8 @@ export default function CalendarPage() {
       {/* 页面标题 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Recovery Calendar</h1>
-          <p className="text-gray-600">Manage your recovery plans and appointment schedules</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
+          <p className="text-gray-600">{t('subtitle')}</p>
         </div>
         <div className="flex items-center space-x-3">
           <button
@@ -371,7 +374,7 @@ export default function CalendarPage() {
             className="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors flex items-center"
           >
             <FileText className="w-4 h-4 mr-2" />
-            {showAgendaView ? 'Calendar View' : '12-Week Agenda'}
+            {showAgendaView ? t('buttons.calendarView') : t('buttons.agendaView')}
           </button>
           {currentUser.role === 'admin' && (
             <button
@@ -379,7 +382,7 @@ export default function CalendarPage() {
               className="px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center"
             >
               <Send className="w-4 h-4 mr-2" />
-              Send Progress Report
+              {t('buttons.sendReport')}
             </button>
           )}
         </div>
@@ -412,7 +415,7 @@ export default function CalendarPage() {
             <div className="text-3xl font-bold text-indigo-600 mb-1">{progressPercentage}%</div>
             <div className="text-sm text-gray-600">Progress</div>
             <div className="w-24 bg-gray-200 rounded-full h-2 mt-2">
-              <div 
+              <div
                 className="bg-indigo-600 h-2 rounded-full transition-all"
                 style={{ width: `${progressPercentage}%` }}
               ></div>
@@ -433,51 +436,49 @@ export default function CalendarPage() {
       {showAgendaView && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">12-Week Treatment Agenda (84 Days)</h2>
+            <h2 className="text-xl font-semibold text-gray-900">{t('agenda.title')}</h2>
             <div className="text-sm text-gray-600">
               {milestones.filter(m => m.completed).length} of {milestones.length} completed
             </div>
           </div>
-          
+
           {/* Group by week for better organization */}
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((weekNum) => {
             const weekAgendas = milestones.filter(m => m.weekNumber === weekNum)
             const completedCount = weekAgendas.filter(m => m.completed).length
             const weekTitle = weekAgendas[0]?.title.split(':')[0] || `Week ${weekNum}`
-            
+
             return (
               <div key={weekNum} className="mb-6">
                 <div className="flex items-center justify-between mb-3 p-3 bg-indigo-50 rounded-lg">
                   <h3 className="font-semibold text-indigo-900">{weekTitle}</h3>
-                  <span className="text-sm text-indigo-700">{completedCount} / {weekAgendas.length} days completed</span>
+                  <span className="text-sm text-indigo-700">{completedCount} / {weekAgendas.length} {t('agenda.daysCompleted')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-2">
                   {weekAgendas.map((milestone) => {
                     const milestoneDate = new Date(milestone.targetDate)
                     const isPast = milestoneDate < today
                     const isDue = isSameDay(milestoneDate, today)
-                    
+
                     return (
                       <div
                         key={milestone.id}
-                        className={`p-3 rounded-lg border-2 text-sm ${
-                          milestone.completed
+                        className={`p-3 rounded-lg border-2 text-sm ${milestone.completed
                             ? 'bg-green-50 border-green-300'
                             : isDue
-                            ? 'bg-yellow-50 border-yellow-300'
-                            : isPast
-                            ? 'bg-gray-50 border-gray-300'
-                            : 'bg-white border-gray-200'
-                        }`}
+                              ? 'bg-yellow-50 border-yellow-300'
+                              : isPast
+                                ? 'bg-gray-50 border-gray-300'
+                                : 'bg-white border-gray-200'
+                          }`}
                       >
                         <div className="flex items-center justify-between mb-1">
-                          <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
-                            milestone.type === 'deadline'
+                          <span className={`text-xs font-semibold px-1.5 py-0.5 rounded ${milestone.type === 'deadline'
                               ? 'bg-red-100 text-red-700'
                               : milestone.type === 'checkpoint'
-                              ? 'bg-yellow-100 text-yellow-700'
-                              : 'bg-indigo-100 text-indigo-700'
-                          }`}>
+                                ? 'bg-yellow-100 text-yellow-700'
+                                : 'bg-indigo-100 text-indigo-700'
+                            }`}>
                             Day {(weekNum - 1) * 7 + weekAgendas.indexOf(milestone) + 1}
                           </span>
                           {milestone.completed && (
@@ -496,13 +497,12 @@ export default function CalendarPage() {
                               )
                             )
                           }}
-                          className={`w-full px-2 py-1 rounded text-xs ${
-                            milestone.completed
+                          className={`w-full px-2 py-1 rounded text-xs ${milestone.completed
                               ? 'bg-green-100 text-green-700 hover:bg-green-200'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                          }`}
+                            }`}
                         >
-                          {milestone.completed ? '✓ Done' : 'Mark Done'}
+                          {milestone.completed ? '✓ ' + t('agenda.done') : t('agenda.markDone')}
                         </button>
                       </div>
                     )
@@ -667,30 +667,30 @@ export default function CalendarPage() {
 
           {/* 快速统计 */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4">Monthly Statistics</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('stats.title')}</h3>
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Total Appointments</span>
+                <span className="text-sm text-gray-600">{t('stats.totalAppointments')}</span>
                 <span className="font-medium">{calendarEvents.length} times</span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Physical Therapy</span>
+                <span className="text-sm text-gray-600">{t('stats.physicalTherapy')}</span>
                 <span className="font-medium">
                   {calendarEvents.filter((e: any) => e.type === 'therapy').length} times
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Rehab Training</span>
+                <span className="text-sm text-gray-600">{t('stats.rehabTraining')}</span>
                 <span className="font-medium">
                   {calendarEvents.filter((e: any) => e.type === 'exercise').length} times
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Follow-ups</span>
+                <span className="text-sm text-gray-600">{t('stats.followUps')}</span>
                 <span className="font-medium">
                   {calendarEvents.filter((e: any) => e.type === 'checkup').length} times
                 </span>
@@ -700,21 +700,21 @@ export default function CalendarPage() {
 
           {/* 快速操作 */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('quick.title')}</h3>
 
             <div className="space-y-2">
               <button
                 onClick={handleBookPhysicalTherapy}
                 className="w-full px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
-                Book Physical Therapy
+                {t('quick.bookTherapy')}
               </button>
 
               <button className="w-full px-4 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors">
-                Book Follow-up
+                {t('quick.bookFollowup')}
               </button>
 
               <button className="w-full px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors">
-                Schedule Training
+                {t('quick.scheduleTraining')}
               </button>
             </div>
           </div>
@@ -742,12 +742,12 @@ export default function CalendarPage() {
               </svg>
             </button>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Book Physical Therapy</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('modal.bookTitle')}</h3>
 
             <form onSubmit={handleSubmitBooking} className="space-y-4">
               {/* 日期 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('modal.date')}</label>
                 <input
                   type="date"
                   value={formData.date}
@@ -759,7 +759,7 @@ export default function CalendarPage() {
 
               {/* 时间 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('modal.time')}</label>
                 <input
                   type="time"
                   value={formData.time}
@@ -771,22 +771,22 @@ export default function CalendarPage() {
 
               {/* 时长 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Duration (minutes)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('modal.duration')}</label>
                 <select
                   value={formData.duration}
                   onChange={e => handleInputChange('duration', Number(e.target.value))}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
-                  <option value={30}>30 minutes</option>
-                  <option value={60}>60 minutes</option>
-                  <option value={90}>90 minutes</option>
-                  <option value={120}>120 minutes</option>
+                  <option value={30}>{t('modal.minutes', { count: 30 })}</option>
+                  <option value={60}>{t('modal.minutes', { count: 60 })}</option>
+                  <option value={90}>{t('modal.minutes', { count: 90 })}</option>
+                  <option value={120}>{t('modal.minutes', { count: 120 })}</option>
                 </select>
               </div>
 
               {/* 治疗师 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Therapist</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('modal.therapist')}</label>
                 <select
                   value={formData.therapist}
                   onChange={e => handleInputChange('therapist', e.target.value)}
@@ -801,7 +801,7 @@ export default function CalendarPage() {
 
               {/* 地点 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('modal.location')}</label>
                 <select
                   value={formData.location}
                   onChange={e => handleInputChange('location', e.target.value)}
@@ -821,13 +821,13 @@ export default function CalendarPage() {
                   onClick={() => setShowModal(false)}
                   className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  Cancel
+                  {tCommon('cancel')}
                 </button>
                 <button
                   type="submit"
                   className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Confirm Booking
+                  {t('modal.confirm')}
                 </button>
               </div>
             </form>

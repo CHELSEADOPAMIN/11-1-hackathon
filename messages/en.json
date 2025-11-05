@@ -289,6 +289,41 @@
       "vi": "Tiếng Việt"
     }
   },
+  "FriendsPage": {
+    "title": "Friends",
+    "subtitle": "Connect with your recovery companions",
+    "addFriend": "Add Friends",
+    "tabs": {
+      "friends": "Friends",
+      "received": "Received",
+      "sent": "Sent"
+    },
+    "searchPlaceholder": "Search friends by name or injury type...",
+    "empty": {
+      "search": "No friends found matching \"{query}\"",
+      "noFriends": "No friends yet. Add some friends to get started!",
+      "noReceived": "No received friend requests",
+      "noSent": "No sent friend requests",
+      "waiting": "Waiting for responses..."
+    },
+    "requests": {
+      "sentAt": "Sent {time}",
+      "sentWaiting": "Sent {time} · Waiting for response"
+    },
+    "actions": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "cancel": "Cancel",
+      "acceptTitle": "Accept friend request",
+      "rejectTitle": "Reject friend request",
+      "cancelTitle": "Cancel request"
+    },
+    "chat": {
+      "noMessages": "No messages yet. Start the conversation!",
+      "placeholder": "Type a message...",
+      "selectFriend": "Select a friend to start chatting"
+    }
+  },
   "Sidebar": {
     "progressCard": {
       "title": "Physical Therapy",
@@ -296,6 +331,44 @@
       "progress": "{percent}% complete",
       "streak": "{days} day streak",
       "missions": "{completed}/{total} missions completed today"
+    }
+  },
+  "Calendar": {
+    "title": "My Recovery Calendar",
+    "subtitle": "Manage your recovery plans and appointment schedules",
+    "buttons": {
+      "calendarView": "Calendar View",
+      "agendaView": "12-Week Agenda",
+      "sendReport": "Send Progress Report"
+    },
+    "agenda": {
+      "title": "12-Week Treatment Agenda (84 Days)",
+      "daysCompleted": "days completed",
+      "done": "Done",
+      "markDone": "Mark Done"
+    },
+    "stats": {
+      "title": "Monthly Statistics",
+      "totalAppointments": "Total Appointments",
+      "physicalTherapy": "Physical Therapy",
+      "rehabTraining": "Rehab Training",
+      "followUps": "Follow-ups"
+    },
+    "quick": {
+      "title": "Quick Actions",
+      "bookTherapy": "Book Physical Therapy",
+      "bookFollowup": "Book Follow-up",
+      "scheduleTraining": "Schedule Training"
+    },
+    "modal": {
+      "bookTitle": "Book Physical Therapy",
+      "date": "Date",
+      "time": "Time",
+      "duration": "Duration (minutes)",
+      "minutes": "{count} minutes",
+      "therapist": "Therapist",
+      "location": "Location",
+      "confirm": "Confirm Booking"
     }
   }
 }

@@ -114,7 +114,7 @@ Please write a short (about 100-150 words) care email for the following patient.
 }
 
 # Community Link
-${process.env.NEXT_PUBLIC_APP_URL || 'https://healing-together-ruddy.vercel.app'}/dashboard/lobby
+${process.env.NEXT_PUBLIC_APP_URL || 'https://healing-together-ruddy.vercel.app'}
 
 # Your Output (Email Body)
 Please generate a caring, personalized email that feels genuine and supportive.
@@ -201,7 +201,7 @@ Please remember, you're not fighting this alone. In our "Recovery Companion" com
 
 If you have time, come back and see everyone. You might discover some useful tips, or just chat with the community. We're all here to support you!
 
-Looking forward to seeing you again: ${process.env.NEXT_PUBLIC_APP_URL || 'https://healing-together-ruddy.vercel.app'}/dashboard/lobby
+Looking forward to seeing you again: ${process.env.NEXT_PUBLIC_APP_URL || 'https://healing-together-ruddy.vercel.app'}
 
 Best regards,
 Your Recovery Companion Team`
