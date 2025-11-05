@@ -528,10 +528,10 @@ export default function LandingPage() {
                 <div className="w-8 h-8 bg-[#8573bd] rounded-lg flex items-center justify-center">
                   <Heart className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">Recovery Companion</span>
+                <span className="text-xl font-bold">Healing Together</span>
               </div>
               <div className="text-gray-400 text-sm">
-                © 2025 Recovery Companion. Transforming healthcare with AI and community.
+                © 2025 Healing Together. Transforming healthcare with AI and community.
               </div>
             </div>
             <div className="border-t border-gray-700 w-full pt-4">
@@ -614,7 +614,7 @@ export default function LandingPage() {
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-t-2xl"
                   src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`}
-                  title="Recovery Companion Demo Video"
+                  title="Healing Together Demo Video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
