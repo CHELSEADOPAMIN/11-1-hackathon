@@ -1,8 +1,8 @@
 import { Resend } from 'resend'
 
 // Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY || 'demo-key')
-
+const apiKey = process.env.RESEND_API_KEY
+const resend = apiKey ? new Resend(apiKey) : null
 export interface EmailData {
   to: string
   subject: string
@@ -29,8 +29,13 @@ export async function sendCareEmail(emailData: EmailData): Promise<boolean> {
 
     console.log('📧 Attempting to send real email to:', emailData.to)
 
+    if (!resend) {
+      console.error('❌ Resend client not initialized. Missing RESEND_API_KEY?')
+      return false
+    }
+
     const { data, error } = await resend.emails.send({
-      from: emailData.from || 'Healing Together <onboarding@resend.dev>',
+      from: emailData.from || 'Healing Together <no-reply@heal.a2a.ing>',
       to: [emailData.to],
       subject: emailData.subject,
       html: emailData.html,
@@ -120,5 +125,5 @@ export function extractSubject(emailContent: string): string {
       return line.replace('Subject:', '').trim()
     }
   }
-  return 'A Message from Recovery Companion 💙'
+  return 'A Message from Healing Together 💙'
 }
