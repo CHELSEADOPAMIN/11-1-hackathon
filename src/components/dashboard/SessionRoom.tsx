@@ -1,6 +1,6 @@
 'use client';
 
-import { friends, currentUser } from '@/lib/mockData';
+import { currentUser, friends } from '@/lib/mockData';
 import { cn, formatTime } from '@/lib/utils';
 import {
   Maximize2,
@@ -9,7 +9,6 @@ import {
   MicOff,
   PhoneOff,
   Settings,
-  Share2,
   Users,
   Video,
   VideoOff
@@ -50,9 +49,9 @@ function PixelatedAvatar({
     '/blue_dance.gif',
     '/white_jump.gif'
   ]
-  
+
   const gifSrc = avatarGifs[avatarIndex % avatarGifs.length]
-  
+
   return (
     <>
       <style>{`
@@ -71,14 +70,14 @@ function PixelatedAvatar({
           image-rendering: crisp-edges;
         }
       `}</style>
-      <div 
+      <div
         className="relative pixel-float"
         style={{
           animationDelay: `${delay}s`
         }}
       >
         {/* GIF Avatar */}
-        <div 
+        <div
           className="relative pixel-avatar-gif"
           style={{
             width: '96px',
@@ -95,7 +94,7 @@ function PixelatedAvatar({
             }}
           />
         </div>
-        
+
         {/* User indicator */}
         {isCurrentUser && (
           <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-gray-900 flex items-center justify-center shadow-lg z-10">
@@ -130,17 +129,17 @@ export default function SessionRoom({
   ]);
 
   const title = sessionTitle ?? commonT('defaultTitle');
-  
+
   // Participants based on actual participant count in the room
   // Always includes currentUser, plus up to (participantCount - 1) other participants
   const actualParticipantCount = Math.min(Math.max(participantCount, 1), 6);
   const otherParticipantCount = Math.max(actualParticipantCount - 1, 0);
-  
+
   const participants = [
     currentUser,
     ...friends.slice(0, otherParticipantCount)
   ]
-  
+
   const handleSendMessage = (event: React.FormEvent) => {
     event.preventDefault();
     if (!message.trim()) return;
@@ -170,7 +169,7 @@ export default function SessionRoom({
               {sessionT('participants', { count: participants.length })}
             </span>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             {isHost && (
               <button className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
@@ -200,7 +199,7 @@ export default function SessionRoom({
                 <p className="text-white text-xl font-semibold mb-2">{sessionT('videoTitle')}</p>
                 <p className="text-gray-400 text-sm">{sessionT('videoSubtitle')}</p>
               </div>
-              
+
               {/* Play overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 bg-blue-600 bg-opacity-80 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition-opacity">
@@ -214,7 +213,7 @@ export default function SessionRoom({
           <div className="absolute inset-0 pointer-events-none">
             {participants.map((participant, index) => {
               const isCurrent = participant.id === currentUser.id
-              
+
               // Current user always at bottom-left, others fill remaining positions
               let position
               if (isCurrent) {
@@ -223,7 +222,7 @@ export default function SessionRoom({
                 // Find the index excluding current user
                 const otherParticipants = participants.filter(p => p.id !== currentUser.id)
                 const otherIndex = otherParticipants.findIndex(p => p.id === participant.id)
-                
+
                 // Positions: top-left, mid-left, top-right, mid-right, bottom-right
                 // (bottom-left is reserved for current user)
                 const positions = [
@@ -235,7 +234,7 @@ export default function SessionRoom({
                 ]
                 position = positions[otherIndex] || { top: '50%', left: '50%' }
               }
-              
+
               return (
                 <div
                   key={participant.id}
@@ -249,7 +248,7 @@ export default function SessionRoom({
                       delay={index * 0.5}
                       avatarIndex={index}
                     />
-                    
+
                     {/* Audio Status */}
                     <div className="absolute -bottom-1 -right-1">
                       {micEnabled && isCurrent ? (
@@ -344,7 +343,7 @@ export default function SessionRoom({
             >
               {micEnabled ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
             </button>
-            
+
             <button
               onClick={() => setVideoEnabled(!videoEnabled)}
               className={cn(
@@ -368,10 +367,6 @@ export default function SessionRoom({
             >
               <MessageSquare className="w-5 h-5" />
             </button>
-
-            <button className="flex items-center justify-center w-12 h-12 bg-gray-700 text-white rounded-full hover:bg-gray-600 transition-colors">
-              <Share2 className="w-5 h-5" />
-            </button>
           </div>
 
           <div className="flex items-center space-x-3">
@@ -379,7 +374,7 @@ export default function SessionRoom({
               {commonT('participantsButton')}
               <Users className="w-4 h-4 inline ml-2" />
             </button>
-            
+
             <button
               onClick={onLeave}
               className="flex items-center px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
